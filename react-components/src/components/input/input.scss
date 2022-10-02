@@ -1,6 +1,7 @@
 @import '../../global/library';
 
 .search-container {
+  width: 30vw;
   padding: 8px;
   background-color: rgba(252, 230, 215, 0.2);
   border: 1px solid $MAIN-COLOR--SECONDARY;
@@ -13,7 +14,7 @@
   .search-input {
     background-color: transparent;
     border: 0;
-    min-width: 250px;
+    min-width: 25vw;
     @include font(18px, Lumos);
     color: $MAIN-COLOR--PRIMARY-LIGHT;
     &:active, &:hover, &:focus {

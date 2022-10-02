@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import './header.scss';
-import logo from '../../assets/img/logo.png';
+import logo from '../../assets/icons/hogwarts-express-logo.png';
 import Input from 'components/input/input';
 
 function Header() {
@@ -9,23 +9,25 @@ function Header() {
     <header className="header">
       <div className="header-container">
         <div className="logo__container">
-          <Link to="/">
+          <NavLink to="/">
             <img className="logo-img" alt="logo" src={logo} />
-          </Link>
+          </NavLink>
           <div className="logo">
-            <Link to="/">
+            <NavLink to="/">
               <h1 className="logo__title">Harry Potter</h1>
-            </Link>
+            </NavLink>
             <h3 className="logo__subtitle">library for true fans!</h3>
           </div>
         </div>
         <Input />
         <nav className="navbar">
           <li>
-            <Link to="/">Main</Link>
+            <NavLink to="/" end>
+              Main
+            </NavLink>
           </li>
           <li>
-            <Link to="/about-us">About us</Link>
+            <NavLink to="/about-us">About us</NavLink>
           </li>
         </nav>
       </div>

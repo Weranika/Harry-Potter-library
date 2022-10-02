@@ -7,7 +7,6 @@ class Main extends React.Component {
   render() {
     return (
       <section className="main__container">
-        <h2 className="main__title">Characters</h2>
         <div className="card-list">
           {heroes.map((card) => (
             <CardComponent item={card} key={card.name} />
