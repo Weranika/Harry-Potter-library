@@ -10,7 +10,7 @@ $CONTENT-CONTAINER-WIDTH: 1200px;
 $HEADER-LOGO-CONTAINER--HEIGHT: 140px;
 $HEADER--HEIGHT: 67px;
 
-@mixin flex ($justify-content) {
+@mixin flex ($justify-content, $align-items: center) {
   display: flex;
   justify-content: $justify-content;
   align-items: center;
