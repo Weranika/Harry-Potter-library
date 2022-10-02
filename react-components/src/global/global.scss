@@ -8,6 +8,20 @@
   display: flex;
   flex-direction: column;
 }
+.main {
+  flex-grow: 1;
+  background: linear-gradient(rgba(254, 255, 255, 0.9) 50%,rgba(17, 17, 17, 0.4) 100%), url(../assets/img/background.jpg) repeat repeat;
+  background-size: 380px auto;
+}
+a {
+  text-decoration: none;
+}
+li {
+  list-style-type: none;
+  a {
+    color: inherit;
+  }
+}
 @font-face {
   font-family: "HarryPotter";
   font-style: normal;

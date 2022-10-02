@@ -1,0 +1,32 @@
+@import '../../global/library';
+
+.search-container {
+  padding: 8px;
+  background-color: rgba(252, 230, 215, 0.2);
+  border: 1px solid $MAIN-COLOR--SECONDARY;
+  border-radius: 30px;
+  padding-left: 20px;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  color: $MAIN-COLOR--PRIMARY-DARK;
+  .search-input {
+    background-color: transparent;
+    border: 0;
+    min-width: 250px;
+    @include font(18px, Lumos);
+    color: $MAIN-COLOR--PRIMARY-LIGHT;
+    &:active, &:hover, &:focus {
+      outline: 0;
+      outline-offset: 0;
+      cursor: pointer;
+    }
+    &::-webkit-search-cancel-button {
+      -webkit-appearance: none;
+      height: 15px;
+      width: 15px;
+      background: (url('../../assets/icons/close-button.png') no-repeat);
+      background-size: 15px 15px;
+    }
+  }
+}

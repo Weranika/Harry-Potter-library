@@ -1,0 +1,27 @@
+@import '../../global/library';
+
+.not-found__container {
+  background-color: rgb(254, 254, 254);
+  color: $MAIN-COLOR--PRIMARY-DARK;
+  flex-grow: 1;
+}
+.error__container {
+  background: url(../../assets/img/not-found.jpg) no-repeat center;
+  background-size: auto 65vh;
+  text-align: center;
+  height: 58vh;
+}
+.error__title {
+  @include font(4em, HarryPotter);
+  margin: 0;
+}
+.error__content {
+  @include font(2.5em, HarryPotter);
+  margin-top: 24%;
+  h3, p {
+    margin: 0;
+  }
+  p {
+    @include font(1em, HarryPotter);
+  }
+}

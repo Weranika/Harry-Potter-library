@@ -1,0 +1,52 @@
+@import '../../global/library';
+
+$LOGO-HEIGHT: 80px;
+
+.header {
+  @include flex(space-between);
+  background-color: $MAIN-COLOR--PRIMARY-DARK;
+  position: sticky;
+  top: 0;
+  color: $MAIN-COLOR--SECONDARY;
+}
+.header-container {
+  width: $CONTENT-CONTAINER-WIDTH;
+  margin: 10px auto;
+  @include flex(space-between);
+}
+.logo__container {
+  @include font(18px, HarryPotter);
+  @include flex(space-between);
+  justify-content: space-around;
+  width: 25%;
+  .logo__subtitle {
+    @include font(22px, HarryPotter);
+    margin: 5px 0;
+  }
+}
+.logo {
+  height: $LOGO-HEIGHT;
+  h1 {
+    color: $MAIN-COLOR--SECONDARY-LIGHT;
+    &:hover {
+      color:$MAIN-COLOR--PRIMARY-LIGHT;
+    }
+  }
+  .logo__title, .logo__subtitle {
+    margin: 5px 0;
+  }
+}
+.logo-img {
+  height: $LOGO-HEIGHT;
+}
+.logo__title {
+  margin: 0;
+}
+.navbar {
+  @include flex(space-between);
+  width: 15%;
+  @include font(20px, Lumos);
+  li > a:hover {
+    color:$MAIN-COLOR--PRIMARY-LIGHT;
+  }
+}
