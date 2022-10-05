@@ -97,7 +97,7 @@ $ABOUT-US--IMG-HEIGHT: 60%;
     }
   }
 }
-@media only screen and (min-width: 400px) and (max-width: 899px) {
+@media only screen and (min-width: 750px) and (max-width: 899px) {
   .about-us__img-container {
     min-height: 400px;
   }
@@ -126,6 +126,41 @@ $ABOUT-US--IMG-HEIGHT: 60%;
     }
     .about-slytherin {
       margin-left: 30px;
+    }
+  }
+}
+@media only screen and (max-width: 749px) {
+  .about-us__conteiner {
+    display: block;
+    margin: 0 auto;
+  }
+  .about-us__img-container {
+    width: 100%;
+    min-height: 40vw;
+    .about-us__img {
+      width: 25vw;
+    }
+    .img-1, .img-2, .img-3 {
+      align-self: center;
+    }
+  }
+  .about-us__content {
+    font-size: 18px;
+    width: 80vw;
+    .about-hufflepuff,
+    .about-ravenclaw,
+    .about-slytherin {
+      margin-left: 0;
+    }
+  }
+  .about-us__title {
+    width: 100%;
+  }
+  .about-us__content {
+    text-align: center;
+    div {
+      margin: 40px auto;
+      line-height: 1;
     }
   }
 }
