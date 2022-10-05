@@ -1,0 +1,131 @@
+@import '../../global/library';
+
+$IMG-CONTAINER-HEIGHT: 700px;
+$IMG-CONTAINER-WIDTH: 58vw;
+$IMG-CONTAINER-MAX-HEIGHT: 90vh;
+$ABOUT-US--IMG-WIDTH: 18vw;
+$ABOUT-US--IMG-HEIGHT: 60%;
+
+.about-us {
+  background: linear-gradient(rgba(33, 33, 33, 0.5) 50%,rgba(17, 17, 17, 0.8) 100%), url(../../assets/img/wp2638543-wallpaper-hogwarts.jpg) no-repeat center;
+  background-size: 100% 100%;
+  display: flex;
+  height: 100%;
+  flex-grow: 1;
+  flex-direction: column;
+}
+.about-us__conteiner {
+  @include flex(space-between);
+}
+.about-us__img-container {
+  width: $IMG-CONTAINER-WIDTH;
+  display: flex;
+  justify-content: space-evenly;
+  max-height: $IMG-CONTAINER-MAX-HEIGHT;
+  min-height: $IMG-CONTAINER-HEIGHT;
+  .about-us__img {
+    width: $ABOUT-US--IMG-WIDTH;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px 4px rgba(148, 148, 148, 0.2);
+    height: $ABOUT-US--IMG-HEIGHT;
+  }
+  .img-1 {
+    align-self: flex-start;
+  }
+  .img-2 {
+    align-self: center;
+  }
+  .img-3 {
+    align-self: flex-end;
+  }
+}
+.about-us__title {
+  margin: 10px 0;
+  text-align: center;
+  width: 60%;
+  @include font(3vw, HarryPotter);
+  color: $MAIN-COLOR--SECONDARY-LIGHT;
+}
+.about-us__content {
+  @include font(1.3vw, Lumos);
+  color: $MAIN-COLOR--PRIMARY-LIGHT;
+  width: 32vw;
+  .about-hufflepuff {
+    margin-left: 30px;
+  }
+  .about-ravenclaw {
+    margin-left: 60px;
+  }
+  .about-slytherin {
+    margin-left: 90px;
+  }
+}
+
+/***************media********************/
+@media only screen and (min-width: 1100px) and (max-width: 1390px) {
+  .about-us__img-container {
+    max-height: 550px;
+    min-height: 500px;
+  }
+}
+@media only screen and (min-width: 900px) and (max-width: 1099px) {
+  .about-us__img-container {
+    min-height: 500px;
+  }
+  .img-3 {
+    display: none;
+  }
+  .about-us__img-container {
+    .about-us__img {
+      width: 25vw;
+    }
+  }
+  .about-us__img-container .img-2 {
+    align-self: self-end;
+  }
+  .about-us__content {
+    font-size: 14px;
+    width: 40vw;
+    .about-hufflepuff {
+      margin-left: 20px;
+    }
+    .about-ravenclaw {
+      margin-left: 40px;
+    }
+    .about-slytherin {
+      margin-left: 60px;
+    }
+  }
+}
+@media only screen and (min-width: 400px) and (max-width: 899px) {
+  .about-us__img-container {
+    min-height: 400px;
+  }
+  .img-3 {
+    display: none;
+  }
+  .img-1 {
+    display: none;
+  }
+  .about-us__img-container {
+    .about-us__img {
+      width: 40vw;
+    }
+  }
+  .about-us__img-container .img-2 {
+    align-self: self-end;
+  }
+  .about-us__content {
+    font-size: 14px;
+    width: 49vw;
+    .about-hufflepuff {
+      margin-left: 10px;
+    }
+    .about-ravenclaw {
+      margin-left: 20px;
+    }
+    .about-slytherin {
+      margin-left: 30px;
+    }
+  }
+}

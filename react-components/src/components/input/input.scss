@@ -1,7 +1,9 @@
 @import '../../global/library';
 
+$INPUT-BUTTON-HEIGHT: 30px;
+
 .search-container {
-  width: 30vw;
+  width: 25vw;
   padding: 8px;
   background-color: rgba(252, 230, 215, 0.2);
   border: 1px solid $MAIN-COLOR--SECONDARY;
@@ -11,10 +13,13 @@
   display: flex;
   justify-content: space-between;
   color: $MAIN-COLOR--PRIMARY-DARK;
+  form {
+    width: 99%;
+  }
   .search-input {
     background-color: transparent;
     border: 0;
-    min-width: 25vw;
+    width: 87%;
     @include font(18px, Lumos);
     color: $MAIN-COLOR--PRIMARY-LIGHT;
     &:active, &:hover, &:focus {
@@ -29,5 +34,21 @@
       background: (url('../../assets/icons/close-button.png') no-repeat);
       background-size: 15px 15px;
     }
+  }
+  .search-container__button {
+    border-radius: 30px;
+    @include font(18px, Lumos);
+    width: $INPUT-BUTTON-HEIGHT;
+    height: $INPUT-BUTTON-HEIGHT;
+    color: $MAIN-COLOR--SECONDARY-LIGHT;
+    border: none;
+    background-color: $MAIN-COLOR--PRIMARY-DARK;
+    cursor: pointer;
+    &:hover {
+      box-shadow: inset 0px 0px 5px 1px rgba(242, 161, 55, 0.8);
+    }
+  }
+  form {
+    @include flex(space-between);
   }
 }

@@ -2,8 +2,7 @@
 
 .main__container {
   @include flex(space-between);
-  background: linear-gradient(rgba(35, 35, 35, 0.4) 50%,rgba(17, 17, 17, 0.5) 100%), url(../../assets/img/background.jpg) repeat repeat;
-  background-size: 380px auto;
+  //background: linear-gradient(rgba(203, 197, 188, 0.5) 50%,rgba(17, 17, 17, 0.5) 100%), url(../../assets/img/background.jpg) repeat center;
   display: flex;
   flex-direction: column;
 }

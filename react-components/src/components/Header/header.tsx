@@ -4,11 +4,15 @@ import './header.scss';
 import logo from '../../assets/icons/hogwarts-express-logo.png';
 import Input from 'components/input/input';
 
+const scrollToTop = () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+};
+
 function Header() {
   return (
     <header className="header">
       <div className="header-container">
-        <div className="logo__container">
+        <div className="logo__container" onClick={scrollToTop}>
           <NavLink to="/">
             <img className="logo-img" alt="logo" src={logo} />
           </NavLink>

@@ -1,17 +1,17 @@
 import React from 'react';
-import CardComponent from 'components/card/card';
 import heroes from '../../resources/heroes.json';
+import CardList from 'components/CardList/cardList';
 import './main.scss';
+
+// interface IPropsFilter {
+//   filteredItems: Array<ICardInfo>;
+// }
 
 class Main extends React.Component {
   render() {
     return (
       <section className="main__container">
-        <div className="card-list">
-          {heroes.map((card) => (
-            <CardComponent item={card} key={card.name} />
-          ))}
-        </div>
+        <CardList filteredItems={heroes} />
       </section>
     );
   }

@@ -8,10 +8,13 @@
   display: flex;
   flex-direction: column;
 }
+body {
+  background: linear-gradient(rgba(36, 0, 0, 0.9) 50%,rgba(0, 0, 0, 0.9));
+}
 .main {
   flex-grow: 1;
-  background: linear-gradient(rgba(35, 35, 35, 0.4) 50%,rgba(17, 17, 17, 0.5) 100%), url(../assets/img/background.jpg) repeat repeat;
-  background-size: 380px auto;
+  display: flex;
+  flex-direction: column;
 }
 a {
   text-decoration: none;

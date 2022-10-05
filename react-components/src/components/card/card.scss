@@ -1,9 +1,9 @@
 @import '../../global/library';
 
-$CARD-WIDTH: 270px;
+$CARD-WIDTH: 310px;
 
 .card {
-  min-width: $CARD-WIDTH;
+  width: $CARD-WIDTH;
   &:hover {
     box-shadow: 0px 0px 18px 4px rgba(238, 237, 237, 0.9);
   }

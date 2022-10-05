@@ -23,7 +23,7 @@ import './card.scss';
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
 }
-interface ICardInfo {
+export interface ICardInfo {
   name: string;
   alternate_names: Array<string>;
   species: string;
@@ -48,8 +48,9 @@ interface ICardInfo {
   alive: boolean;
   image: string;
 }
-interface IProps {
+export interface IProps {
   item: ICardInfo;
+  //itemFilter: ICardInfo;
 }
 
 interface IState {
@@ -71,12 +72,11 @@ class CardComponent extends React.Component<IProps, IState> {
   constructor(props: IProps) {
     super(props);
     this.state = { expanded: false };
-    console.log('expand constructor', this.state);
   }
 
   handleExpandClick = () => {
     this.setState({ expanded: !this.state.expanded });
-    console.log('expand', this.state.expanded);
+    //console.log('expand', this.state.expanded);
   };
 
   render() {
@@ -111,7 +111,9 @@ class CardComponent extends React.Component<IProps, IState> {
                 className="card-icon"
               />
               <Box>
-                <Typography variant="h5">{this.props.item.name}</Typography>
+                <Typography variant="h5" align="center">
+                  {this.props.item.name}
+                </Typography>
                 <Typography variant="h6" align="center">
                   {this.props.item.house}
                 </Typography>

@@ -6,6 +6,7 @@ $LOGO-HEIGHT: 60px;
   @include flex(space-between);
   background-color: $MAIN-COLOR--PRIMARY-DARK;
   position: sticky;
+  z-index: 1;
   top: 0;
   color: $MAIN-COLOR--SECONDARY;
 }
