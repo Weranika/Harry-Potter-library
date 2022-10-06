@@ -10,6 +10,7 @@
 }
 body {
   background: linear-gradient(rgba(36, 0, 0, 0.9) 50%,rgba(0, 0, 0, 1));
+  cursor: url(../assets/icons/cursor1665011096.cur), auto;
 }
 .main {
   flex-grow: 1;
@@ -18,6 +19,10 @@ body {
 }
 a {
   text-decoration: none;
+  cursor: inherit;
+  &:active {
+    color: $MAIN-COLOR--PRIMARY;
+  }
 }
 li {
   list-style-type: none;

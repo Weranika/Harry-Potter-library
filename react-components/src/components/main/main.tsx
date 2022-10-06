@@ -1,17 +1,46 @@
 import React from 'react';
 import heroes from '../../resources/heroes.json';
 import CardList from 'components/CardList/cardList';
+import Input from 'components/input/input';
 import './main.scss';
 
-// interface IPropsFilter {
-//   filteredItems: Array<ICardInfo>;
-// }
+interface IMainState {
+  inputSearch: string;
+  //filteredItems: Array<ICardInfo>;
+}
 
-class Main extends React.Component {
+class Main extends React.Component<unknown, IMainState> {
+  constructor() {
+    super({});
+    this.state = {
+      inputSearch: '',
+    };
+  }
+
+  handleSearhSubmit = (value: string) => {
+    this.setState({
+      inputSearch: value,
+    });
+  };
+
+  filter(inputSearch: string) {
+    if (inputSearch) {
+      return heroes.filter(
+        (item) =>
+          item.name.toLocaleLowerCase().includes(inputSearch.toLocaleLowerCase()) ||
+          item.house.toLocaleLowerCase().includes(inputSearch.toLocaleLowerCase()) ||
+          item.actor.toLocaleLowerCase().includes(inputSearch.toLocaleLowerCase())
+      );
+    }
+
+    return heroes;
+  }
+
   render() {
     return (
       <section className="main__container">
-        <CardList filteredItems={heroes} />
+        <Input handlerSearchValue={this.handleSearhSubmit} />
+        <CardList filteredItems={this.filter(this.state.inputSearch)} />
       </section>
     );
   }

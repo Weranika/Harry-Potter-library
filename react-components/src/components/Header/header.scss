@@ -4,7 +4,7 @@ $LOGO-HEIGHT: 60px;
 
 .header {
   @include flex(space-between);
-  background-color: $MAIN-COLOR--PRIMARY-DARK;
+  background: linear-gradient(rgba(35, 35, 35, 0) 50%,rgba(17, 17, 17, 0.5) 100%), $MAIN-COLOR--PRIMARY-DARK;
   position: sticky;
   z-index: 1;
   top: 0;
@@ -14,6 +14,9 @@ $LOGO-HEIGHT: 60px;
   width: 87%;
   margin: 10px auto;
   @include flex(space-between);
+  .MuiSvgIcon-root {
+    color: $MAIN-COLOR--SECONDARY-LIGHT;
+  }
 }
 .logo__container {
   @include font(18px, HarryPotter);
@@ -32,10 +35,20 @@ $LOGO-HEIGHT: 60px;
     &:hover {
       color:$MAIN-COLOR--PRIMARY-LIGHT;
     }
+    &:active {
+      color: $MAIN-COLOR--SECONDARY;
+    }
   }
 }
 .logo-img {
   height: $LOGO-HEIGHT;
+  border-radius: 30px;
+  &:hover {
+    box-shadow: 0px 0px 8px 3px rgba(255, 255, 255, 0.8);
+  }
+  &:active {
+    box-shadow: 0px 0px 8px 3px rgb(242 161 55 / 80%);
+  }
 }
 .logo__title {
   margin: 0;
@@ -48,6 +61,9 @@ $LOGO-HEIGHT: 60px;
     padding-left: 10px;
     &:hover {
       color:$MAIN-COLOR--PRIMARY-LIGHT;
+    }
+    &:active {
+      color:$MAIN-COLOR--SECONDARY-LIGHT;
     }
   }
   .active {

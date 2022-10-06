@@ -1,11 +1,15 @@
 @import '../../global/library';
 
-$INPUT-BUTTON-HEIGHT: 30px;
+$INPUT-BUTTON--HEIGHT: 30px;
+$SEARCH-CONTAINER--WIDTH: 50vw;
+$SEARCH-CONTAINER--MAX-WIDTH: 320px;
 
 .search-container {
-  width: 25vw;
+  width: $SEARCH-CONTAINER--WIDTH;
+  max-width: $SEARCH-CONTAINER--MAX-WIDTH;
   padding: 8px;
-  background-color: rgba(252, 230, 215, 0.2);
+  margin-top: 15px;
+  background-color: rgba(252, 230, 215, 0.95);
   border: 1px solid $MAIN-COLOR--SECONDARY;
   border-radius: 30px;
   padding-left: 20px;
@@ -21,11 +25,11 @@ $INPUT-BUTTON-HEIGHT: 30px;
     border: 0;
     width: 87%;
     @include font(18px, Lumos);
-    color: $MAIN-COLOR--PRIMARY-LIGHT;
+    color: rgb(0, 0, 0);
     &:active, &:hover, &:focus {
       outline: 0;
       outline-offset: 0;
-      cursor: pointer;
+      cursor: inherit;
     }
     &::-webkit-search-cancel-button {
       -webkit-appearance: none;
@@ -38,14 +42,17 @@ $INPUT-BUTTON-HEIGHT: 30px;
   .search-container__button {
     border-radius: 30px;
     @include font(18px, Lumos);
-    width: $INPUT-BUTTON-HEIGHT;
-    height: $INPUT-BUTTON-HEIGHT;
+    width: $INPUT-BUTTON--HEIGHT;
+    height: $INPUT-BUTTON--HEIGHT;
     color: $MAIN-COLOR--SECONDARY-LIGHT;
     border: none;
     background-color: $MAIN-COLOR--PRIMARY-DARK;
-    cursor: pointer;
+    cursor: inherit;
     &:hover {
       box-shadow: inset 0px 0px 5px 1px rgba(242, 161, 55, 0.8);
+    }
+    &:active {
+      color: $MAIN-COLOR--PRIMARY;
     }
   }
   form {

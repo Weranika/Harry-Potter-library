@@ -4,18 +4,24 @@ import './input.scss';
 interface IInputState {
   inputValue: string;
 }
-class Input extends React.Component<unknown, IInputState> {
-  constructor() {
-    super({});
+interface IInputProps {
+  handlerSearchValue: (a: string) => void;
+}
+class Input extends React.Component<IInputProps, IInputState> {
+  constructor(props: IInputProps) {
+    super(props);
     this.state = {
       inputValue: '',
     };
   }
 
-  submitForm(event: React.FormEvent<HTMLFormElement>) {
+  submitForm = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    alert(this.state.inputValue);
-  }
+  };
+
+  componentWillUnmount = () => {
+    localStorage.setItem('inputValue', this.state.inputValue);
+  };
 
   render() {
     return (
@@ -26,13 +32,12 @@ class Input extends React.Component<unknown, IInputState> {
             autoFocus
             onChange={(event) => {
               const inputValue = event.target.value;
-              localStorage.setItem('inputValue', inputValue);
               this.setState({
                 inputValue: inputValue,
               });
-              console.log(inputValue);
+              this.props.handlerSearchValue(inputValue);
             }}
-            value={localStorage.getItem('inputValue') || ''}
+            value={this.state.inputValue}
             type="text"
             className="search-input"
             autoComplete="off"

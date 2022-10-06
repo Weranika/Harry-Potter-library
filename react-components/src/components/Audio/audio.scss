@@ -1,0 +1,23 @@
+@import '../../global/library';
+
+$AUDIO-HEIGHT: 60px;
+$AUDIO-WIDTH: 60px;
+
+.header-container .audio__container {
+  height: $AUDIO-HEIGHT;
+  width: $AUDIO-WIDTH;
+  border-radius: 30px;
+  color: $MAIN-COLOR--SECONDARY-LIGHT;
+  background-color: $MAIN-COLOR--PRIMARY-DARK;
+  box-shadow: 0px 0px 5px 2px rgba(255, 228, 193, 0.8);
+  cursor: inherit;
+  position: absolute;
+  top: 15vh;
+  right: 8px;
+  &:hover {
+    background-color: $MAIN-COLOR--SECONDARY;
+  }
+  &:active {
+    color: rgba(255, 197, 121, 0.8);
+  }
+}

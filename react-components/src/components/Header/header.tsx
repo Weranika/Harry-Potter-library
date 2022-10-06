@@ -2,7 +2,7 @@ import * as React from 'react';
 import { NavLink } from 'react-router-dom';
 import './header.scss';
 import logo from '../../assets/icons/hogwarts-express-logo.png';
-import Input from 'components/input/input';
+import Music from 'components/Audio/Audio';
 
 const scrollToTop = () => {
   window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -23,7 +23,6 @@ function Header() {
             <h3 className="logo__subtitle">library for true fans!</h3>
           </div>
         </div>
-        <Input />
         <nav className="navbar">
           <li>
             <NavLink to="/" end>
@@ -34,6 +33,7 @@ function Header() {
             <NavLink to="/about-us">About us</NavLink>
           </li>
         </nav>
+        <Music />
       </div>
     </header>
   );
