@@ -13,6 +13,9 @@ class Input extends React.Component<IInputProps, IInputState> {
     this.state = {
       inputValue: '',
     };
+    this.setState({
+      inputValue: localStorage.getItem('inputValue') as string,
+    });
   }
 
   submitForm = (event: React.FormEvent<HTMLFormElement>) => {
@@ -20,8 +23,16 @@ class Input extends React.Component<IInputProps, IInputState> {
   };
 
   componentWillUnmount = () => {
+    console.log('unmount');
     localStorage.setItem('inputValue', this.state.inputValue);
   };
+
+  componentDidMount() {
+    console.log('componentDidMount');
+    this.setState({
+      inputValue: localStorage.getItem('inputValue') as string,
+    });
+  }
 
   render() {
     return (

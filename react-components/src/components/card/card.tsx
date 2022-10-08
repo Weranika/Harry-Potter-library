@@ -95,7 +95,7 @@ class CardComponent extends React.Component<IProps, IState> {
 
     return (
       <StylesProvider injectFirst>
-        <Card className="card">
+        <Card role="listitem" className="card">
           <CardContent style={{ backgroundImage: `url(${mapNameToBg.get(color)})` }}>
             <CardMedia
               component="img"

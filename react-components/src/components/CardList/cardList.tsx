@@ -3,7 +3,7 @@ import CardComponent from 'components/card/card';
 import { ICardInfo } from '../card/card';
 import './cardList.scss';
 
-interface IPropsFilter {
+export interface IPropsFilter {
   filteredItems: Array<ICardInfo>;
 }
 
@@ -13,7 +13,7 @@ class CardList extends React.Component<IPropsFilter> {
   }
   render() {
     return (
-      <div className="card-list">
+      <div className="card-list" role="list">
         {this.props.filteredItems.map((card) => (
           <CardComponent item={card} key={card.name} />
         ))}

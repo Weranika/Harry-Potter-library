@@ -34,7 +34,7 @@
     "build": "npm run lint && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy": "gh-pages -d build",
+    "deploy": "gh-pages -d ./react-components/build -e react-components",
     "lint": "eslint src/ --ext .js,.jsx,.ts,.tsx"
   },
   "eslintConfig": {
