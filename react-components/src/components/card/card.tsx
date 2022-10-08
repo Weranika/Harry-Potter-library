@@ -125,7 +125,7 @@ class CardComponent extends React.Component<IProps, IState> {
                 expand={this.state.expanded}
                 onClick={this.handleExpandClick}
                 aria-expanded={this.state.expanded}
-                aria-label="show more"
+                aria-label="show-more"
               >
                 <ExpandMoreIcon />
               </ExpandMore>
