@@ -12,7 +12,7 @@ function App() {
     <HashRouter>
       <Routes>
         <Route path="/" element={<TemplatePage />}>
-          <Route path="/" element={<Main />} />
+          <Route path="/" element={<Main inputSearch="1" />} />
           <Route path="about-us" element={<AboutUs />} />
           <Route path="*" element={<Page404 />} />
         </Route>

@@ -9,11 +9,11 @@ interface IMusicState {
   play: boolean;
 }
 
-class Music extends React.Component<unknown, IMusicState> {
+class Music extends React.Component<IMusicState, IMusicState> {
   private audio: HTMLAudioElement;
 
-  constructor() {
-    super({});
+  constructor(props: IMusicState) {
+    super(props);
     this.state = {
       play: false,
     };

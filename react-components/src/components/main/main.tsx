@@ -9,9 +9,9 @@ interface IMainState {
   //filteredItems: Array<ICardInfo>;
 }
 
-class Main extends React.Component<unknown, IMainState> {
-  constructor() {
-    super({});
+class Main extends React.Component<IMainState, IMainState> {
+  constructor(props: IMainState) {
+    super(props);
     this.state = {
       inputSearch: '',
     };

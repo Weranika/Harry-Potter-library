@@ -21,7 +21,7 @@ import SlytherinIcon from '../../assets/icons/SlytherinIcon.png';
 import './card.scss';
 
 interface ExpandMoreProps extends IconButtonProps {
-  expand: boolean;
+  expand: string;
 }
 export interface ICardInfo {
   name: string;
@@ -61,7 +61,7 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
   const { ...other } = props;
   return <IconButton {...other} />;
 })(({ theme, expand }) => ({
-  transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
+  transform: expand === 'false' ? 'rotate(0deg)' : 'rotate(180deg)',
   marginLeft: 'auto',
   transition: theme.transitions.create('transform', {
     duration: theme.transitions.duration.shortest,
@@ -122,7 +122,7 @@ class CardComponent extends React.Component<IProps, IState> {
 
             <CardActions disableSpacing>
               <ExpandMore
-                expand={this.state.expanded}
+                expand={this.state.expanded.toString()}
                 onClick={this.handleExpandClick}
                 aria-expanded={this.state.expanded}
                 aria-label="show-more"

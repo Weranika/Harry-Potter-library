@@ -4,7 +4,7 @@ import CardList from '../components/CardList/cardList';
 import heroes from '../resources/heroes.json';
 
 it('should render list of 8 heroes', () => {
-  render(<CardList filteredItems={heroes}/>);
+  render(<CardList filteredItems={heroes} />);
   const list = screen.getByRole('list');
   const { getAllByRole } = within(list);
   const items = getAllByRole('listitem');

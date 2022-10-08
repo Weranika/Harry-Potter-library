@@ -33,7 +33,7 @@ function Header() {
             <NavLink to="/about-us">About us</NavLink>
           </li>
         </nav>
-        <Music />
+        <Music play={true} />
       </div>
     </header>
   );
