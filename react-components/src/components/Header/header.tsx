@@ -32,6 +32,9 @@ function Header() {
           <li>
             <NavLink to="/about-us">About us</NavLink>
           </li>
+          <li>
+            <NavLink to="/form">Form</NavLink>
+          </li>
         </nav>
         <Music play={true} />
       </div>

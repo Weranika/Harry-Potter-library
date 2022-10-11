@@ -30,6 +30,14 @@ li {
     color: inherit;
   }
 }
+.page__title {
+  margin: 20px 0 0;
+  text-align: center;
+  width: 30%;
+  @include font(3vw, HarryPotter);
+  color: $MAIN-COLOR--SECONDARY-LIGHT;
+}
+/*******************************font-face***********************************/
 @font-face {
   font-family: "HarryPotter";
   font-style: normal;

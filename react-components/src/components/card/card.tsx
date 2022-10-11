@@ -50,7 +50,6 @@ export interface ICardInfo {
 }
 export interface IProps {
   item: ICardInfo;
-  //itemFilter: ICardInfo;
 }
 
 interface IState {
@@ -176,21 +175,9 @@ class CardComponent extends React.Component<IProps, IState> {
                 </Box>
                 <Box className="card__dropp-content-row">
                   <Typography paragraph variant="h6">
-                    Hogwarts student:
-                  </Typography>
-                  <Typography paragraph>{this.props.item.hogwartsStudent.toString()}</Typography>
-                </Box>
-                <Box className="card__dropp-content-row">
-                  <Typography paragraph variant="h6">
                     Actor:
                   </Typography>
                   <Typography paragraph>{this.props.item.actor}</Typography>
-                </Box>
-                <Box className="card__dropp-content-row">
-                  <Typography paragraph variant="h6">
-                    Alive:
-                  </Typography>
-                  <Typography paragraph>{this.props.item.alive.toString()}</Typography>
                 </Box>
 
                 <Box className="wand__continer">

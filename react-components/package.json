@@ -37,7 +37,7 @@
     "deploy": "gh-pages -d ./build -e react-components",
     "lint": "eslint src/ --ext .js,.jsx,.ts,.tsx"
   },
-  "homepage": "https://rolling-scopes-school.github.io/weranika-REACT2022Q3/react-components",
+  "homepage": "https://rolling-scopes-school.github.io/",
   "eslintConfig": {
     "extends": [
       "react-app",

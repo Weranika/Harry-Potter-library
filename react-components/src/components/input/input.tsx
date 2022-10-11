@@ -10,11 +10,9 @@ interface IInputProps {
 class Input extends React.Component<IInputProps, IInputState> {
   constructor(props: IInputProps) {
     super(props);
-    console.log('constructor');
     this.state = {
       inputValue: localStorage.getItem('inputValue') as string,
     };
-    console.log('constructor2');
   }
 
   submitForm = (event: React.FormEvent<HTMLFormElement>) => {
@@ -22,7 +20,6 @@ class Input extends React.Component<IInputProps, IInputState> {
   };
 
   componentDidMount() {
-    console.log('componentDidMount');
     this.setState({
       inputValue: localStorage.getItem('inputValue') as string,
     });
@@ -30,7 +27,6 @@ class Input extends React.Component<IInputProps, IInputState> {
   }
 
   componentWillUnmount = () => {
-    console.log('unmount', this.state.inputValue);
     localStorage.setItem('inputValue', this.state.inputValue);
   };
 

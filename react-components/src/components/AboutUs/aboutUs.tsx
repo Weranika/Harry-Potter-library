@@ -7,7 +7,7 @@ import './aboutUs.scss';
 function AboutUs() {
   return (
     <section className="about-us">
-      <h1 className="about-us__title">About us</h1>
+      <h1 className="page__title">About us</h1>
       <div className="about-us__conteiner">
         <div className="about-us__img-container">
           <img className="about-us__img img-1" src={aboutImg1} alt="aboutImg1" />

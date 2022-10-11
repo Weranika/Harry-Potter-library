@@ -1,0 +1,84 @@
+@import '../../global/library';
+
+$INPUT-WIDTH: 200px;
+$FORM-BUTTON--WIDTH: 150px;
+$FORM-SUBMIT--WIDTH: 200px;
+
+.form-page {
+  background: linear-gradient(rgba(29, 5, 5, 0.6) 50%,rgba(48, 11, 11, 0.1) 100%), url(../../assets/img/wp8187830-harry-potter-art-wallpapers.jpg) no-repeat bottom;
+  background-size: 91% auto;
+  background-attachment: fixed;
+  display: flex;
+  height: 100%;
+  flex-grow: 1;
+  flex-direction: column;
+}
+.form-page__subtitle, .form-page__fill-magic {
+  margin: 0;
+  text-align: center;
+  @include font(30px, HarryPotter);
+  color: $MAIN-COLOR--PRIMARY-LIGHT;
+}
+.form-page__fill-magic {
+  margin-right: 80px;
+  text-align: right;
+}
+.form__container {
+  width: 40%;
+  @include font(20px, Lumos);
+  color: $MAIN-COLOR--PRIMARY-LIGHT;
+  margin: 20px auto;
+  border: 1px solid rgba(214, 214, 214, 0.4);
+  border-radius: 10px;
+  padding: 30px;
+  background-color: rgba(48, 11, 11, 0.4);
+  box-shadow: 0px 0px 10px 4px rgba(214, 214, 214, 0.2);
+}
+.form__label {
+  @include flex(space-between);
+  width: 100%;
+  margin: 10px auto;
+}
+input, select, option {
+  @include font(17px, Lumos);
+  width: $INPUT-WIDTH;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+input[type="checkbox"] {
+  accent-color: #7c1208;
+  color: white;
+  height: 20px;
+  width: 20px;
+}
+.form__title {
+  text-align: center;
+  margin: 0;
+}
+.form-img__container {
+  @include flex(space-between);
+}
+.form__img {
+  display: none;
+}
+.form-img__btn, .submit__btn {
+  background-color: $MAIN-COLOR--PRIMARY-LIGHT;
+  color: $MAIN-COLOR--PRIMARY-DARK;
+  border-radius: 10px;
+  text-align: center;
+  cursor: pointer;
+  width:$FORM-BUTTON--WIDTH;
+}
+.submit__btn {
+  background-color: $MAIN-COLOR--PRIMARY-DARK;
+  padding: 10px;
+  color: $MAIN-COLOR--SECONDARY-LIGHT;
+  border: none;
+  @include font(25px, HarryPotter);
+  width: $FORM-SUBMIT--WIDTH;
+  display: block;
+  margin: 10px auto 0;
+  &:hover {
+    box-shadow: inset 0px 0px 5px 1px rgba(242, 161, 55, 0.8);
+  }
+}
