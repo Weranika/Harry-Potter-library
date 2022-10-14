@@ -7,10 +7,8 @@ interface IInputTextProps {
   className: Array<string>;
   reff: (a: HTMLInputElement) => void;
   required: boolean;
-  minLength: number;
-  maxLength: number;
 }
-class InputTextComponent extends React.Component<IInputTextProps> {
+class InputDateComponent extends React.Component<IInputTextProps> {
   constructor(props: IInputTextProps) {
     super(props);
   }
@@ -26,12 +24,13 @@ class InputTextComponent extends React.Component<IInputTextProps> {
           name={this.props.id}
           className={this.props.className[1]}
           required={this.props.required}
-          minLength={this.props.minLength}
-          maxLength={this.props.maxLength}
+          value="2000-01-01"
+          min="1900-01-01"
+          max="2016-01-01"
         />
       </label>
     );
   }
 }
 
-export default InputTextComponent;
+export default InputDateComponent;

@@ -5,6 +5,8 @@ interface IInputSelectProps {
   id: string;
   className: Array<string>;
   components: Array<string>;
+  reff: (a: HTMLSelectElement) => void;
+  required: boolean;
 }
 class InputSelectComponent extends React.Component<IInputSelectProps> {
   private selectRef: React.RefObject<HTMLSelectElement>;
@@ -20,9 +22,10 @@ class InputSelectComponent extends React.Component<IInputSelectProps> {
         {this.props.title}
         <select
           id={this.props.id}
-          ref={this.selectRef}
+          ref={this.props.reff}
           name={this.props.id}
           defaultValue={this.props.components[0]}
+          required={this.props.required}
         >
           {this.props.components.map((el) => (
             <option key={el} value={el}>

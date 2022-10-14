@@ -6,7 +6,6 @@ import './main.scss';
 
 interface IMainState {
   inputSearch: string;
-  //filteredItems: Array<ICardInfo>;
 }
 
 class Main extends React.Component<IMainState, IMainState> {

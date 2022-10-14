@@ -3,148 +3,251 @@ import FormSwitches from './FormSwitches';
 import InputTextComponent from './InputTextComponent';
 import InputImgComponent from './InputImgComponent';
 import InputSelectComponent from './InputSelectComponent';
+import InputDateComponent from './InputDateComponent';
 
 interface IFormState {
+  card: unknown;
+  cardList: Array<ICard>;
+}
+export interface IWizard {
+  name: HTMLInputElement | null;
+  alternate_names: HTMLInputElement | null;
+  species: HTMLInputElement | null;
+  gender: HTMLInputElement | null;
+  house: HTMLSelectElement | null;
+  dateOfBirth: HTMLInputElement | null;
+  yearOfBirth: HTMLInputElement | null;
+  wizard: HTMLInputElement | null;
+  ancestry: HTMLInputElement | null;
+  eyeColour: HTMLInputElement | null;
+  hairColour: HTMLInputElement | null;
+  wand: {
+    wood: HTMLSelectElement | null;
+    core: HTMLSelectElement | null;
+    length: HTMLSelectElement | null;
+  };
+  patronus: HTMLInputElement | null;
+  hogwartsStudent: HTMLInputElement | null;
+  hogwartsStaff: HTMLInputElement | null;
+  actor: HTMLInputElement | null;
+  alternate_actors: HTMLInputElement | null;
+  alive: HTMLInputElement | null;
+  image: HTMLInputElement | null;
+}
+export interface ICard {
   name: string;
-  surname: string;
+  alternate_names: Array<string>;
+  species: string;
+  gender: string;
   house: string;
-  male: boolean;
-  female: boolean;
-  bday: string;
+  dateOfBirth: string;
+  yearOfBirth: number | string;
   wizard: boolean;
-  eye: string;
-  hair: string;
+  ancestry: string;
+  eyeColour: string;
+  hairColour: string;
+  wand: {
+    wood: string;
+    core: string;
+    length: number | string;
+  };
   patronus: string;
-  wandWood: string;
-  wandCore: string;
-  wandLength: number;
+  hogwartsStudent: boolean;
+  hogwartsStaff: boolean;
+  actor: string;
+  alternate_actors: Array<string>;
+  alive: boolean;
+  image: string;
 }
-interface IFormProps {
-  inputValue: string;
+export interface IFormProps {
+  handlerForm: (cardList: Array<ICard>) => void;
 }
-// interface ICreatedCardList {
-//   createdCardList?: Array<IFormState>;
-// }
+const nullWizard = {
+  name: null,
+  alternate_names: null,
+  species: null,
+  gender: null,
+  house: null,
+  dateOfBirth: null,
+  yearOfBirth: null,
+  wizard: null,
+  ancestry: null,
+  eyeColour: null,
+  hairColour: null,
+  wand: {
+    wood: null,
+    core: null,
+    length: null,
+  },
+  patronus: null,
+  hogwartsStudent: null,
+  hogwartsStaff: null,
+  actor: null,
+  alternate_actors: null,
+  alive: null,
+  image: null,
+};
 
 class Form extends React.Component<IFormProps, IFormState> {
   private stepInput: React.RefObject<HTMLInputElement>;
-  //private createdCardList: ICreatedCardList;
+  private wizard: IWizard;
 
   constructor(props: IFormProps) {
     super(props);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleInputSubmit = this.handleInputSubmit.bind(this);
     this.stepInput = React.createRef();
-    //this.createdCardList = [];
+    this.wizard = nullWizard;
     this.state = {
-      name: '',
-      surname: '',
-      house: '',
-      male: false,
-      female: false,
-      bday: '',
-      wizard: true,
-      eye: '',
-      hair: '',
-      patronus: '',
-      wandWood: '',
-      wandCore: '',
-      wandLength: 10,
+      card: {},
+      cardList: [],
     };
   }
 
-  handleSubmit(event: FormEvent<HTMLFormElement>) {
-    alert((this.stepInput.current as HTMLInputElement).value);
-    const target = this.stepInput.current as HTMLInputElement;
-    const value = target.type === 'checkbox' ? target.checked : target.value;
-    const name = target.name;
-    //const card: IFormState= {};
-
-    // if (target.id === 'wizard') {
-    //   card.wizard = value as boolean;
-    // } else if (target.id === 'name') {
-
-    // }
+  handleInputSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    console.log('wizard:', this.wizard.wizard?.checked);
+
+    const card: ICard = {
+      name: this.wizard.name?.value as string,
+      alternate_names: [],
+      species: '',
+      gender: (this.wizard.wizard?.checked as boolean) ? 'female' : 'male',
+      house: this.wizard.house?.value as string,
+      dateOfBirth: this.wizard.dateOfBirth?.value as string,
+      yearOfBirth: '',
+      wizard: this.wizard.wizard?.checked as boolean,
+      ancestry: '',
+      eyeColour: this.wizard.eyeColour?.value as string,
+      hairColour: this.wizard.hairColour?.value as string,
+      wand: {
+        wood: this.wizard.wand.wood?.value as string,
+        core: this.wizard.wand.core?.value as string,
+        length: this.wizard.wand.length?.value as string,
+      },
+      patronus: this.wizard.patronus?.value as string,
+      hogwartsStudent: true,
+      hogwartsStaff: true,
+      actor: '',
+      alternate_actors: [],
+      alive: true,
+      image: '',
+    };
+    this.state.cardList.push(card);
+    this.props.handlerForm(this.state.cardList);
+    (this.wizard.name as HTMLInputElement).value = '';
+    (this.wizard.dateOfBirth as HTMLInputElement).value = '';
+    (this.wizard.eyeColour as HTMLInputElement).value = '';
+    (this.wizard.hairColour as HTMLInputElement).value = '';
+    (this.wizard.patronus as HTMLInputElement).value = '';
+    (this.wizard.house as HTMLSelectElement).value = '';
+    (this.wizard.wand.wood as HTMLSelectElement).value = '';
+    (this.wizard.wand.core as HTMLSelectElement).value = '';
+    (this.wizard.wand.length as HTMLSelectElement).value = '';
+    alert('Tour data is saved');
   }
 
   render() {
     return (
       <div className="form__page">
-        <form className="form__container" onSubmit={this.handleSubmit}>
+        <form className="form__container" onSubmit={this.handleInputSubmit}>
           <InputTextComponent
             title={'your wizard name'}
             type={'text'}
             id={'name'}
             className={['form__label']}
-          />
-          <InputTextComponent
-            title={'your wizard surname'}
-            type={'text'}
-            id={'surname'}
-            className={['form__label']}
+            reff={(element: HTMLInputElement) => (this.wizard.name = element)}
+            required={true}
+            minLength={3}
+            maxLength={20}
           />
           <InputSelectComponent
             title={'choose your house'}
             id={'house'}
             className={['form__label']}
-            components={['gryffindor', 'slytherin', 'ravenclaw', 'hufflepuff']}
+            components={['Gryffindor', 'Slytherin', 'Ravenclaw', 'Hufflepuff']}
+            reff={(element: HTMLSelectElement) => (this.wizard.house = element)}
+            required={true}
           />
-          <InputTextComponent
+          <InputDateComponent
             title={'enter your birthday'}
             type={'date'}
             id={'bday'}
             className={['form__label']}
+            reff={(element: HTMLInputElement) => (this.wizard.dateOfBirth = element)}
+            required={true}
           />
           <InputTextComponent
             title={'are you wizard?'}
             type={'checkbox'}
             id={'wizard'}
             className={['form__label', 'form__label-checkbox']}
+            reff={(element: HTMLInputElement) => (this.wizard.wizard = element)}
+            required={false}
+            minLength={3}
+            maxLength={30}
           />
           <InputTextComponent
             title={'eye colour'}
             type={'text'}
             id={'eye'}
             className={['form__label']}
+            reff={(element: HTMLInputElement) => (this.wizard.eyeColour = element)}
+            required={true}
+            minLength={3}
+            maxLength={15}
           />
           <InputTextComponent
             title={'hair colour'}
             type={'text'}
             id={'hair'}
             className={['form__label']}
+            reff={(element: HTMLInputElement) => (this.wizard.hairColour = element)}
+            required={true}
+            minLength={3}
+            maxLength={15}
           />
           <InputTextComponent
             title={'patronus'}
             type={'text'}
             id={'patronus'}
             className={['form__label']}
+            reff={(element: HTMLInputElement) => (this.wizard.patronus = element)}
+            required={true}
+            minLength={3}
+            maxLength={15}
           />
-          <InputImgComponent
+          {/* <InputImgComponent
             title={'add your picture'}
             type={'file'}
             id={'avatar'}
             className={['form-img__container', 'form__img']}
             accept={'image/png, image/jpeg'}
-          />
-          <FormSwitches inputValue="hi" />
+          /> */}
+          <FormSwitches reff={(element: HTMLInputElement) => (this.wizard.gender = element)} />
           <p className="form__title">your wand</p>
           <InputSelectComponent
             title={'wand wood'}
             id={'wand-wood'}
             className={['form__label']}
             components={['hawthorn', 'cherry', 'yew', 'cypress', 'walnut', 'mahogany']}
+            reff={(element: HTMLSelectElement) => (this.wizard.wand.wood = element)}
+            required={true}
           />
           <InputSelectComponent
             title={'wand core'}
             id={'wand-core'}
             className={['form__label']}
             components={['dragon heartstring', 'unicorn tail-hair', 'phoenix feather']}
+            reff={(element: HTMLSelectElement) => (this.wizard.wand.core = element)}
+            required={true}
           />
           <InputSelectComponent
             title={'wand length'}
             id={'wand-length'}
             className={['form__label']}
             components={['10', '10 1/2', '11', '12', '12 3/4', '13', '14', '15', '16']}
+            reff={(element: HTMLSelectElement) => (this.wizard.wand.length = element)}
+            required={true}
           />
 
           <input type="submit" value="CREATE CARD" className="submit__btn" />

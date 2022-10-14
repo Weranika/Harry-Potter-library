@@ -1,14 +1,11 @@
 import * as React from 'react';
 import './FormSwitches.scss';
 
-interface IFormState {
-  inputValue: string;
+interface IFormSwitchesProps {
+  reff: (a: HTMLInputElement) => void;
 }
-interface IFormProps {
-  inputValue: string;
-}
-class FormSwitches extends React.Component<IFormProps, IFormState> {
-  constructor(props: IFormProps) {
+class FormSwitches extends React.Component<IFormSwitchesProps> {
+  constructor(props: IFormSwitchesProps) {
     super(props);
   }
 
@@ -21,18 +18,10 @@ class FormSwitches extends React.Component<IFormProps, IFormState> {
             male
           </label>
           <label className="switch">
-            <input type="checkbox" id="male" />
+            <input type="checkbox" id="male" ref={this.props.reff} />
             <span className="slider round"></span>
           </label>
-        </div>
-        <div className="form__switches-gender">
-          <label className="switch" htmlFor="female">
-            female
-          </label>
-          <label className="switch">
-            <input type="checkbox" id="female" />
-            <span className="slider round"></span>
-          </label>
+          female
         </div>
       </div>
     );
