@@ -1,4 +1,9 @@
 import React, { FormEvent } from 'react';
+import Backdrop from '@mui/material/Backdrop';
+import Box from '@mui/material/Box';
+import Modal from '@mui/material/Modal';
+import Fade from '@mui/material/Fade';
+import Typography from '@mui/material/Typography';
 import FormSwitches from './FormSwitches';
 import InputTextComponent from './InputTextComponent';
 import InputImgComponent from './InputImgComponent';
@@ -8,6 +13,7 @@ import InputDateComponent from './InputDateComponent';
 interface IFormState {
   card: unknown;
   cardList: Array<ICard>;
+  setOpen: boolean;
 }
 export interface IWizard {
   name: HTMLInputElement | null;
@@ -32,7 +38,7 @@ export interface IWizard {
   actor: HTMLInputElement | null;
   alternate_actors: HTMLInputElement | null;
   alive: HTMLInputElement | null;
-  image: HTMLInputElement | null;
+  image: React.RefObject<HTMLInputElement> | null;
 }
 export interface ICard {
   name: string;
@@ -62,6 +68,17 @@ export interface ICard {
 export interface IFormProps {
   handlerForm: (cardList: Array<ICard>) => void;
 }
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+};
 const nullWizard = {
   name: null,
   alternate_names: null,
@@ -90,22 +107,35 @@ const nullWizard = {
 
 class Form extends React.Component<IFormProps, IFormState> {
   private stepInput: React.RefObject<HTMLInputElement>;
+  private fileInput: React.RefObject<HTMLInputElement>;
   private wizard: IWizard;
 
   constructor(props: IFormProps) {
     super(props);
     this.handleInputSubmit = this.handleInputSubmit.bind(this);
     this.stepInput = React.createRef();
+    this.fileInput = React.createRef();
     this.wizard = nullWizard;
     this.state = {
       card: {},
       cardList: [],
+      setOpen: false,
     };
   }
 
+  handleOpen = () =>
+    this.setState({
+      setOpen: true,
+    });
+
+  handleClose = () =>
+    this.setState({
+      setOpen: false,
+    });
+
   handleInputSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    console.log('wizard:', this.wizard.wizard?.checked);
+    console.log('dateOfBirth:', this.wizard.dateOfBirth);
 
     const card: ICard = {
       name: this.wizard.name?.value as string,
@@ -114,7 +144,7 @@ class Form extends React.Component<IFormProps, IFormState> {
       gender: (this.wizard.wizard?.checked as boolean) ? 'female' : 'male',
       house: this.wizard.house?.value as string,
       dateOfBirth: this.wizard.dateOfBirth?.value as string,
-      yearOfBirth: '',
+      yearOfBirth: (this.wizard.dateOfBirth?.value as string).substring(0, 4),
       wizard: this.wizard.wizard?.checked as boolean,
       ancestry: '',
       eyeColour: this.wizard.eyeColour?.value as string,
@@ -130,8 +160,9 @@ class Form extends React.Component<IFormProps, IFormState> {
       actor: '',
       alternate_actors: [],
       alive: true,
-      image: '',
+      image: '', //(this.fileInput.current.files[0] as File).name as string,
     };
+    //console.log((this.fileInput as React.RefObject<HTMLInputElement>).current.files[0].name as string)
     this.state.cardList.push(card);
     this.props.handlerForm(this.state.cardList);
     (this.wizard.name as HTMLInputElement).value = '';
@@ -143,7 +174,7 @@ class Form extends React.Component<IFormProps, IFormState> {
     (this.wizard.wand.wood as HTMLSelectElement).value = '';
     (this.wizard.wand.core as HTMLSelectElement).value = '';
     (this.wizard.wand.length as HTMLSelectElement).value = '';
-    alert('Tour data is saved');
+    this.handleOpen();
   }
 
   render() {
@@ -222,6 +253,7 @@ class Form extends React.Component<IFormProps, IFormState> {
             id={'avatar'}
             className={['form-img__container', 'form__img']}
             accept={'image/png, image/jpeg'}
+            reff={(element: React.RefObject<HTMLInputElement>) => (this.fileInput = element)}
           /> */}
           <FormSwitches reff={(element: HTMLInputElement) => (this.wizard.gender = element)} />
           <p className="form__title">your wand</p>
@@ -252,6 +284,29 @@ class Form extends React.Component<IFormProps, IFormState> {
 
           <input type="submit" value="CREATE CARD" className="submit__btn" />
         </form>
+        <Modal
+          aria-labelledby="transition-modal-title"
+          aria-describedby="transition-modal-description"
+          open={this.state.setOpen}
+          onClose={this.handleClose}
+          closeAfterTransition
+          BackdropComponent={Backdrop}
+          BackdropProps={{
+            timeout: 500,
+          }}
+        >
+          <Fade in={this.state.setOpen}>
+            <Box sx={style}>
+              <Typography
+                id="transition-modal-description"
+                textAlign="center"
+                sx={{ m: 5, borderRadius: '10' }}
+              >
+                Your data is saved sussessful
+              </Typography>
+            </Box>
+          </Fade>
+        </Modal>
       </div>
     );
   }

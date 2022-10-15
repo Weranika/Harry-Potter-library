@@ -24,7 +24,6 @@ class InputDateComponent extends React.Component<IInputTextProps> {
           name={this.props.id}
           className={this.props.className[1]}
           required={this.props.required}
-          value="2000-01-01"
           min="1900-01-01"
           max="2016-01-01"
         />

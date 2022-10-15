@@ -31,10 +31,9 @@ li {
   }
 }
 .page__title {
-  margin: 20px 0 0;
-  text-align: center;
-  width: 30%;
-  @include font(3vw, HarryPotter);
+  margin: 20px 0 0 15px;
+  text-align: left;
+  @include font(6vw, HarryPotter);
   color: $MAIN-COLOR--SECONDARY-LIGHT;
 }
 /*******************************font-face***********************************/

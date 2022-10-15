@@ -6,13 +6,11 @@ interface IInputImgProps {
   id: string;
   className: Array<string>;
   accept: string;
+  reff: (a: React.RefObject<HTMLInputElement>) => void;
 }
 class InputImgComponent extends React.Component<IInputImgProps> {
-  private input: React.RefObject<HTMLInputElement>;
-
   constructor(props: IInputImgProps) {
     super(props);
-    this.input = React.createRef();
   }
 
   render() {
@@ -24,8 +22,8 @@ class InputImgComponent extends React.Component<IInputImgProps> {
           type={this.props.type}
           id={this.props.id}
           name={this.props.id}
-          ref={this.input}
           className={this.props.className[1]}
+          //ref={this.props.reff}
         />
       </label>
     );

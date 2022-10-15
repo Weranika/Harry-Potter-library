@@ -28,6 +28,7 @@ class InputTextComponent extends React.Component<IInputTextProps> {
           required={this.props.required}
           minLength={this.props.minLength}
           maxLength={this.props.maxLength}
+          pattern="^[a-zA-Zа-яА-Я_ ]*$"
         />
       </label>
     );
