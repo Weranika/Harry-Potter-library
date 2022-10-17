@@ -2,7 +2,7 @@ import * as React from 'react';
 import Form from './Form';
 import CardList from 'components/CardList/cardList';
 import './FormPage.scss';
-import { IWizard, ICard, IFormProps } from './Form';
+import { ICard } from '../../global/interfaces';
 
 interface IFormPageState {
   cardList: Array<ICard>;

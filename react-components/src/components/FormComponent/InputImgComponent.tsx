@@ -6,12 +6,24 @@ interface IInputImgProps {
   id: string;
   className: Array<string>;
   accept: string;
-  reff: (a: React.RefObject<HTMLInputElement>) => void;
+  reff: (a: HTMLInputElement) => void;
+  callback: (src: string) => void;
 }
-class InputImgComponent extends React.Component<IInputImgProps> {
+interface IInputImgState {
+  selectedImage: File | null;
+}
+class InputImgComponent extends React.Component<IInputImgProps, IInputImgState> {
   constructor(props: IInputImgProps) {
     super(props);
+    // this.state = {
+    //   selectedImage: null,
+    // };
   }
+
+  // setSelectedImage = (event: HTMLInputElement) =>
+  //   this.setState({
+  //     selectedImage: event.target.files[0],
+  //   });
 
   render() {
     return (
@@ -23,7 +35,17 @@ class InputImgComponent extends React.Component<IInputImgProps> {
           id={this.props.id}
           name={this.props.id}
           className={this.props.className[1]}
-          //ref={this.props.reff}
+          onChange={(event) => {
+            const el = event.target as HTMLInputElement;
+            const file = (el.files as FileList)[0];
+            const src = URL.createObjectURL(file);
+            console.log('image=', src);
+            this.props.callback(src);
+            this.setState({
+              selectedImage: (el.files as FileList)[0],
+            });
+          }}
+          ref={this.props.reff}
         />
       </label>
     );

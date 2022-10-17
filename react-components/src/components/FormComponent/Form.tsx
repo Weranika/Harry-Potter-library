@@ -9,61 +9,13 @@ import InputTextComponent from './InputTextComponent';
 import InputImgComponent from './InputImgComponent';
 import InputSelectComponent from './InputSelectComponent';
 import InputDateComponent from './InputDateComponent';
+import { IWizard, ICard, nullWizard } from '../../global/interfaces';
 
 interface IFormState {
   card: unknown;
   cardList: Array<ICard>;
   setOpen: boolean;
-}
-export interface IWizard {
-  name: HTMLInputElement | null;
-  alternate_names: HTMLInputElement | null;
-  species: HTMLInputElement | null;
-  gender: HTMLInputElement | null;
-  house: HTMLSelectElement | null;
-  dateOfBirth: HTMLInputElement | null;
-  yearOfBirth: HTMLInputElement | null;
-  wizard: HTMLInputElement | null;
-  ancestry: HTMLInputElement | null;
-  eyeColour: HTMLInputElement | null;
-  hairColour: HTMLInputElement | null;
-  wand: {
-    wood: HTMLSelectElement | null;
-    core: HTMLSelectElement | null;
-    length: HTMLSelectElement | null;
-  };
-  patronus: HTMLInputElement | null;
-  hogwartsStudent: HTMLInputElement | null;
-  hogwartsStaff: HTMLInputElement | null;
-  actor: HTMLInputElement | null;
-  alternate_actors: HTMLInputElement | null;
-  alive: HTMLInputElement | null;
-  image: React.RefObject<HTMLInputElement> | null;
-}
-export interface ICard {
-  name: string;
-  alternate_names: Array<string>;
-  species: string;
-  gender: string;
-  house: string;
-  dateOfBirth: string;
-  yearOfBirth: number | string;
-  wizard: boolean;
-  ancestry: string;
-  eyeColour: string;
-  hairColour: string;
-  wand: {
-    wood: string;
-    core: string;
-    length: number | string;
-  };
-  patronus: string;
-  hogwartsStudent: boolean;
-  hogwartsStaff: boolean;
-  actor: string;
-  alternate_actors: Array<string>;
-  alive: boolean;
-  image: string;
+  selectedImage: string;
 }
 export interface IFormProps {
   handlerForm: (cardList: Array<ICard>) => void;
@@ -76,52 +28,31 @@ const style = {
   width: 400,
   bgcolor: 'background.paper',
   border: '2px solid #000',
+  borderRadius: '10px',
   boxShadow: 24,
   p: 4,
 };
-const nullWizard = {
-  name: null,
-  alternate_names: null,
-  species: null,
-  gender: null,
-  house: null,
-  dateOfBirth: null,
-  yearOfBirth: null,
-  wizard: null,
-  ancestry: null,
-  eyeColour: null,
-  hairColour: null,
-  wand: {
-    wood: null,
-    core: null,
-    length: null,
-  },
-  patronus: null,
-  hogwartsStudent: null,
-  hogwartsStaff: null,
-  actor: null,
-  alternate_actors: null,
-  alive: null,
-  image: null,
-};
-
 class Form extends React.Component<IFormProps, IFormState> {
   private stepInput: React.RefObject<HTMLInputElement>;
-  private fileInput: React.RefObject<HTMLInputElement>;
   private wizard: IWizard;
 
   constructor(props: IFormProps) {
     super(props);
     this.handleInputSubmit = this.handleInputSubmit.bind(this);
     this.stepInput = React.createRef();
-    this.fileInput = React.createRef();
     this.wizard = nullWizard;
     this.state = {
       card: {},
       cardList: [],
       setOpen: false,
+      selectedImage: '',
     };
   }
+
+  handleImage = (imageSrc: string) =>
+    this.setState({
+      selectedImage: imageSrc,
+    });
 
   handleOpen = () =>
     this.setState({
@@ -160,7 +91,7 @@ class Form extends React.Component<IFormProps, IFormState> {
       actor: '',
       alternate_actors: [],
       alive: true,
-      image: '', //(this.fileInput.current.files[0] as File).name as string,
+      image: this.state.selectedImage, //(this.fileInput.current.files[0] as File).name as string,
     };
     //console.log((this.fileInput as React.RefObject<HTMLInputElement>).current.files[0].name as string)
     this.state.cardList.push(card);
@@ -247,14 +178,16 @@ class Form extends React.Component<IFormProps, IFormState> {
             minLength={3}
             maxLength={15}
           />
-          {/* <InputImgComponent
+          <InputImgComponent
             title={'add your picture'}
             type={'file'}
             id={'avatar'}
+            callback={this.handleImage}
             className={['form-img__container', 'form__img']}
             accept={'image/png, image/jpeg'}
-            reff={(element: React.RefObject<HTMLInputElement>) => (this.fileInput = element)}
-          /> */}
+            reff={(element: HTMLInputElement) => (this.wizard.image = element)}
+          />
+          <img alt="not fount" width={'50px'} src={this.state.selectedImage} />
           <FormSwitches reff={(element: HTMLInputElement) => (this.wizard.gender = element)} />
           <p className="form__title">your wand</p>
           <InputSelectComponent
