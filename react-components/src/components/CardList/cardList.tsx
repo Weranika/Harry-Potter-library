@@ -1,21 +1,21 @@
 import React from 'react';
 import CardComponent from 'components/card/card';
-import { ICardInfo } from '../card/card';
+import { IData } from '../../global/interfaces';
 import './cardList.scss';
 
 export interface IPropsFilter {
-  filteredItems: Array<ICardInfo>;
+  filteredItems: Array<IData>;
 }
-
 class CardList extends React.Component<IPropsFilter> {
   constructor(props: IPropsFilter) {
     super(props);
   }
+
   render() {
     return (
       <div className="card-list" role="list">
         {this.props.filteredItems.map((card) => (
-          <CardComponent item={card} key={card.name} />
+          <CardComponent item={card.attributes} key={card.id} />
         ))}
       </div>
     );

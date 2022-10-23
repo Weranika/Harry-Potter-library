@@ -9,16 +9,17 @@ import InputTextComponent from './InputTextComponent';
 import InputImgComponent from './InputImgComponent';
 import InputSelectComponent from './InputSelectComponent';
 import InputDateComponent from './InputDateComponent';
-import { IWizard, ICard, nullWizard } from '../../global/interfaces';
+import { IWizard, ICard, IData, nullWizard } from '../../global/interfaces';
+import templateImg from '../../assets/img/aboutUs-1.png';
 
 interface IFormState {
   card: unknown;
-  cardList: Array<ICard>;
+  cardList: Array<IData>;
   setOpen: boolean;
   selectedImage: string;
 }
 export interface IFormProps {
-  handlerForm: (cardList: Array<ICard>) => void;
+  handlerForm: (cardList: Array<IData>) => void;
 }
 const style = {
   position: 'absolute',
@@ -66,40 +67,41 @@ class Form extends React.Component<IFormProps, IFormState> {
 
   handleInputSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    console.log('dateOfBirth:', this.wizard.dateOfBirth);
 
     const card: ICard = {
       name: this.wizard.name?.value as string,
       alternate_names: [],
       species: '',
-      gender: (this.wizard.wizard?.checked as boolean) ? 'female' : 'male',
+      gender: (this.wizard.gender?.checked as boolean) ? 'female' : 'male',
       house: this.wizard.house?.value as string,
-      dateOfBirth: this.wizard.dateOfBirth?.value as string,
-      yearOfBirth: (this.wizard.dateOfBirth?.value as string).substring(0, 4),
-      wizard: this.wizard.wizard?.checked as boolean,
+      born: this.wizard.born?.value as string,
+      blood_status: this.wizard.blood_status?.checked.toString() as string,
       ancestry: '',
-      eyeColour: this.wizard.eyeColour?.value as string,
-      hairColour: this.wizard.hairColour?.value as string,
-      wand: {
-        wood: this.wizard.wand.wood?.value as string,
-        core: this.wizard.wand.core?.value as string,
-        length: this.wizard.wand.length?.value as string,
-      },
+      eye_color: this.wizard.eye_color?.value as string,
+      hair_color: this.wizard.hair_color?.value as string,
+      wands: [
+        `${this.wizard.wand.wood?.value as string},
+        ${this.wizard.wand.core?.value as string},
+        ${this.wizard.wand.length?.value as string}`,
+      ],
       patronus: this.wizard.patronus?.value as string,
       hogwartsStudent: true,
       hogwartsStaff: true,
       actor: '',
       alternate_actors: [],
       alive: true,
-      image: this.state.selectedImage, //(this.fileInput.current.files[0] as File).name as string,
+      image: this.state.selectedImage,
     };
-    //console.log((this.fileInput as React.RefObject<HTMLInputElement>).current.files[0].name as string)
-    this.state.cardList.push(card);
+    this.state.cardList.push({
+      attributes: card,
+      type: 'kkk',
+      id: '1',
+    });
     this.props.handlerForm(this.state.cardList);
     (this.wizard.name as HTMLInputElement).value = '';
-    (this.wizard.dateOfBirth as HTMLInputElement).value = '';
-    (this.wizard.eyeColour as HTMLInputElement).value = '';
-    (this.wizard.hairColour as HTMLInputElement).value = '';
+    (this.wizard.born as HTMLInputElement).value = '';
+    (this.wizard.eye_color as HTMLInputElement).value = '';
+    (this.wizard.hair_color as HTMLInputElement).value = '';
     (this.wizard.patronus as HTMLInputElement).value = '';
     (this.wizard.house as HTMLSelectElement).value = '';
     (this.wizard.wand.wood as HTMLSelectElement).value = '';
@@ -135,7 +137,7 @@ class Form extends React.Component<IFormProps, IFormState> {
             type={'date'}
             id={'bday'}
             className={['form__label']}
-            reff={(element: HTMLInputElement) => (this.wizard.dateOfBirth = element)}
+            reff={(element: HTMLInputElement) => (this.wizard.born = element)}
             required={true}
           />
           <InputTextComponent
@@ -143,7 +145,7 @@ class Form extends React.Component<IFormProps, IFormState> {
             type={'checkbox'}
             id={'wizard'}
             className={['form__label', 'form__label-checkbox']}
-            reff={(element: HTMLInputElement) => (this.wizard.wizard = element)}
+            reff={(element: HTMLInputElement) => (this.wizard.blood_status = element)}
             required={false}
             minLength={3}
             maxLength={30}
@@ -153,7 +155,7 @@ class Form extends React.Component<IFormProps, IFormState> {
             type={'text'}
             id={'eye'}
             className={['form__label']}
-            reff={(element: HTMLInputElement) => (this.wizard.eyeColour = element)}
+            reff={(element: HTMLInputElement) => (this.wizard.eye_color = element)}
             required={true}
             minLength={3}
             maxLength={15}
@@ -163,7 +165,7 @@ class Form extends React.Component<IFormProps, IFormState> {
             type={'text'}
             id={'hair'}
             className={['form__label']}
-            reff={(element: HTMLInputElement) => (this.wizard.hairColour = element)}
+            reff={(element: HTMLInputElement) => (this.wizard.hair_color = element)}
             required={true}
             minLength={3}
             maxLength={15}
@@ -187,7 +189,11 @@ class Form extends React.Component<IFormProps, IFormState> {
             accept={'image/png, image/jpeg'}
             reff={(element: HTMLInputElement) => (this.wizard.image = element)}
           />
-          <img alt="not fount" width={'50px'} src={this.state.selectedImage} />
+          {this.state.selectedImage ? (
+            <img alt="add img" width={'50px'} src={this.state.selectedImage} />
+          ) : (
+            <img alt="add img" width={'50px'} src={templateImg} />
+          )}
           <FormSwitches reff={(element: HTMLInputElement) => (this.wizard.gender = element)} />
           <p className="form__title">your wand</p>
           <InputSelectComponent

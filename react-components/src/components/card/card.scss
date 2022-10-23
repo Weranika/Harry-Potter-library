@@ -15,8 +15,13 @@ $CARD-WIDTH: 310px;
     box-shadow: 0px 0px 15px 4px rgba(236, 230, 230, 0.7);
   }
   .card-icon {
-    height: 60px;
+    height: 55px;
+    margin: 6px;
     width: auto;
+  }
+  div .card__title-name {
+    max-height: 65px;
+    overflow: overlay;
   }
   .MuiCardContent-root .card__title-content {
     @include flex(space-evenly);
@@ -31,15 +36,18 @@ $CARD-WIDTH: 310px;
     background: rgba(255, 255, 255, 0.5);
     border-radius: 10px;
     .wand__continer {
-      background: linear-gradient(rgba(203, 197, 188, 0.5) 50%,rgba(255, 255, 255, 0.5) 100%), url(../../assets/img/wand.png) center;
+      background-color: rgba(22, 22, 22, 0.75);
+      color: wheat;
       border-radius: 10px;
+      padding: 5px;
+      .MuiTypography-paragraph {
+        width: 100%;
+        margin-bottom: 10px;
+      }
     }
     .card__dropp-content-row {
       @include flex(space-evenly);
       width: 100%;
-      p {
-      width: 48%;
-      }
     }
   }
   .MuiButtonBase-root {
@@ -48,4 +56,10 @@ $CARD-WIDTH: 310px;
       background-color: rgba(225, 225, 225, 0.8);
     }
   }
+}
+.card-list .css-bhp9pd-MuiPaper-root-MuiCard-root {
+  background-color: rgba(103, 93, 93, 0.7);
+}
+.MuiTypography-paragraph {
+  width: 50%;
 }

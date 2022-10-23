@@ -5,12 +5,11 @@ export interface IWizard {
   species: HTMLInputElement | null;
   gender: HTMLInputElement | null;
   house: HTMLSelectElement | null;
-  dateOfBirth: HTMLInputElement | null;
-  yearOfBirth: HTMLInputElement | null;
-  wizard: HTMLInputElement | null;
+  born: HTMLInputElement | null;
+  blood_status: HTMLInputElement | null;
   ancestry: HTMLInputElement | null;
-  eyeColour: HTMLInputElement | null;
-  hairColour: HTMLInputElement | null;
+  eye_color: HTMLInputElement | null;
+  hair_color: HTMLInputElement | null;
   wand: {
     wood: HTMLSelectElement | null;
     core: HTMLSelectElement | null;
@@ -31,17 +30,12 @@ export interface ICard {
   species: string;
   gender: string;
   house: string;
-  dateOfBirth: string;
-  yearOfBirth: number | string;
-  wizard: boolean;
+  born: string;
+  blood_status: string;
   ancestry: string;
-  eyeColour: string;
-  hairColour: string;
-  wand: {
-    wood: string;
-    core: string;
-    length: number | string;
-  };
+  eye_color: string;
+  hair_color: string;
+  wands: Array<string>;
   patronus: string;
   hogwartsStudent: boolean;
   hogwartsStaff: boolean;
@@ -50,6 +44,11 @@ export interface ICard {
   alive: boolean;
   image: string;
 }
+export interface IData {
+  attributes: ICard;
+  id: string;
+  type: string;
+}
 
 export const nullWizard = {
   name: null,
@@ -57,12 +56,11 @@ export const nullWizard = {
   species: null,
   gender: null,
   house: null,
-  dateOfBirth: null,
-  yearOfBirth: null,
-  wizard: null,
+  born: null,
+  blood_status: null,
   ancestry: null,
-  eyeColour: null,
-  hairColour: null,
+  eye_color: null,
+  hair_color: null,
   wand: {
     wood: null,
     core: null,

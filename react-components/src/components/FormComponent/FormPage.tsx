@@ -2,10 +2,10 @@ import * as React from 'react';
 import Form from './Form';
 import CardList from 'components/CardList/cardList';
 import './FormPage.scss';
-import { ICard } from '../../global/interfaces';
+import { IData } from '../../global/interfaces';
 
 interface IFormPageState {
-  cardList: Array<ICard>;
+  cardList: Array<IData>;
 }
 class FormPage extends React.Component<IFormPageState, IFormPageState> {
   constructor(props: IFormPageState) {
@@ -15,7 +15,7 @@ class FormPage extends React.Component<IFormPageState, IFormPageState> {
     };
   }
 
-  handleForm = (cardList: Array<ICard>) => {
+  handleForm = (cardList: Array<IData>) => {
     this.setState({
       cardList: cardList,
     });

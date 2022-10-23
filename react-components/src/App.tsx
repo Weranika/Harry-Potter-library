@@ -13,7 +13,7 @@ function App() {
     <HashRouter>
       <Routes>
         <Route path="/" element={<TemplatePage />}>
-          <Route path="/" element={<Main inputSearch="1" />} />
+          <Route path="/" element={<Main filteredItems={[]} />} />
           <Route path="about-us" element={<AboutUs />} />
           <Route path="form" element={<FormPage cardList={[]} />} />
           <Route path="*" element={<Page404 />} />

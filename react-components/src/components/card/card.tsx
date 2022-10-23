@@ -18,40 +18,16 @@ import GryffindorIcon from '../../assets/icons/GryffindorIcon.png';
 import HufflepuffIcon from '../../assets/icons/HufflepuffIcon.png';
 import RavenclawIcon from '../../assets/icons/RavenclawIcon.png';
 import SlytherinIcon from '../../assets/icons/SlytherinIcon.png';
+import Hogw from '../../assets/icons/hogw.png';
+import { ICard } from '../../global/interfaces';
 import './card.scss';
 
 interface ExpandMoreProps extends IconButtonProps {
   expand: string;
 }
-export interface ICardInfo {
-  name: string;
-  alternate_names: Array<string>;
-  species: string;
-  gender: string;
-  house: string;
-  dateOfBirth: string;
-  yearOfBirth: number | string;
-  wizard: boolean;
-  ancestry: string;
-  eyeColour: string;
-  hairColour: string;
-  wand: {
-    wood: string;
-    core: string;
-    length: number | string;
-  };
-  patronus: string;
-  hogwartsStudent: boolean;
-  hogwartsStaff: boolean;
-  actor: string;
-  alternate_actors: Array<string>;
-  alive: boolean;
-  image: string;
-}
 export interface IProps {
-  item: ICardInfo;
+  item: ICard;
 }
-
 interface IState {
   expanded: boolean;
 }
@@ -75,7 +51,6 @@ class CardComponent extends React.Component<IProps, IState> {
 
   handleExpandClick = () => {
     this.setState({ expanded: !this.state.expanded });
-    //console.log('expand', this.state.expanded);
   };
 
   render() {
@@ -92,123 +67,146 @@ class CardComponent extends React.Component<IProps, IState> {
     mapNameToIcon.set('Ravenclaw', RavenclawIcon);
     mapNameToIcon.set('Slytherin', SlytherinIcon);
 
-    return (
-      <StylesProvider injectFirst>
-        <Card role="listitem" className="card">
-          <CardContent style={{ backgroundImage: `url(${mapNameToBg.get(color)})` }}>
-            <CardMedia
-              component="img"
-              image={this.props.item.image}
-              alt={this.props.item.name}
-              className="card-img"
-            />
-            <CardContent className="card__title-content">
+    if (this.props.item.image !== null) {
+      console.log(this.props.item);
+      return (
+        <StylesProvider injectFirst>
+          <Card role="listitem" className="card">
+            <CardContent style={{ backgroundImage: `url(${mapNameToBg.get(color)})` }}>
               <CardMedia
                 component="img"
-                image={`${mapNameToIcon.get(color)}`}
-                alt="puffendujIcon"
-                className="card-icon"
+                image={this.props.item.image}
+                alt={this.props.item.name}
+                className="card-img"
               />
-              <Box>
-                <Typography variant="h5" align="center">
-                  {this.props.item.name}
-                </Typography>
-                <Typography variant="h6" align="center">
-                  {this.props.item.house}
-                </Typography>
-              </Box>
-            </CardContent>
-
-            <CardActions disableSpacing>
-              <ExpandMore
-                expand={this.state.expanded.toString()}
-                onClick={this.handleExpandClick}
-                aria-expanded={this.state.expanded}
-                aria-label="show-more"
-              >
-                <ExpandMoreIcon />
-              </ExpandMore>
-            </CardActions>
-            <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
-              <CardContent className="card__dropp-container">
-                <Box className="card__dropp-content-row">
-                  <Typography paragraph variant="h6">
-                    Gender:
+              <CardContent className="card__title-content">
+                {mapNameToIcon.has(color) ? (
+                  <CardMedia
+                    component="img"
+                    image={`${mapNameToIcon.get(color)}`}
+                    alt="mapNameToIcon"
+                    className="card-icon"
+                  />
+                ) : (
+                  <CardMedia
+                    component="img"
+                    image={Hogw}
+                    alt="without house"
+                    className="card-icon"
+                  />
+                )}
+                <Box>
+                  <Typography variant="h6" align="center" className="card__title-name">
+                    {this.props.item.name}
                   </Typography>
-                  <Typography paragraph>{this.props.item.gender}</Typography>
-                </Box>
-                <Box className="card__dropp-content-row">
-                  <Typography paragraph variant="h6">
-                    Date of birth:
+                  <Typography variant="h6" align="center">
+                    {this.props.item.house}
                   </Typography>
-                  <Typography paragraph>{this.props.item.dateOfBirth}</Typography>
-                </Box>
-                <Box className="card__dropp-content-row">
-                  <Typography paragraph variant="h6">
-                    Year of birth:
-                  </Typography>
-                  <Typography paragraph>{this.props.item.yearOfBirth}</Typography>
-                </Box>
-                <Box className="card__dropp-content-row">
-                  <Typography paragraph variant="h6">
-                    Wizard:
-                  </Typography>
-                  <Typography paragraph>{this.props.item.wizard.toString()}</Typography>
-                </Box>
-                <Box className="card__dropp-content-row">
-                  <Typography paragraph variant="h6">
-                    Eye colour:
-                  </Typography>
-                  <Typography paragraph>{this.props.item.eyeColour}</Typography>
-                </Box>
-                <Box className="card__dropp-content-row">
-                  <Typography paragraph variant="h6">
-                    Hair colour:
-                  </Typography>
-                  <Typography paragraph>{this.props.item.hairColour}</Typography>
-                </Box>
-                <Box className="card__dropp-content-row">
-                  <Typography paragraph variant="h6">
-                    Patronus:
-                  </Typography>
-                  <Typography paragraph>{this.props.item.patronus}</Typography>
-                </Box>
-                <Box className="card__dropp-content-row">
-                  <Typography paragraph variant="h6">
-                    Actor:
-                  </Typography>
-                  <Typography paragraph>{this.props.item.actor}</Typography>
-                </Box>
-
-                <Box className="wand__continer">
-                  <Typography paragraph variant="h5" align="center">
-                    Wand
-                  </Typography>
-                  <Box className="card__dropp-content-row">
-                    <Typography paragraph variant="h6">
-                      Wood:
-                    </Typography>
-                    <Typography paragraph>{this.props.item.wand.wood}</Typography>
-                  </Box>
-                  <Box className="card__dropp-content-row">
-                    <Typography paragraph variant="h6">
-                      Core:
-                    </Typography>
-                    <Typography paragraph>{this.props.item.wand.core}</Typography>
-                  </Box>
-                  <Box className="card__dropp-content-row">
-                    <Typography paragraph variant="h6">
-                      Length:
-                    </Typography>
-                    <Typography paragraph>{this.props.item.wand.length}</Typography>
-                  </Box>
                 </Box>
               </CardContent>
-            </Collapse>
-          </CardContent>
-        </Card>
-      </StylesProvider>
-    );
+
+              <CardActions disableSpacing>
+                <ExpandMore
+                  expand={this.state.expanded.toString()}
+                  onClick={this.handleExpandClick}
+                  aria-expanded={this.state.expanded}
+                  aria-label="show-more"
+                >
+                  <ExpandMoreIcon />
+                </ExpandMore>
+              </CardActions>
+              <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
+                <CardContent className="card__dropp-container">
+                  {this.props.item.gender !== null ? (
+                    <Box className="card__dropp-content-row">
+                      <Typography paragraph variant="h6">
+                        Gender:
+                      </Typography>
+                      <Typography paragraph>{this.props.item.gender}</Typography>
+                    </Box>
+                  ) : (
+                    ''
+                  )}
+
+                  {this.props.item.born !== null ? (
+                    <Box className="card__dropp-content-row">
+                      <Typography paragraph variant="h6">
+                        Date of birth:
+                      </Typography>
+                      <Typography paragraph>{this.props.item.born}</Typography>
+                    </Box>
+                  ) : (
+                    ''
+                  )}
+
+                  {this.props.item.blood_status !== null ? (
+                    <Box className="card__dropp-content-row">
+                      <Typography paragraph variant="h6">
+                        Blood status:
+                      </Typography>
+                      <Typography paragraph>{this.props.item.blood_status}</Typography>
+                    </Box>
+                  ) : (
+                    ''
+                  )}
+
+                  {this.props.item.eye_color !== null ? (
+                    <Box className="card__dropp-content-row">
+                      <Typography paragraph variant="h6">
+                        Eye colour:
+                      </Typography>
+                      <Typography paragraph>{this.props.item.eye_color}</Typography>
+                    </Box>
+                  ) : (
+                    ''
+                  )}
+
+                  {this.props.item.hair_color !== null ? (
+                    <Box className="card__dropp-content-row">
+                      <Typography paragraph variant="h6">
+                        Hair colour:
+                      </Typography>
+                      <Typography paragraph>{this.props.item.hair_color}</Typography>
+                    </Box>
+                  ) : (
+                    ''
+                  )}
+
+                  {this.props.item.patronus !== null ? (
+                    <Box className="card__dropp-content-row">
+                      <Typography paragraph variant="h6">
+                        Patronus:
+                      </Typography>
+                      <Typography paragraph>{this.props.item.patronus}</Typography>
+                    </Box>
+                  ) : (
+                    ''
+                  )}
+                  {this.props.item.wands !== null ? (
+                    <Box className="wand__continer">
+                      <Typography paragraph variant="h5" align="center">
+                        Wand
+                      </Typography>
+                      <Box>
+                        {this.props.item.wands !== null
+                          ? this.props.item.wands.map((wand, id) => (
+                              <Typography paragraph key={id}>
+                                {wand}
+                              </Typography>
+                            ))
+                          : ''}
+                      </Box>
+                    </Box>
+                  ) : (
+                    ''
+                  )}
+                </CardContent>
+              </Collapse>
+            </CardContent>
+          </Card>
+        </StylesProvider>
+      );
+    }
   }
 }
 
