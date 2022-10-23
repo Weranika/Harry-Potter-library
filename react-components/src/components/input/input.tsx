@@ -10,8 +10,7 @@ interface IInputProps {
 class Input extends React.Component<IInputProps, IInputState> {
   constructor(props: IInputProps) {
     super(props);
-    const localStorageInput =
-      localStorage.getItem('inputValue') === 'null' ? '' : localStorage.getItem('inputValue');
+    localStorage.getItem('inputValue') === 'null' ? '' : localStorage.getItem('inputValue');
     this.state = {
       inputValue: localStorage.getItem('inputValue') as string,
     };
@@ -20,13 +19,6 @@ class Input extends React.Component<IInputProps, IInputState> {
   submitForm = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
   };
-
-  // componentDidMount() {
-  //   this.setState({
-  //     inputValue: localStorage.getItem('inputValue') as string,
-  //   });
-  //   this.props.handlerSearchValue(this.state.inputValue);
-  // }
 
   componentWillUnmount = () => {
     localStorage.setItem('inputValue', this.state.inputValue);

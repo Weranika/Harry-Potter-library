@@ -68,7 +68,6 @@ class CardComponent extends React.Component<IProps, IState> {
     mapNameToIcon.set('Slytherin', SlytherinIcon);
 
     if (this.props.item.image !== null) {
-      console.log(this.props.item);
       return (
         <StylesProvider injectFirst>
           <Card role="listitem" className="card">

@@ -1,22 +1,24 @@
-// const PATH_TO_SERVER = 'https://api.potterdb.com/';
-// import heroes from '../resources/heroes.json';
-// import hero from '../resources/hero.json';
+import { IData } from 'global/interfaces';
 
-// class Api {
-//   async getList() {
-//     const listCharacters = `${PATH_TO_SERVER}v1/characters`;
-//     return await fetch(listCharacters)
-//       .then((res) => res.json())
-//       .then((json) => {
-//         json.data;
-//       });
-//   }
+const PATH_TO_SERVER = 'https://api.potterdb.com/';
+class Api {
+  getList() {
+    const listCharacters = `${PATH_TO_SERVER}v1/characters`;
+    return fetch(listCharacters)
+      .then((res) => res.json())
+      .then((json) => {
+        return json.data;
+      }) as Promise<Array<IData>>;
+  }
 
-//   getCharacter(name: string) {
-//     const listCharacters = `${PATH_TO_SERVER}v1/characters?filter[name_cont_any]=${name}`;
-//     //return fetch(listCharacters).then((res) => res.json());
-//     return hero;
-//   }
-// }
+  getCharacter(name: string) {
+    const characters = `${PATH_TO_SERVER}v1/characters?filter[name_cont_any]=${name}`;
+    return fetch(characters)
+      .then((res) => res.json())
+      .then((json) => {
+        return json.data;
+      }) as Promise<Array<IData>>;
+  }
+}
 
-// export default new Api();
+export default new Api();

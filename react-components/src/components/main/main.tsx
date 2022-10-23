@@ -1,11 +1,9 @@
 import React from 'react';
 import CardList from 'components/CardList/cardList';
 import Input from 'components/input/input';
-// import ApiList from '../../Api/Api';
-import { IData, ICard } from '../../global/interfaces';
+import ApiList from '../../Api/Api';
+import { IData } from '../../global/interfaces';
 import './main.scss';
-
-const PATH_TO_SERVER = 'https://api.potterdb.com/';
 interface IMainState {
   inputSearch: string;
   DataisLoaded: boolean;
@@ -18,65 +16,48 @@ class Main extends React.Component<IMainProps, IMainState> {
   constructor(props: IMainProps) {
     super(props);
     this.state = {
-      inputSearch: '',
+      inputSearch: localStorage.getItem('inputValue') as string,
       DataisLoaded: false,
       items: [],
     };
   }
 
   handleSearhSubmit = (value: string) => {
-    this.setState({
-      inputSearch: value,
-    });
+    if (value.length > 2) {
+      ApiList.getCharacter(value).then((data: Array<IData>) => {
+        this.setState({
+          items: data,
+          inputSearch: value,
+        });
+      });
+    } else {
+      ApiList.getList().then((data: Array<IData>) => {
+        this.setState({
+          items: data,
+          inputSearch: value,
+        });
+      });
+    }
   };
 
-  async componentDidMount() {
-    try {
-      const inputSearch = this.state.inputSearch;
-      const listCharacters = `${PATH_TO_SERVER}v1/characters?filter[name_cont_any]=${inputSearch}`;
-      // if (inputSearch && inputSearch.length > 2) {
-      //   listCharacters = `${PATH_TO_SERVER}v1/characters?filter[name_cont_any]=${inputSearch}`;
-      //   console.log('2');
-      // } else {
-      //   listCharacters = `${PATH_TO_SERVER}v1/characters`;
-      //   console.log('lisst');
-      // }
-      const responce = await fetch(listCharacters);
-      const data = await responce.json();
-      this.setState({
-        items: data.data,
-        DataisLoaded: true,
+  componentDidMount() {
+    const inputSearch = this.state.inputSearch;
+    if (inputSearch === 'null') {
+      ApiList.getList().then((data: Array<IData>) => {
+        this.setState({
+          items: data,
+          DataisLoaded: true,
+        });
       });
-      //console.log(this.state.items);
-    } catch (err) {
-      console.log(err);
+    } else {
+      ApiList.getCharacter(inputSearch).then((data: Array<IData>) => {
+        this.setState({
+          items: data,
+          DataisLoaded: true,
+        });
+      });
     }
   }
-
-  // async filter(inputSearch: string) {
-  //   if (inputSearch && inputSearch.length > 2) {
-  //     //   // ApiList.getCharacter(inputSearch).then((json) => {
-  //     //   //   this.setState({
-  //     //   //     items: json.data,
-  //     //   //     DataisLoaded: true,
-  //     //   //   });
-  //     //   // });
-  //     //   this.setState({
-  //     //     items: ApiList.getList(),
-  //     //     DataisLoaded: true,
-  //     //   });
-  //     //   return ApiList.getList();
-  //     console.log('harryyyyy');
-  //     return []; //ApiList.getCharacter('harry');
-  //   } else {
-  //     const arr:IData = await ApiList.getList();
-  //     console.log(arr);
-  //     return arr;
-  //     // let promise = new Promise(function(resolve) {
-  //     //   resolve(ApiList.getList());
-  //     // });
-  //   }
-  // }
 
   render() {
     const { DataisLoaded, items } = this.state;
