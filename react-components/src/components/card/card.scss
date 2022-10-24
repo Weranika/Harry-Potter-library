@@ -66,10 +66,11 @@ $CARD-WIDTH: 310px;
 }
 .MuiTypography-paragraph {
   width: 50%;
+  margin-bottom: 5px;
 }
 .modal-card__container {
   width: 60vw;
-  background-color: $MAIN-COLOR--PRIMARY-LIGHT;
+  background-color: wheat;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -77,16 +78,19 @@ $CARD-WIDTH: 310px;
   border: none;
   border-radius: 10px;
   padding: 10px;
+  min-height: 20px;
   .modal-card__title {
     width: 100%;
     color: $MAIN-COLOR--PRIMARY;
   }
 }
 .modal-card {
-  overflow-y: scroll;
+  overflow-y: auto;
+  margin: 0 auto;
   max-height: 20vh;
+  width: 90%;
   .MuiTypography-paragraph {
-    width: 100%;
+    width: 90%;
     margin-bottom: 1px;
   }
 }

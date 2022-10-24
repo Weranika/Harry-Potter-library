@@ -89,6 +89,7 @@ class Form extends React.Component<IFormProps, IFormState> {
       jobs: [],
       romances: [],
       boggart: '',
+      wiki: '',
     };
     this.state.cardList.push({
       attributes: card,

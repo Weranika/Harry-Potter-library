@@ -12,6 +12,7 @@ import Backdrop from '@mui/material/Backdrop';
 import Modal from '@mui/material/Modal';
 import IconButton, { IconButtonProps } from '@mui/material/IconButton';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import Link from '@mui/material/Link';
 import Gryffindor from '../../assets/img/Gryffindor.jpg';
 import Hufflepuff from '../../assets/img/Hufflepuff.jpg';
 import Ravenclaw from '../../assets/img/Ravenclaw.jpg';
@@ -240,6 +241,16 @@ class CardComponent extends React.Component<IProps, IState> {
                   ) : (
                     ''
                   )}
+
+                  {this.props.item.wiki !== null ? (
+                    <Box className="card__dropp-content-row">
+                      <Link underline="hover" href={this.props.item.wiki}>
+                        WIKI
+                      </Link>
+                    </Box>
+                  ) : (
+                    ''
+                  )}
                 </CardContent>
               </Collapse>
             </CardContent>
@@ -256,6 +267,9 @@ class CardComponent extends React.Component<IProps, IState> {
             }}
           >
             <Box className="modal-card__container">
+              <Typography paragraph variant="h4" align="center" className="modal-card__title">
+                More info
+              </Typography>
               {this.props.item.alias_names !== null ? (
                 <Box>
                   <Typography paragraph variant="h5" align="center" className="modal-card__title">

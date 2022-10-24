@@ -41,6 +41,7 @@ export interface ICard {
   jobs: Array<string>;
   romances: Array<string>;
   boggart: string;
+  wiki: string;
 }
 export interface IData {
   attributes: ICard;
