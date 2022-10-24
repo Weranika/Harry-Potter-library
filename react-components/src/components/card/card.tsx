@@ -8,6 +8,8 @@ import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
 import Collapse from '@mui/material/Collapse';
+import Backdrop from '@mui/material/Backdrop';
+import Modal from '@mui/material/Modal';
 import IconButton, { IconButtonProps } from '@mui/material/IconButton';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Gryffindor from '../../assets/img/Gryffindor.jpg';
@@ -20,6 +22,7 @@ import RavenclawIcon from '../../assets/icons/RavenclawIcon.png';
 import SlytherinIcon from '../../assets/icons/SlytherinIcon.png';
 import Hogw from '../../assets/icons/hogw.png';
 import { ICard } from '../../global/interfaces';
+import ModalComponent from './ModalComponent';
 import './card.scss';
 
 interface ExpandMoreProps extends IconButtonProps {
@@ -30,6 +33,7 @@ export interface IProps {
 }
 interface IState {
   expanded: boolean;
+  setOpen: boolean;
 }
 
 const ExpandMore = styled((props: ExpandMoreProps) => {
@@ -46,12 +50,25 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
 class CardComponent extends React.Component<IProps, IState> {
   constructor(props: IProps) {
     super(props);
-    this.state = { expanded: false };
+    this.state = {
+      expanded: false,
+      setOpen: false,
+    };
   }
 
   handleExpandClick = () => {
     this.setState({ expanded: !this.state.expanded });
   };
+
+  handleOpen = () =>
+    this.setState({
+      setOpen: true,
+    });
+
+  handleClose = () =>
+    this.setState({
+      setOpen: false,
+    });
 
   render() {
     const color: string = this.props.item.house;
@@ -77,6 +94,7 @@ class CardComponent extends React.Component<IProps, IState> {
                 image={this.props.item.image}
                 alt={this.props.item.name}
                 className="card-img"
+                onClick={this.handleOpen}
               />
               <CardContent className="card__title-content">
                 {mapNameToIcon.has(color) ? (
@@ -181,6 +199,29 @@ class CardComponent extends React.Component<IProps, IState> {
                   ) : (
                     ''
                   )}
+
+                  {this.props.item.species !== null ? (
+                    <Box className="card__dropp-content-row">
+                      <Typography paragraph variant="h6">
+                        Species:
+                      </Typography>
+                      <Typography paragraph>{this.props.item.species}</Typography>
+                    </Box>
+                  ) : (
+                    ''
+                  )}
+
+                  {this.props.item.boggart !== null ? (
+                    <Box className="card__dropp-content-row">
+                      <Typography paragraph variant="h6">
+                        Boggart:
+                      </Typography>
+                      <Typography paragraph>{this.props.item.boggart}</Typography>
+                    </Box>
+                  ) : (
+                    ''
+                  )}
+
                   {this.props.item.wands !== null ? (
                     <Box className="wand__continer">
                       <Typography paragraph variant="h5" align="center">
@@ -203,6 +244,96 @@ class CardComponent extends React.Component<IProps, IState> {
               </Collapse>
             </CardContent>
           </Card>
+          <Modal
+            open={this.state.setOpen}
+            onClose={this.handleClose}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+            closeAfterTransition
+            BackdropComponent={Backdrop}
+            BackdropProps={{
+              timeout: 500,
+            }}
+          >
+            <Box className="modal-card__container">
+              {this.props.item.alias_names !== null ? (
+                <Box>
+                  <Typography paragraph variant="h5" align="center" className="modal-card__title">
+                    Alias names
+                  </Typography>
+                  <Box className="modal-card">
+                    {this.props.item.alias_names !== null
+                      ? this.props.item.alias_names.map((names, id) => (
+                          <Typography paragraph key={id}>
+                            {names}
+                          </Typography>
+                        ))
+                      : ''}
+                  </Box>
+                </Box>
+              ) : (
+                ''
+              )}
+
+              {this.props.item.family_members !== null ? (
+                <Box>
+                  <Typography paragraph variant="h5" align="center" className="modal-card__title">
+                    Family
+                  </Typography>
+                  <Box className="modal-card">
+                    {this.props.item.family_members !== null
+                      ? this.props.item.family_members.map((names, id) => (
+                          <Typography paragraph key={id}>
+                            {names}
+                          </Typography>
+                        ))
+                      : ''}
+                  </Box>
+                </Box>
+              ) : (
+                ''
+              )}
+
+              {this.props.item.jobs !== null ? (
+                <Box>
+                  <Typography paragraph variant="h5" align="center" className="modal-card__title">
+                    Jobs
+                  </Typography>
+                  <Box className="modal-card">
+                    {this.props.item.jobs !== null
+                      ? this.props.item.jobs.map((names, id) => (
+                          <Typography paragraph key={id}>
+                            {names}
+                          </Typography>
+                        ))
+                      : ''}
+                  </Box>
+                </Box>
+              ) : (
+                ''
+              )}
+
+              {this.props.item.romances !== null ? (
+                <Box>
+                  <Typography paragraph variant="h5" align="center" className="modal-card__title">
+                    Romances
+                  </Typography>
+                  <Box className="modal-card">
+                    {this.props.item.romances !== null
+                      ? this.props.item.romances.map((names, id) => (
+                          <Typography paragraph key={id}>
+                            {names}
+                          </Typography>
+                        ))
+                      : ''}
+                  </Box>
+                </Box>
+              ) : (
+                ''
+              )}
+            </Box>
+            {/* <ModalComponent item={this.props.item} /> */}
+          </Modal>
         </StylesProvider>
       );
     }

@@ -26,23 +26,21 @@ export interface IWizard {
 
 export interface ICard {
   name: string;
-  alternate_names: Array<string>;
   species: string;
   gender: string;
   house: string;
   born: string;
   blood_status: string;
-  ancestry: string;
   eye_color: string;
   hair_color: string;
   wands: Array<string>;
   patronus: string;
-  hogwartsStudent: boolean;
-  hogwartsStaff: boolean;
-  actor: string;
-  alternate_actors: Array<string>;
-  alive: boolean;
   image: string;
+  alias_names: Array<string>;
+  family_members: Array<string>;
+  jobs: Array<string>;
+  romances: Array<string>;
+  boggart: string;
 }
 export interface IData {
   attributes: ICard;

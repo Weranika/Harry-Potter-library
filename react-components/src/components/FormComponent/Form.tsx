@@ -70,13 +70,11 @@ class Form extends React.Component<IFormProps, IFormState> {
 
     const card: ICard = {
       name: this.wizard.name?.value as string,
-      alternate_names: [],
       species: '',
       gender: (this.wizard.gender?.checked as boolean) ? 'female' : 'male',
       house: this.wizard.house?.value as string,
       born: this.wizard.born?.value as string,
       blood_status: this.wizard.blood_status?.checked.toString() as string,
-      ancestry: '',
       eye_color: this.wizard.eye_color?.value as string,
       hair_color: this.wizard.hair_color?.value as string,
       wands: [
@@ -85,12 +83,12 @@ class Form extends React.Component<IFormProps, IFormState> {
         ${this.wizard.wand.length?.value as string}`,
       ],
       patronus: this.wizard.patronus?.value as string,
-      hogwartsStudent: true,
-      hogwartsStaff: true,
-      actor: '',
-      alternate_actors: [],
-      alive: true,
       image: this.state.selectedImage,
+      alias_names: [],
+      family_members: [],
+      jobs: [],
+      romances: [],
+      boggart: '',
     };
     this.state.cardList.push({
       attributes: card,
