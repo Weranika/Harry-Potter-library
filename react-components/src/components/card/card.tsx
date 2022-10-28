@@ -23,7 +23,6 @@ import RavenclawIcon from '../../assets/icons/RavenclawIcon.png';
 import SlytherinIcon from '../../assets/icons/SlytherinIcon.png';
 import Hogw from '../../assets/icons/hogw.png';
 import { ICard } from '../../global/interfaces';
-import ModalComponent from './ModalComponent';
 import './card.scss';
 
 interface ExpandMoreProps extends IconButtonProps {
@@ -72,7 +71,7 @@ class CardComponent extends React.Component<IProps, IState> {
     });
 
   render() {
-    const color: string = this.props.item.house;
+    const color: string = this.props.item.house as string;
     const mapNameToBg = new Map();
     mapNameToBg.set('Gryffindor', Gryffindor);
     mapNameToBg.set('Hufflepuff', Hufflepuff);
@@ -92,8 +91,8 @@ class CardComponent extends React.Component<IProps, IState> {
             <CardContent style={{ backgroundImage: `url(${mapNameToBg.get(color)})` }}>
               <CardMedia
                 component="img"
-                image={this.props.item.image}
-                alt={this.props.item.name}
+                image={this.props.item.image as string}
+                alt={this.props.item.name as string}
                 className="card-img"
                 onClick={this.handleOpen}
               />
@@ -268,7 +267,7 @@ class CardComponent extends React.Component<IProps, IState> {
           >
             <Box className="modal-card__container">
               <Typography paragraph variant="h4" align="center" className="modal-card__title">
-                More info
+                Relation and job
               </Typography>
               {this.props.item.alias_names !== null ? (
                 <Box>
@@ -346,7 +345,6 @@ class CardComponent extends React.Component<IProps, IState> {
                 ''
               )}
             </Box>
-            {/* <ModalComponent item={this.props.item} /> */}
           </Modal>
         </StylesProvider>
       );

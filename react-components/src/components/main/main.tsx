@@ -1,4 +1,5 @@
 import React from 'react';
+import LinearProgress from '@mui/material/LinearProgress';
 import CardList from 'components/CardList/cardList';
 import Input from 'components/input/input';
 import ApiList from '../../Api/Api';
@@ -42,7 +43,7 @@ class Main extends React.Component<IMainProps, IMainState> {
 
   componentDidMount() {
     const inputSearch = this.state.inputSearch;
-    if (inputSearch === 'null') {
+    if (inputSearch === null || inputSearch === 'null') {
       ApiList.getList().then((data: Array<IData>) => {
         this.setState({
           items: data,
@@ -50,12 +51,14 @@ class Main extends React.Component<IMainProps, IMainState> {
         });
       });
     } else {
-      ApiList.getCharacter(inputSearch).then((data: Array<IData>) => {
-        this.setState({
-          items: data,
-          DataisLoaded: true,
-        });
-      });
+      ApiList.getCharacter(inputSearch)
+        .then((data: Array<IData>) => {
+          this.setState({
+            items: data,
+            DataisLoaded: true,
+          });
+        })
+        .catch((err) => console.log(err));
     }
   }
 
@@ -65,6 +68,7 @@ class Main extends React.Component<IMainProps, IMainState> {
       return (
         <div className="please-wait">
           <h1> Please wait some time...</h1>
+          <LinearProgress color="inherit" />
         </div>
       );
     }

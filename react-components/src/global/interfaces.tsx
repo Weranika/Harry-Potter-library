@@ -25,23 +25,23 @@ export interface IWizard {
 }
 
 export interface ICard {
-  name: string;
-  species: string;
-  gender: string;
-  house: string;
-  born: string;
-  blood_status: string;
-  eye_color: string;
-  hair_color: string;
-  wands: Array<string>;
-  patronus: string;
-  image: string;
-  alias_names: Array<string>;
-  family_members: Array<string>;
-  jobs: Array<string>;
-  romances: Array<string>;
-  boggart: string;
-  wiki: string;
+  name: string | null;
+  species: string | null;
+  gender: string | null;
+  house: string | null;
+  born: string | null;
+  blood_status: string | null;
+  eye_color: string | null;
+  hair_color: string | null;
+  wands: Array<string> | null;
+  patronus: string | null;
+  image: string | null;
+  alias_names: Array<string> | null;
+  family_members: Array<string> | null;
+  jobs: Array<string> | null;
+  romances: Array<string> | null;
+  boggart: string | null;
+  wiki: string | null;
 }
 export interface IData {
   attributes: ICard;

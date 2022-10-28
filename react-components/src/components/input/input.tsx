@@ -42,6 +42,7 @@ class Input extends React.Component<IInputProps, IInputState> {
             type="text"
             className="search-input"
             autoComplete="off"
+            name="search-input"
           />
           <button type="submit" className="search-container__button">
             &gt;
