@@ -42,11 +42,9 @@ class Main extends React.Component<IMainProps, IMainState> {
   };
 
   componentDidMount() {
-    console.log('didmount');
     const inputSearch = this.state.inputSearch;
     if (inputSearch === null || inputSearch === 'null') {
       ApiList.getList().then((data: Array<IData>) => {
-        console.log(data.length);
         this.setState({
           items: data,
           DataisLoaded: true,
@@ -65,7 +63,6 @@ class Main extends React.Component<IMainProps, IMainState> {
   }
 
   render() {
-    console.log('render');
     const { DataisLoaded, items } = this.state;
     if (!DataisLoaded) {
       return (

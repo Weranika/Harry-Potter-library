@@ -32,7 +32,6 @@ class Input extends React.Component<IInputProps, IInputState> {
             placeholder="Accio more information"
             autoFocus
             onChange={(event) => {
-              console.log('onchange');
               const inputValue = event.target.value;
               this.setState({
                 inputValue: inputValue,
