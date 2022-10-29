@@ -243,7 +243,7 @@ class CardComponent extends React.Component<IProps, IState> {
 
                   {this.props.item.wiki !== null ? (
                     <Box className="card__dropp-content-row">
-                      <Link underline="hover" href={this.props.item.wiki}>
+                      <Link underline="hover" href={this.props.item.wiki} target="_blank">
                         WIKI
                       </Link>
                     </Box>

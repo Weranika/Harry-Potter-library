@@ -5,7 +5,10 @@ class Api {
   getList() {
     const listCharacters = `${PATH_TO_SERVER}v1/characters`;
     return fetch(listCharacters)
-      .then((res) => res.json())
+      .then((res) => {
+        console.log(res);
+        return res.json();
+      })
       .then((json) => {
         return json.data;
       }) as Promise<Array<IData>>;

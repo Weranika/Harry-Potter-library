@@ -32,6 +32,7 @@ class Input extends React.Component<IInputProps, IInputState> {
             placeholder="Accio more information"
             autoFocus
             onChange={(event) => {
+              console.log('onchange');
               const inputValue = event.target.value;
               this.setState({
                 inputValue: inputValue,
@@ -43,6 +44,7 @@ class Input extends React.Component<IInputProps, IInputState> {
             className="search-input"
             autoComplete="off"
             name="search-input"
+            data-testid="search-input"
           />
           <button type="submit" className="search-container__button">
             &gt;
