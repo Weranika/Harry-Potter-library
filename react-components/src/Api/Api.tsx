@@ -6,7 +6,6 @@ class Api {
     const listCharacters = `${PATH_TO_SERVER}v1/characters`;
     return fetch(listCharacters)
       .then((res) => {
-        console.log(res);
         return res.json();
       })
       .then((json) => {

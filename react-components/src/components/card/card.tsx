@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import { StylesProvider } from '@material-ui/core/styles';
 import { Box } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
@@ -31,11 +31,6 @@ interface ExpandMoreProps extends IconButtonProps {
 export interface IProps {
   item: ICard;
 }
-interface IState {
-  expanded: boolean;
-  setOpen: boolean;
-}
-
 const ExpandMore = styled((props: ExpandMoreProps) => {
   const { ...other } = props;
   return <IconButton {...other} />;
@@ -47,54 +42,39 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
   }),
 }));
 
-class CardComponent extends React.Component<IProps, IState> {
-  constructor(props: IProps) {
-    super(props);
-    this.state = {
-      expanded: false,
-      setOpen: false,
-    };
-  }
+function CardComponent(props: IProps) {
+  const [expanded, setExpanded] = useState<boolean>(false);
+  const [openCard, setOpen] = useState<boolean>(false);
 
-  handleExpandClick = () => {
-    this.setState({ expanded: !this.state.expanded });
-  };
+  const handleExpandClick = () => setExpanded(!expanded);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
-  handleOpen = () =>
-    this.setState({
-      setOpen: true,
-    });
+  const color: string = props.item.house as string;
+  const mapNameToBg = new Map();
+  mapNameToBg.set('Gryffindor', Gryffindor);
+  mapNameToBg.set('Hufflepuff', Hufflepuff);
+  mapNameToBg.set('Ravenclaw', Ravenclaw);
+  mapNameToBg.set('Slytherin', Slytherin);
 
-  handleClose = () =>
-    this.setState({
-      setOpen: false,
-    });
+  const mapNameToIcon = new Map();
+  mapNameToIcon.set('Gryffindor', GryffindorIcon);
+  mapNameToIcon.set('Hufflepuff', HufflepuffIcon);
+  mapNameToIcon.set('Ravenclaw', RavenclawIcon);
+  mapNameToIcon.set('Slytherin', SlytherinIcon);
 
-  render() {
-    const color: string = this.props.item.house as string;
-    const mapNameToBg = new Map();
-    mapNameToBg.set('Gryffindor', Gryffindor);
-    mapNameToBg.set('Hufflepuff', Hufflepuff);
-    mapNameToBg.set('Ravenclaw', Ravenclaw);
-    mapNameToBg.set('Slytherin', Slytherin);
-
-    const mapNameToIcon = new Map();
-    mapNameToIcon.set('Gryffindor', GryffindorIcon);
-    mapNameToIcon.set('Hufflepuff', HufflepuffIcon);
-    mapNameToIcon.set('Ravenclaw', RavenclawIcon);
-    mapNameToIcon.set('Slytherin', SlytherinIcon);
-
-    if (this.props.item.image !== null) {
-      return (
+  return (
+    <>
+      {props.item.image !== null ? (
         <StylesProvider injectFirst>
           <Card role="listitem" className="card">
             <CardContent style={{ backgroundImage: `url(${mapNameToBg.get(color)})` }}>
               <CardMedia
                 component="img"
-                image={this.props.item.image as string}
-                alt={this.props.item.name as string}
+                image={props.item.image as string}
+                alt={props.item.name as string}
                 className="card-img"
-                onClick={this.handleOpen}
+                onClick={handleOpen}
               />
               <CardContent className="card__title-content">
                 {mapNameToIcon.has(color) ? (
@@ -114,122 +94,122 @@ class CardComponent extends React.Component<IProps, IState> {
                 )}
                 <Box>
                   <Typography variant="h6" align="center" className="card__title-name">
-                    {this.props.item.name}
+                    {props.item.name}
                   </Typography>
                   <Typography variant="h6" align="center">
-                    {this.props.item.house}
+                    {props.item.house}
                   </Typography>
                 </Box>
               </CardContent>
 
               <CardActions disableSpacing>
                 <ExpandMore
-                  expand={this.state.expanded.toString()}
-                  onClick={this.handleExpandClick}
-                  aria-expanded={this.state.expanded}
+                  expand={expanded.toString()}
+                  onClick={handleExpandClick}
+                  aria-expanded={expanded}
                   aria-label="show-more"
                 >
                   <ExpandMoreIcon />
                 </ExpandMore>
               </CardActions>
-              <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
+              <Collapse in={expanded} timeout="auto" unmountOnExit>
                 <CardContent className="card__dropp-container">
-                  {this.props.item.gender !== null ? (
+                  {props.item.gender !== null ? (
                     <Box className="card__dropp-content-row">
                       <Typography paragraph variant="h6">
                         Gender:
                       </Typography>
-                      <Typography paragraph>{this.props.item.gender}</Typography>
+                      <Typography paragraph>{props.item.gender}</Typography>
                     </Box>
                   ) : (
                     ''
                   )}
 
-                  {this.props.item.born !== null ? (
+                  {props.item.born !== null ? (
                     <Box className="card__dropp-content-row">
                       <Typography paragraph variant="h6">
                         Date of birth:
                       </Typography>
-                      <Typography paragraph>{this.props.item.born}</Typography>
+                      <Typography paragraph>{props.item.born}</Typography>
                     </Box>
                   ) : (
                     ''
                   )}
 
-                  {this.props.item.blood_status !== null ? (
+                  {props.item.blood_status !== null ? (
                     <Box className="card__dropp-content-row">
                       <Typography paragraph variant="h6">
                         Blood status:
                       </Typography>
-                      <Typography paragraph>{this.props.item.blood_status}</Typography>
+                      <Typography paragraph>{props.item.blood_status}</Typography>
                     </Box>
                   ) : (
                     ''
                   )}
 
-                  {this.props.item.eye_color !== null ? (
+                  {props.item.eye_color !== null ? (
                     <Box className="card__dropp-content-row">
                       <Typography paragraph variant="h6">
                         Eye colour:
                       </Typography>
-                      <Typography paragraph>{this.props.item.eye_color}</Typography>
+                      <Typography paragraph>{props.item.eye_color}</Typography>
                     </Box>
                   ) : (
                     ''
                   )}
 
-                  {this.props.item.hair_color !== null ? (
+                  {props.item.hair_color !== null ? (
                     <Box className="card__dropp-content-row">
                       <Typography paragraph variant="h6">
                         Hair colour:
                       </Typography>
-                      <Typography paragraph>{this.props.item.hair_color}</Typography>
+                      <Typography paragraph>{props.item.hair_color}</Typography>
                     </Box>
                   ) : (
                     ''
                   )}
 
-                  {this.props.item.patronus !== null ? (
+                  {props.item.patronus !== null ? (
                     <Box className="card__dropp-content-row">
                       <Typography paragraph variant="h6">
                         Patronus:
                       </Typography>
-                      <Typography paragraph>{this.props.item.patronus}</Typography>
+                      <Typography paragraph>{props.item.patronus}</Typography>
                     </Box>
                   ) : (
                     ''
                   )}
 
-                  {this.props.item.species !== null ? (
+                  {props.item.species !== null ? (
                     <Box className="card__dropp-content-row">
                       <Typography paragraph variant="h6">
                         Species:
                       </Typography>
-                      <Typography paragraph>{this.props.item.species}</Typography>
+                      <Typography paragraph>{props.item.species}</Typography>
                     </Box>
                   ) : (
                     ''
                   )}
 
-                  {this.props.item.boggart !== null ? (
+                  {props.item.boggart !== null ? (
                     <Box className="card__dropp-content-row">
                       <Typography paragraph variant="h6">
                         Boggart:
                       </Typography>
-                      <Typography paragraph>{this.props.item.boggart}</Typography>
+                      <Typography paragraph>{props.item.boggart}</Typography>
                     </Box>
                   ) : (
                     ''
                   )}
 
-                  {this.props.item.wands !== null ? (
+                  {props.item.wands !== null ? (
                     <Box className="wand__continer">
                       <Typography paragraph variant="h5" align="center">
                         Wand
                       </Typography>
                       <Box>
-                        {this.props.item.wands !== null
-                          ? this.props.item.wands.map((wand, id) => (
+                        {props.item.wands !== null
+                          ? props.item.wands.map((wand, id) => (
                               <Typography paragraph key={id}>
                                 {wand}
                               </Typography>
@@ -241,9 +221,9 @@ class CardComponent extends React.Component<IProps, IState> {
                     ''
                   )}
 
-                  {this.props.item.wiki !== null ? (
+                  {props.item.wiki !== null ? (
                     <Box className="card__dropp-content-row">
-                      <Link underline="hover" href={this.props.item.wiki} target="_blank">
+                      <Link underline="hover" href={props.item.wiki} target="_blank">
                         WIKI
                       </Link>
                     </Box>
@@ -255,8 +235,8 @@ class CardComponent extends React.Component<IProps, IState> {
             </CardContent>
           </Card>
           <Modal
-            open={this.state.setOpen}
-            onClose={this.handleClose}
+            open={openCard}
+            onClose={handleClose}
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
             closeAfterTransition
@@ -269,14 +249,14 @@ class CardComponent extends React.Component<IProps, IState> {
               <Typography paragraph variant="h4" align="center" className="modal-card__title">
                 Relation and job
               </Typography>
-              {this.props.item.alias_names !== null ? (
+              {props.item.alias_names !== null ? (
                 <Box>
                   <Typography paragraph variant="h5" align="center" className="modal-card__title">
                     Alias names
                   </Typography>
                   <Box className="modal-card">
-                    {this.props.item.alias_names !== null
-                      ? this.props.item.alias_names.map((names, id) => (
+                    {props.item.alias_names !== null
+                      ? props.item.alias_names.map((names, id) => (
                           <Typography paragraph key={id}>
                             {names}
                           </Typography>
@@ -288,14 +268,14 @@ class CardComponent extends React.Component<IProps, IState> {
                 ''
               )}
 
-              {this.props.item.family_members !== null ? (
+              {props.item.family_members !== null ? (
                 <Box>
                   <Typography paragraph variant="h5" align="center" className="modal-card__title">
                     Family
                   </Typography>
                   <Box className="modal-card">
-                    {this.props.item.family_members !== null
-                      ? this.props.item.family_members.map((names, id) => (
+                    {props.item.family_members !== null
+                      ? props.item.family_members.map((names, id) => (
                           <Typography paragraph key={id}>
                             {names}
                           </Typography>
@@ -307,14 +287,14 @@ class CardComponent extends React.Component<IProps, IState> {
                 ''
               )}
 
-              {this.props.item.jobs !== null ? (
+              {props.item.jobs !== null ? (
                 <Box>
                   <Typography paragraph variant="h5" align="center" className="modal-card__title">
                     Jobs
                   </Typography>
                   <Box className="modal-card">
-                    {this.props.item.jobs !== null
-                      ? this.props.item.jobs.map((names, id) => (
+                    {props.item.jobs !== null
+                      ? props.item.jobs.map((names, id) => (
                           <Typography paragraph key={id}>
                             {names}
                           </Typography>
@@ -326,14 +306,14 @@ class CardComponent extends React.Component<IProps, IState> {
                 ''
               )}
 
-              {this.props.item.romances !== null ? (
+              {props.item.romances !== null ? (
                 <Box>
                   <Typography paragraph variant="h5" align="center" className="modal-card__title">
                     Romances
                   </Typography>
                   <Box className="modal-card">
-                    {this.props.item.romances !== null
-                      ? this.props.item.romances.map((names, id) => (
+                    {props.item.romances !== null
+                      ? props.item.romances.map((names, id) => (
                           <Typography paragraph key={id}>
                             {names}
                           </Typography>
@@ -347,9 +327,11 @@ class CardComponent extends React.Component<IProps, IState> {
             </Box>
           </Modal>
         </StylesProvider>
-      );
-    }
-  }
+      ) : (
+        ''
+      )}
+    </>
+  );
 }
 
 export default CardComponent;

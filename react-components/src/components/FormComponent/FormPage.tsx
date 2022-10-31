@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Form from './Form';
-import CardList from 'components/CardList/cardList';
+import CardList from 'components/CardList/CardList';
 import './FormPage.scss';
 import { IData } from '../../global/interfaces';
 

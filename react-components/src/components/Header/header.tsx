@@ -2,7 +2,7 @@ import * as React from 'react';
 import { NavLink } from 'react-router-dom';
 import './header.scss';
 import logo from '../../assets/icons/hogwarts-express-logo.png';
-import Music from 'components/Audio/Audio';
+import AudioComponent from 'components/Audio/AudioComponent';
 
 const scrollToTop = () => {
   window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -36,7 +36,7 @@ function Header() {
             <NavLink to="/form">Form</NavLink>
           </li>
         </nav>
-        <Music play={true} />
+        <AudioComponent />
       </div>
     </header>
   );

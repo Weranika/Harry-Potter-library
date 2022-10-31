@@ -1,84 +1,64 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import LinearProgress from '@mui/material/LinearProgress';
-import CardList from 'components/CardList/cardList';
-import Input from 'components/input/input';
+import CardList from 'components/CardList/CardList';
+import Input from 'components/input/Input';
 import ApiList from '../../Api/Api';
 import { IData } from '../../global/interfaces';
 import './main.scss';
-interface IMainState {
-  inputSearch: string;
-  DataisLoaded: boolean;
-  items: Array<IData>;
-}
-interface IMainProps {
-  filteredItems: Array<IData>;
-}
-class Main extends React.Component<IMainProps, IMainState> {
-  constructor(props: IMainProps) {
-    super(props);
-    this.state = {
-      inputSearch: localStorage.getItem('inputValue') as string,
-      DataisLoaded: false,
-      items: [],
-    };
-  }
 
-  handleSearhSubmit = (value: string) => {
+function Main() {
+  const [inputSearch, setInputSearch] = useState<string>(
+    localStorage.getItem('inputValue') as string
+  );
+  const [dataisLoaded, setDataisLoaded] = useState<boolean>(false);
+  const [items, setItems] = useState<Array<IData>>([]);
+
+  const handleSearhSubmit = (value: string) => {
     if (value.length > 2) {
       ApiList.getCharacter(value).then((data: Array<IData>) => {
-        this.setState({
-          items: data,
-          inputSearch: value,
-        });
+        setItems(data);
+        setInputSearch(value);
       });
     } else {
       ApiList.getList().then((data: Array<IData>) => {
-        this.setState({
-          items: data,
-          inputSearch: value,
-        });
+        setItems(data);
+        setInputSearch(value);
       });
     }
   };
 
-  componentDidMount() {
-    const inputSearch = this.state.inputSearch;
+  useEffect(() => {
+    console.log('use effect');
     if (inputSearch === null || inputSearch === 'null') {
       ApiList.getList().then((data: Array<IData>) => {
-        this.setState({
-          items: data,
-          DataisLoaded: true,
-        });
+        setItems(data);
+        setDataisLoaded(true);
       });
     } else {
       ApiList.getCharacter(inputSearch)
         .then((data: Array<IData>) => {
-          this.setState({
-            items: data,
-            DataisLoaded: true,
-          });
+          setItems(data);
+          setDataisLoaded(true);
         })
         .catch((err) => console.log(err));
     }
-  }
+  }, []);
 
-  render() {
-    const { DataisLoaded, items } = this.state;
-    if (!DataisLoaded) {
-      return (
+  return (
+    <main>
+      {!dataisLoaded ? (
         <div className="please-wait">
           <h1> Please wait some time...</h1>
           <LinearProgress color="inherit" />
         </div>
-      );
-    }
-    return (
-      <section className="main__container">
-        <Input handlerSearchValue={this.handleSearhSubmit} />
-        <CardList filteredItems={items} />
-      </section>
-    );
-  }
+      ) : (
+        <section className="main__container">
+          <Input handlerSearchValue={handleSearhSubmit} />
+          <CardList filteredItems={items} />
+        </section>
+      )}
+    </main>
+  );
 }
 
 export default Main;

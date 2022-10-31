@@ -2,7 +2,7 @@ import React from 'react';
 import aboutImg1 from '../../assets/img/aboutUs-1.png';
 import aboutImg2 from '../../assets/img/aboutUs-2.png';
 import aboutImg3 from '../../assets/img/aboutUs-3.png';
-import './aboutUs.scss';
+import './AboutUs.scss';
 
 function AboutUs() {
   return (
