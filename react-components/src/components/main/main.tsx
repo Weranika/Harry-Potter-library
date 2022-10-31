@@ -1,14 +1,11 @@
 import React from 'react';
 import heroes from '../../resources/heroes.json';
-import CardList from 'components/CardList/cardList';
-import Input from 'components/input/input';
+import CardList from 'components/CardList/CardList';
+import Input from 'components/input/Input';
 import './main.scss';
-
 interface IMainState {
   inputSearch: string;
-  //filteredItems: Array<ICardInfo>;
 }
-
 class Main extends React.Component<IMainState, IMainState> {
   constructor(props: IMainState) {
     super(props);
@@ -32,7 +29,6 @@ class Main extends React.Component<IMainState, IMainState> {
           item.actor.toLocaleLowerCase().includes(inputSearch.toLocaleLowerCase())
       );
     }
-
     return heroes;
   }
 
