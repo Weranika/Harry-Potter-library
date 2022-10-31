@@ -1,6 +1,6 @@
 import React from 'react';
-import CardComponent from 'components/card/card';
-import { ICardInfo } from '../card/card';
+import CardComponent from 'components/card/Card';
+import { ICardInfo } from '../card/Card';
 import './cardList.scss';
 
 export interface IPropsFilter {

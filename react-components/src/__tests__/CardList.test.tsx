@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, within } from '@testing-library/react';
-import CardList from '../components/CardList/cardList';
+import CardList from '../components/CardList/CardList';
 import heroes from '../resources/heroes.json';
 
 it('should render list of 8 heroes', () => {

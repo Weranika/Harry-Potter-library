@@ -57,8 +57,8 @@ interface IState {
 }
 
 const ExpandMore = styled((props: ExpandMoreProps) => {
-  const { ...other } = props;
-  return <IconButton {...other} />;
+  const { ...rest } = props;
+  return <IconButton {...rest} />;
 })(({ theme, expand }) => ({
   transform: expand === 'false' ? 'rotate(0deg)' : 'rotate(180deg)',
   marginLeft: 'auto',
@@ -75,7 +75,6 @@ class CardComponent extends React.Component<IProps, IState> {
 
   handleExpandClick = () => {
     this.setState({ expanded: !this.state.expanded });
-    //console.log('expand', this.state.expanded);
   };
 
   render() {
@@ -91,6 +90,17 @@ class CardComponent extends React.Component<IProps, IState> {
     mapNameToIcon.set('Hufflepuff', HufflepuffIcon);
     mapNameToIcon.set('Ravenclaw', RavenclawIcon);
     mapNameToIcon.set('Slytherin', SlytherinIcon);
+
+    const cardInfo = {
+      Gender: this.props.item.gender,
+      'Date of birth': this.props.item.dateOfBirth,
+      'Year of birth': this.props.item.yearOfBirth,
+      Wizard: this.props.item.wizard.toString(),
+      'Eye colour': this.props.item.eyeColour,
+      'Hair colour': this.props.item.hairColour,
+      Patronus: this.props.item.patronus,
+      Actor: this.props.item.actor,
+    };
 
     return (
       <StylesProvider injectFirst>
@@ -131,54 +141,16 @@ class CardComponent extends React.Component<IProps, IState> {
             </CardActions>
             <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
               <CardContent className="card__dropp-container">
-                <Box className="card__dropp-content-row">
-                  <Typography paragraph variant="h6">
-                    Gender:
-                  </Typography>
-                  <Typography paragraph>{this.props.item.gender}</Typography>
-                </Box>
-                <Box className="card__dropp-content-row">
-                  <Typography paragraph variant="h6">
-                    Date of birth:
-                  </Typography>
-                  <Typography paragraph>{this.props.item.dateOfBirth}</Typography>
-                </Box>
-                <Box className="card__dropp-content-row">
-                  <Typography paragraph variant="h6">
-                    Year of birth:
-                  </Typography>
-                  <Typography paragraph>{this.props.item.yearOfBirth}</Typography>
-                </Box>
-                <Box className="card__dropp-content-row">
-                  <Typography paragraph variant="h6">
-                    Wizard:
-                  </Typography>
-                  <Typography paragraph>{this.props.item.wizard.toString()}</Typography>
-                </Box>
-                <Box className="card__dropp-content-row">
-                  <Typography paragraph variant="h6">
-                    Eye colour:
-                  </Typography>
-                  <Typography paragraph>{this.props.item.eyeColour}</Typography>
-                </Box>
-                <Box className="card__dropp-content-row">
-                  <Typography paragraph variant="h6">
-                    Hair colour:
-                  </Typography>
-                  <Typography paragraph>{this.props.item.hairColour}</Typography>
-                </Box>
-                <Box className="card__dropp-content-row">
-                  <Typography paragraph variant="h6">
-                    Patronus:
-                  </Typography>
-                  <Typography paragraph>{this.props.item.patronus}</Typography>
-                </Box>
-                <Box className="card__dropp-content-row">
-                  <Typography paragraph variant="h6">
-                    Actor:
-                  </Typography>
-                  <Typography paragraph>{this.props.item.actor}</Typography>
-                </Box>
+                {Object.entries(cardInfo).map(([key, value]) => {
+                  return (
+                    <Box className="card__dropp-content-row" key={key}>
+                      <Typography paragraph variant="h6">
+                        {key}:
+                      </Typography>
+                      <Typography paragraph>{value}</Typography>
+                    </Box>
+                  );
+                })}
 
                 <Box className="wand__continer">
                   <Typography paragraph variant="h5" align="center">

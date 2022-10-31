@@ -20,9 +20,6 @@ class Input extends React.Component<IInputProps, IInputState> {
   };
 
   componentDidMount() {
-    this.setState({
-      inputValue: localStorage.getItem('inputValue') as string,
-    });
     this.props.handlerSearchValue(this.state.inputValue);
   }
 
@@ -38,11 +35,11 @@ class Input extends React.Component<IInputProps, IInputState> {
             placeholder="Accio more information"
             autoFocus
             onChange={(event) => {
-              const inputValue = event.target.value;
+              const { value } = event.currentTarget;
               this.setState({
-                inputValue: inputValue,
+                inputValue: value,
               });
-              this.props.handlerSearchValue(inputValue);
+              this.props.handlerSearchValue(value);
             }}
             value={this.state.inputValue}
             type="text"
