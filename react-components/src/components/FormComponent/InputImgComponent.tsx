@@ -15,15 +15,7 @@ interface IInputImgState {
 class InputImgComponent extends React.Component<IInputImgProps, IInputImgState> {
   constructor(props: IInputImgProps) {
     super(props);
-    // this.state = {
-    //   selectedImage: null,
-    // };
   }
-
-  // setSelectedImage = (event: HTMLInputElement) =>
-  //   this.setState({
-  //     selectedImage: event.target.files[0],
-  //   });
 
   render() {
     return (
@@ -39,7 +31,6 @@ class InputImgComponent extends React.Component<IInputImgProps, IInputImgState> 
             const el = event.target as HTMLInputElement;
             const file = (el.files as FileList)[0];
             const src = URL.createObjectURL(file);
-            console.log('image=', src);
             this.props.callback(src);
             this.setState({
               selectedImage: (el.files as FileList)[0],

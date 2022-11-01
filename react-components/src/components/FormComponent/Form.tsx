@@ -10,6 +10,7 @@ import InputImgComponent from './InputImgComponent';
 import InputSelectComponent from './InputSelectComponent';
 import InputDateComponent from './InputDateComponent';
 import { IWizard, ICard, nullWizard } from '../../global/interfaces';
+import templateImg from '../../assets/img/aboutUs-1.png';
 
 interface IFormState {
   card: unknown;
@@ -66,7 +67,6 @@ class Form extends React.Component<IFormProps, IFormState> {
 
   handleInputSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    console.log('dateOfBirth:', this.wizard.dateOfBirth);
 
     const card: ICard = {
       name: this.wizard.name?.value as string,
@@ -91,9 +91,8 @@ class Form extends React.Component<IFormProps, IFormState> {
       actor: '',
       alternate_actors: [],
       alive: true,
-      image: this.state.selectedImage, //(this.fileInput.current.files[0] as File).name as string,
+      image: this.state.selectedImage,
     };
-    //console.log((this.fileInput as React.RefObject<HTMLInputElement>).current.files[0].name as string)
     this.state.cardList.push(card);
     this.props.handlerForm(this.state.cardList);
     (this.wizard.name as HTMLInputElement).value = '';
@@ -187,7 +186,11 @@ class Form extends React.Component<IFormProps, IFormState> {
             accept={'image/png, image/jpeg'}
             reff={(element: HTMLInputElement) => (this.wizard.image = element)}
           />
-          <img alt="not fount" width={'50px'} src={this.state.selectedImage} />
+          {this.state.selectedImage ? (
+            <img alt="add img" width={'50px'} src={this.state.selectedImage} />
+          ) : (
+            <img alt="add img" width={'50px'} src={templateImg} />
+          )}
           <FormSwitches reff={(element: HTMLInputElement) => (this.wizard.gender = element)} />
           <p className="form__title">your wand</p>
           <InputSelectComponent
