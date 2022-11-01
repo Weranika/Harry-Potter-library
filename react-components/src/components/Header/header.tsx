@@ -23,8 +23,8 @@ function Header() {
             <h3 className="logo__subtitle">library for true fans!</h3>
           </div>
         </div>
-        <nav className="navbar">
-          <ul>
+        <nav>
+          <ul className="navbar">
             <li>
               <NavLink to="/" end>
                 Main
