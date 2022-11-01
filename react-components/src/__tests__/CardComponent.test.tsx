@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import CardComponent from '../components/card/Card';
+import CardComponent from '../components/Card/Card';
 import hero from '../resources/hero.json';
 
 it('renders card', () => {
