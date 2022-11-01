@@ -37,8 +37,8 @@ interface IState {
 }
 
 const ExpandMore = styled((props: ExpandMoreProps) => {
-  const { ...other } = props;
-  return <IconButton {...other} />;
+  const { ...rest } = props;
+  return <IconButton {...rest} />;
 })(({ theme, expand }) => ({
   transform: expand === 'false' ? 'rotate(0deg)' : 'rotate(180deg)',
   marginLeft: 'auto',
@@ -83,6 +83,17 @@ class CardComponent extends React.Component<IProps, IState> {
     mapNameToIcon.set('Hufflepuff', HufflepuffIcon);
     mapNameToIcon.set('Ravenclaw', RavenclawIcon);
     mapNameToIcon.set('Slytherin', SlytherinIcon);
+
+    const cardInfo = {
+      Gender: this.props.item.gender,
+      'Date of birth': this.props.item.born,
+      'Blood status:': this.props.item.blood_status,
+      'Eye colour': this.props.item.eye_color,
+      'Hair colour': this.props.item.hair_color,
+      Patronus: this.props.item.patronus,
+      Species: this.props.item.species,
+      Boggart: this.props.item.boggart,
+    };
 
     if (this.props.item.image !== null) {
       return (
@@ -134,93 +145,22 @@ class CardComponent extends React.Component<IProps, IState> {
               </CardActions>
               <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
                 <CardContent className="card__dropp-container">
-                  {this.props.item.gender !== null ? (
-                    <Box className="card__dropp-content-row">
-                      <Typography paragraph variant="h6">
-                        Gender:
-                      </Typography>
-                      <Typography paragraph>{this.props.item.gender}</Typography>
-                    </Box>
-                  ) : (
-                    ''
-                  )}
-
-                  {this.props.item.born !== null ? (
-                    <Box className="card__dropp-content-row">
-                      <Typography paragraph variant="h6">
-                        Date of birth:
-                      </Typography>
-                      <Typography paragraph>{this.props.item.born}</Typography>
-                    </Box>
-                  ) : (
-                    ''
-                  )}
-
-                  {this.props.item.blood_status !== null ? (
-                    <Box className="card__dropp-content-row">
-                      <Typography paragraph variant="h6">
-                        Blood status:
-                      </Typography>
-                      <Typography paragraph>{this.props.item.blood_status}</Typography>
-                    </Box>
-                  ) : (
-                    ''
-                  )}
-
-                  {this.props.item.eye_color !== null ? (
-                    <Box className="card__dropp-content-row">
-                      <Typography paragraph variant="h6">
-                        Eye colour:
-                      </Typography>
-                      <Typography paragraph>{this.props.item.eye_color}</Typography>
-                    </Box>
-                  ) : (
-                    ''
-                  )}
-
-                  {this.props.item.hair_color !== null ? (
-                    <Box className="card__dropp-content-row">
-                      <Typography paragraph variant="h6">
-                        Hair colour:
-                      </Typography>
-                      <Typography paragraph>{this.props.item.hair_color}</Typography>
-                    </Box>
-                  ) : (
-                    ''
-                  )}
-
-                  {this.props.item.patronus !== null ? (
-                    <Box className="card__dropp-content-row">
-                      <Typography paragraph variant="h6">
-                        Patronus:
-                      </Typography>
-                      <Typography paragraph>{this.props.item.patronus}</Typography>
-                    </Box>
-                  ) : (
-                    ''
-                  )}
-
-                  {this.props.item.species !== null ? (
-                    <Box className="card__dropp-content-row">
-                      <Typography paragraph variant="h6">
-                        Species:
-                      </Typography>
-                      <Typography paragraph>{this.props.item.species}</Typography>
-                    </Box>
-                  ) : (
-                    ''
-                  )}
-
-                  {this.props.item.boggart !== null ? (
-                    <Box className="card__dropp-content-row">
-                      <Typography paragraph variant="h6">
-                        Boggart:
-                      </Typography>
-                      <Typography paragraph>{this.props.item.boggart}</Typography>
-                    </Box>
-                  ) : (
-                    ''
-                  )}
+                  {Object.entries(cardInfo).map(([key, value]) => {
+                    return (
+                      <>
+                        {value !== null ? (
+                          <Box className="card__dropp-content-row" key={key}>
+                            <Typography paragraph variant="h6">
+                              {key}:
+                            </Typography>
+                            <Typography paragraph>{value}</Typography>
+                          </Box>
+                        ) : (
+                          ''
+                        )}
+                      </>
+                    );
+                  })}
 
                   {this.props.item.wands !== null ? (
                     <Box className="wand__continer">

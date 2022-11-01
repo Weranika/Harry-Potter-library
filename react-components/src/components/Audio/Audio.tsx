@@ -9,7 +9,7 @@ interface IMusicState {
   play: boolean;
 }
 
-class Music extends React.Component<IMusicState, IMusicState> {
+class AudioComponent extends React.Component<IMusicState, IMusicState> {
   private audio: HTMLAudioElement;
 
   constructor(props: IMusicState) {
@@ -43,4 +43,4 @@ class Music extends React.Component<IMusicState, IMusicState> {
   }
 }
 
-export default Music;
+export default AudioComponent;
