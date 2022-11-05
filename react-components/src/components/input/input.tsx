@@ -8,7 +8,6 @@ function Input(props: IInputProps) {
   const [inputValue, setInputValue] = useState<string>(
     localStorage.getItem('inputValue') as string
   );
-  console.log('input');
 
   const submitForm = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();

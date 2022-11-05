@@ -2,7 +2,7 @@ import React from 'react';
 import { render, screen, waitFor, fireEvent } from '@testing-library/react';
 import heroes from '../resources/heroes.json';
 import hero from '../resources/hero.json';
-import Main from '../components/main/Main';
+import Main from '../components/Main/Main';
 
 async function mockFetch(url: RequestInfo | URL): Promise<Response> {
   switch (url) {

@@ -1,5 +1,5 @@
 import React from 'react';
-import CardComponent from 'components/card/Card';
+import CardComponent from '../Card/card';
 import { IData } from '../../global/interfaces';
 import './cardList.scss';
 

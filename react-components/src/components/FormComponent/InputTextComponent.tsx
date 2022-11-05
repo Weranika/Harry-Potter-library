@@ -1,38 +1,35 @@
-import * as React from 'react';
+import React, { InputHTMLAttributes } from 'react';
+import { useForm } from 'react-hook-form';
+import { UseFormRegister, FieldValues } from 'react-hook-form';
+import { IWizard, ICard, IData, wizard } from '../../global/interfaces';
 
 interface IInputTextProps {
   title: string;
   type: string;
   id: string;
   className: Array<string>;
-  reff: (a: HTMLInputElement) => void;
+  //ref: UseFormRegister<ICard>;//LegacyRef<HTMLInputElement> | undefined;//UseFormRegister<FieldValues>;//
   required: boolean;
   minLength: number;
   maxLength: number;
 }
-class InputTextComponent extends React.Component<IInputTextProps> {
-  constructor(props: IInputTextProps) {
-    super(props);
-  }
+function InputTextComponent(props: IInputTextProps) {
 
-  render() {
-    return (
-      <label className={this.props.className[0]} htmlFor={this.props.id}>
-        {this.props.title}
-        <input
-          type={this.props.type}
-          id={this.props.id}
-          ref={this.props.reff}
-          name={this.props.id}
-          className={this.props.className[1]}
-          required={this.props.required}
-          minLength={this.props.minLength}
-          maxLength={this.props.maxLength}
-          pattern="^[a-zA-Zа-яА-Я_ ]*$"
-        />
-      </label>
-    );
-  }
+  return (
+    <label className={props.className[0]} htmlFor={props.id}>
+      {props.title}
+      <input
+        type={props.type}
+        id={props.id}
+        
+        className={props.className[1]}
+        required={props.required}
+        minLength={props.minLength}
+        maxLength={props.maxLength}
+        pattern="^[a-zA-Zа-яА-Я_ ]*$"
+      />
+    </label>
+  );
 }
 
 export default InputTextComponent;

@@ -1,40 +1,28 @@
-import * as React from 'react';
+import React, { useState, useEffect } from 'react';
 import Form from './Form';
-import CardList from 'components/CardList/CardList';
+import CardList from '../CardList/CardList';
 import './FormPage.scss';
 import { IData } from '../../global/interfaces';
 
-interface IFormPageState {
-  cardList: Array<IData>;
-}
-class FormPage extends React.Component<IFormPageState, IFormPageState> {
-  constructor(props: IFormPageState) {
-    super(props);
-    this.state = {
-      cardList: [],
-    };
-  }
+function FormPage() {
+  const [cardList, setCardList] = useState<Array<IData>>([]);
 
-  handleForm = (cardList: Array<IData>) => {
-    this.setState({
-      cardList: cardList,
-    });
+  const handleForm = (cardListProps: Array<IData>) => {
+    setCardList(cardListProps);
   };
 
-  render() {
-    return (
-      <section className="form-page">
-        <h1 className="page__title">Now you can be a wizard !</h1>
-        <h3 className="form-page__subtitle">
-          Сreate your own character. You can add all the necessary data and even choose your new
-          name and faculty of Hogwarts!
-        </h3>
-        <h4 className="form-page__fill-magic">Feel all the magic and become a student with us!</h4>
-        <Form handlerForm={this.handleForm} />
-        <CardList filteredItems={this.state.cardList} />
-      </section>
-    );
-  }
+  return (
+    <section className="form-page">
+      <h1 className="page__title">Now you can be a wizard !</h1>
+      <h3 className="form-page__subtitle">
+        Сreate your own character. You can add all the necessary data and even choose your new name
+        and faculty of Hogwarts!
+      </h3>
+      <h4 className="form-page__fill-magic">Feel all the magic and become a student with us!</h4>
+      <Form handlerForm={handleForm} />
+      <CardList filteredItems={cardList} />
+    </section>
+  );
 }
 
 export default FormPage;

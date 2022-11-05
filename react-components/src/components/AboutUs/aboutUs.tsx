@@ -2,11 +2,11 @@ import React from 'react';
 import aboutImg1 from '../../assets/img/aboutUs-1.png';
 import aboutImg2 from '../../assets/img/aboutUs-2.png';
 import aboutImg3 from '../../assets/img/aboutUs-3.png';
-import './AboutUs.scss';
+import './aboutUs.scss';
 
 function AboutUs() {
   return (
-    <section className="about-us">
+    <article className="about-us">
       <h1 className="page__title">About us</h1>
       <div className="about-us__conteiner">
         <div className="about-us__img-container">
@@ -14,7 +14,7 @@ function AboutUs() {
           <img className="about-us__img img-2" src={aboutImg2} alt="aboutImg2" />
           <img className="about-us__img img-3" src={aboutImg3} alt="aboutImg3" />
         </div>
-        <article className="about-us__content">
+        <section className="about-us__content">
           <div className="about-gryffindor">
             <p>You might belong in Gryffindor,</p>
             <p>Where dwell the brave at heart,</p>
@@ -39,9 +39,9 @@ function AboutUs() {
             <p>Those cunning folk use any means</p>
             <p>To achieve their ends.</p>
           </div>
-        </article>
+        </section>
       </div>
-    </section>
+    </article>
   );
 }
 

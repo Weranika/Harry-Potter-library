@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import LinearProgress from '@mui/material/LinearProgress';
-import CardList from 'components/CardList/CardList';
-import Input from 'components/input/Input';
+import CardList from '../CardList/CardList';
+import Input from '../Input/input';
 import ApiList from '../../Api/Api';
 import { IData } from '../../global/interfaces';
 import './main.scss';

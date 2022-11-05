@@ -49,7 +49,7 @@ export interface IData {
   type: string;
 }
 
-export const nullWizard = {
+export const wizard = {
   name: null,
   alternate_names: null,
   species: null,
