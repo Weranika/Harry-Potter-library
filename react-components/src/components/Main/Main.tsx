@@ -1,7 +1,7 @@
 import React from 'react';
 import heroes from '../../resources/heroes.json';
-import CardList from 'components/CardList/CardList';
-import Input from 'components/Input/Input';
+import CardList from '../CardList/CardList';
+import Input from '../Input/Input';
 import './main.scss';
 
 interface IMainState {
