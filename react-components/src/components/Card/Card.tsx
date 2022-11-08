@@ -66,7 +66,7 @@ function CardComponent(props: IProps) {
   const cardInfo = {
     Gender: props.item.gender,
     'Date of birth': props.item.born,
-    'Blood status:': props.item.blood_status,
+    'Blood status': props.item.blood_status,
     'Eye colour': props.item.eye_color,
     'Hair colour': props.item.hair_color,
     Patronus: props.item.patronus,
@@ -78,7 +78,7 @@ function CardComponent(props: IProps) {
     <>
       {props.item.image !== null ? (
         <StylesProvider injectFirst>
-          <Card role="listitem" className="card">
+          <Card role="listitem" className="card" key={props.item.name}>
             <CardContent style={{ backgroundImage: `url(${mapNameToBg.get(color)})` }}>
               <CardMedia
                 component="img"

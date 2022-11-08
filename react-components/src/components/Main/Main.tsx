@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import LinearProgress from '@mui/material/LinearProgress';
 import CardList from '../CardList/CardList';
-import Input from '../Input/input';
+import Input from '../Input/Input';
 import ApiList from '../../Api/Api';
 import { IData } from '../../global/interfaces';
 import './main.scss';
@@ -28,7 +28,6 @@ function Main() {
   };
 
   useEffect(() => {
-    console.log('use effect');
     if (inputSearch === null || inputSearch === 'null') {
       ApiList.getList().then((data: Array<IData>) => {
         setItems(data);

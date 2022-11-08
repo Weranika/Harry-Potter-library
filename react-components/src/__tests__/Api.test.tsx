@@ -35,7 +35,7 @@ afterEach(() => {
 });
 
 test('renders main page heroes list', async () => {
-  render(<Main filteredItems={[]} />);
+  render(<Main />);
   expect(screen.getByRole('heading')).toHaveTextContent('Please wait some time...');
   await waitFor(() => expect(screen.getByText('Abraham Potter')).toBeInTheDocument());
 
@@ -47,7 +47,7 @@ test('renders main page heroes list', async () => {
 });
 
 test('render input in main', async () => {
-  render(<Main filteredItems={[]} />);
+  render(<Main />);
   await waitFor(() => expect(screen.getByText('Abraham Potter')).toBeInTheDocument());
 
   const inputEl = screen.getByTestId('search-input');
@@ -57,7 +57,7 @@ test('render input in main', async () => {
 });
 
 test('render search hero in main', async () => {
-  render(<Main filteredItems={[]} />);
+  render(<Main />);
 
   const inputValue = 'Harry';
   await waitFor(() => expect(screen.getByTestId('search-input')).toBeInTheDocument());

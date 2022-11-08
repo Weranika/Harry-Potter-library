@@ -5,17 +5,11 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
 import Typography from '@mui/material/Typography';
-import FormSwitches from './FormSwitches';
-import InputTextComponent from './InputTextComponent';
-//import InputImgComponent from './InputImgComponent';
-import InputSelectComponent from './InputSelectComponent';
-import InputDateComponent from './InputDateComponent';
-import { IWizard, ICard, IData, wizard } from '../../global/interfaces';
+import { ICard, IData, defaultValues } from '../../global/interfaces';
 import templateImg from '../../assets/img/aboutUs-1.png';
-import { UseFormRegister, FieldValues } from 'react-hook-form';
 import './FormSwitches.scss';
 export interface IFormProps {
-  handlerForm: (cardList: Array<IData>) => void;
+  handlerForm: (cardList: IData) => void;
 }
 const style = {
   position: 'absolute',
@@ -31,68 +25,53 @@ const style = {
 };
 
 function Form(props: IFormProps) {
-  const [card, setCard] = useState<unknown>({});
-  const [cardList, setCardList] = useState<Array<IData>>([]);
   const [open, setOpen] = useState<boolean>(false);
   const [selectedImage, setSelectedImage] = useState<string>('');
 
-  const handleImage = (imageSrc: string) => setSelectedImage(imageSrc);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const { register, handleSubmit } = useForm<ICard>();
-  const onSubmit = (data: ICard) => {
-    console.log(data);
-  };
+  const { register, handleSubmit, reset } = useForm<ICard>();
   const houses: Array<string> = ['Gryffindor', 'Slytherin', 'Ravenclaw', 'Hufflepuff'];
   const wandWood: Array<string> = ['hawthorn', 'cherry', 'yew', 'cypress', 'walnut', 'mahogany'];
   const wandCore: Array<string> = ['dragon heartstring', 'unicorn tail-hair', 'phoenix feather'];
   const wandLength: Array<string> = ['10', '10 1/2', '11', '12', '12 3/4', '13', '14', '15', '16'];
+  const wandInfo = {
+    'wand core': wandCore,
+    'wand wood': wandWood,
+    'wand length': wandLength,
+  };
 
-  // function handleInputSubmit(event: FormEvent<HTMLFormElement>) {
-  //   event.preventDefault();
+  const onSubmit = (data: ICard) => {
+    const card: ICard = {
+      name: data.name as string,
+      species: '',
+      gender: (data.gender as string) ? 'female' : 'male',
+      house: data.house as string,
+      born: data.born as string,
+      blood_status: data.blood_status as string,
+      eye_color: data.eye_color as string,
+      hair_color: data.hair_color as string,
+      wands: data.wands as Array<string>,
+      patronus: data.patronus as string,
+      image: selectedImage,
+      alias_names: [],
+      family_members: [],
+      jobs: [],
+      romances: [],
+      boggart: '',
+      wiki: '',
+    };
 
-  //   const card: ICard = {
-  //     name: wizard.name?.value as string,
-  //     species: '',
-  //     gender: (wizard.gender?.checked as boolean) ? 'female' : 'male',
-  //     house: wizard.house?.value as string,
-  //     born: wizard.born?.value as string,
-  //     blood_status: wizard.blood_status?.checked.toString() as string,
-  //     eye_color: wizard.eye_color?.value as string,
-  //     hair_color: wizard.hair_color?.value as string,
-  //     wands: [
-  //       `${wizard.wand.wood?.value as string},
-  //       ${wizard.wand.core?.value as string},
-  //       ${wizard.wand.length?.value as string}`,
-  //     ],
-  //     patronus: wizard.patronus?.value as string,
-  //     image: selectedImage,
-  //     alias_names: [],
-  //     family_members: [],
-  //     jobs: [],
-  //     romances: [],
-  //     boggart: '',
-  //     wiki: '',
-  //   };
+    props.handlerForm({
+      attributes: card,
+      type: 'i',
+      id: data.name as string,
+    });
 
-  //   cardList.push({
-  //     attributes: card,
-  //     type: 'kkk',
-  //     id: '1',
-  //   });
-  //   props.handlerForm(cardList);
-  //   (wizard.name as HTMLInputElement).value = '';
-  //   (wizard.born as HTMLInputElement).value = '';
-  //   (wizard.eye_color as HTMLInputElement).value = '';
-  //   (wizard.hair_color as HTMLInputElement).value = '';
-  //   (wizard.patronus as HTMLInputElement).value = '';
-  //   (wizard.house as HTMLSelectElement).value = '';
-  //   (wizard.wand.wood as HTMLSelectElement).value = '';
-  //   (wizard.wand.core as HTMLSelectElement).value = '';
-  //   (wizard.wand.length as HTMLSelectElement).value = '';
-  //   handleOpen();
-  // }
+    handleOpen();
+    reset();
+  };
 
   return (
     <div className="form__page">
@@ -111,7 +90,7 @@ function Form(props: IFormProps) {
         </label>
 
         <label className="form__label" htmlFor="house">
-          your wizard name
+          your house
           <select id="house" {...register('house')} required={true}>
             {houses.map((el) => (
               <option key={el} value={el}>
@@ -219,80 +198,20 @@ function Form(props: IFormProps) {
         </div>
 
         <p className="form__title">your wand</p>
-        {/* <label className="form__label" htmlFor="wand-core">
-          wand core
-          <select id="wand-core" {...register('wands')} required={true}>
-            {wandCore.map((el) => (
-              <option key={el} value={el}>
-                {el}
-              </option>
-            ))}
-          </select>
-        </label> */}
-
-        <label className="form__label" htmlFor="wand-wood">
-          wand wood
-          <select id="wand-wood" {...register('wands')} required={true}>
-            {wandWood.map((el) => (
-              <option key={el} value={el}>
-                {el}
-              </option>
-            ))}
-          </select>
-        </label>
-
-        <label className="form__label" htmlFor="wand-length">
-          wand length
-          <select id="wand-length" {...register('wands')} required={true}>
-            {wandLength.map((el) => (
-              <option key={el} value={el}>
-                {el}
-              </option>
-            ))}
-          </select>
-        </label>
-        {/*
-        <InputImgComponent
-          title={'add your picture'}
-          type={'file'}
-          id={'avatar'}
-          callback={handleImage}
-          className={['form-img__container', 'form__img']}
-          accept={'image/png, image/jpeg'}
-          reff={(element: HTMLInputElement) => (wizard.image = element)}
-        />
-        {selectedImage ? (
-          <img alt="add img" width={'50px'} src={selectedImage} />
-        ) : (
-          <img alt="add img" width={'50px'} src={templateImg} />
-        )}
-
-        <FormSwitches reff={(element: HTMLInputElement) => (wizard.gender = element)} />
-        <p className="form__title">your wand</p>
-        <InputSelectComponent
-          title={'wand wood'}
-          id={'wand-wood'}
-          className={['form__label']}
-          components={['hawthorn', 'cherry', 'yew', 'cypress', 'walnut', 'mahogany']}
-          reff={(element: HTMLSelectElement) => (wizard.wand.wood = element)}
-          required={true}
-        />
-        <InputSelectComponent
-          title={'wand core'}
-          id={'wand-core'}
-          className={['form__label']}
-          components={['dragon heartstring', 'unicorn tail-hair', 'phoenix feather']}
-          reff={(element: HTMLSelectElement) => (wizard.wand.core = element)}
-          required={true}
-        />
-        <InputSelectComponent
-          title={'wand length'}
-          id={'wand-length'}
-          className={['form__label']}
-          components={['10', '10 1/2', '11', '12', '12 3/4', '13', '14', '15', '16']}
-          reff={(element: HTMLSelectElement) => (wizard.wand.length = element)}
-          required={true}
-        /> */}
+        {Object.entries(wandInfo).map(([key, value], ind) => {
+          return (
+            <label className="form__label" htmlFor="wand-core" key={key}>
+              {key}:
+              <select id={key} {...register(`wands.${ind}`)} required={true}>
+                {value.map((el) => (
+                  <option key={el} value={el}>
+                    {el}
+                  </option>
+                ))}
+              </select>
+            </label>
+          );
+        })}
         <input type="submit" value="CREATE CARD" className="submit__btn" />
       </form>
       <Modal

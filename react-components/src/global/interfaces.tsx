@@ -1,29 +1,23 @@
 /**********************form*************************/
-export interface IWizard {
-  name: HTMLInputElement | null;
-  alternate_names: HTMLInputElement | null;
-  species: HTMLInputElement | null;
-  gender: HTMLInputElement | null;
-  house: HTMLSelectElement | null;
-  born: HTMLInputElement | null;
-  blood_status: HTMLInputElement | null;
-  ancestry: HTMLInputElement | null;
-  eye_color: HTMLInputElement | null;
-  hair_color: HTMLInputElement | null;
-  wand: {
-    wood: HTMLSelectElement | null;
-    core: HTMLSelectElement | null;
-    length: HTMLSelectElement | null;
-  };
-  patronus: HTMLInputElement | null;
-  hogwartsStudent: HTMLInputElement | null;
-  hogwartsStaff: HTMLInputElement | null;
-  actor: HTMLInputElement | null;
-  alternate_actors: HTMLInputElement | null;
-  alive: HTMLInputElement | null;
-  image: HTMLInputElement | null;
-}
-
+export const defaultValues: ICard = {
+  name: '',
+  species: '',
+  gender: '',
+  house: '',
+  born: '',
+  blood_status: '',
+  eye_color: '',
+  hair_color: '',
+  wands: [],
+  patronus: '',
+  image: '',
+  alias_names: [],
+  family_members: [],
+  jobs: [],
+  romances: [],
+  boggart: '',
+  wiki: '',
+};
 export interface ICard {
   name: string | null;
   species: string | null;

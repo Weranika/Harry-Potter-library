@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Form from './Form';
 import CardList from '../CardList/CardList';
 import './FormPage.scss';
@@ -7,8 +7,8 @@ import { IData } from '../../global/interfaces';
 function FormPage() {
   const [cardList, setCardList] = useState<Array<IData>>([]);
 
-  const handleForm = (cardListProps: Array<IData>) => {
-    setCardList(cardListProps);
+  const handleForm = (card: IData) => {
+    setCardList([...cardList, card]);
   };
 
   return (

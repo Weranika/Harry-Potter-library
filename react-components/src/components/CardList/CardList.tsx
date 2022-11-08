@@ -1,5 +1,5 @@
 import React from 'react';
-import CardComponent from '../Card/card';
+import CardComponent from '../Card/Card';
 import { IData } from '../../global/interfaces';
 import './cardList.scss';
 
@@ -8,7 +8,6 @@ export interface IPropsFilter {
 }
 
 function CardList(props: IPropsFilter) {
-  console.log('card lst');
   return (
     <div className="card-list" role="list">
       {props.filteredItems.map((card) => (
