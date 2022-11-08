@@ -10,6 +10,7 @@ class FormSwitches extends React.Component<IFormSwitchesProps> {
   }
 
   render() {
+    const {reff} = this.props;
     return (
       <div className="form__switches">
         <p className="form__title">Choose gender</p>

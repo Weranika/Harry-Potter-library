@@ -16,18 +16,19 @@ class InputTextComponent extends React.Component<IInputTextProps> {
   }
 
   render() {
+    const {type, id, reff, className, required, title, minLength, maxLength} = this.props;
     return (
-      <label className={this.props.className[0]} htmlFor={this.props.id}>
-        {this.props.title}
+      <label className={className[0]} htmlFor={id}>
+        {title}
         <input
-          type={this.props.type}
-          id={this.props.id}
-          ref={this.props.reff}
-          name={this.props.id}
-          className={this.props.className[1]}
-          required={this.props.required}
-          minLength={this.props.minLength}
-          maxLength={this.props.maxLength}
+          type={type}
+          id={id}
+          ref={reff}
+          name={id}
+          className={className[1]}
+          required={required}
+          minLength={minLength}
+          maxLength={maxLength}
           pattern="^[a-zA-Zа-яА-Я_ ]*$"
         />
       </label>

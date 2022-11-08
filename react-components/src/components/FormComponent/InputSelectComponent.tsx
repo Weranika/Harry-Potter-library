@@ -17,17 +17,18 @@ class InputSelectComponent extends React.Component<IInputSelectProps> {
   }
 
   render() {
+    const {components, id, reff, className, required, title} = this.props;
     return (
-      <label className={this.props.className[0]} htmlFor={this.props.id}>
-        {this.props.title}
+      <label className={className[0]} htmlFor={id}>
+        {title}
         <select
-          id={this.props.id}
-          ref={this.props.reff}
-          name={this.props.id}
-          defaultValue={this.props.components[0]}
-          required={this.props.required}
+          id={id}
+          ref={reff}
+          name={id}
+          defaultValue={components[0]}
+          required={required}
         >
-          {this.props.components.map((el) => (
+          {components.map((el) => (
             <option key={el} value={el}>
               {el}
             </option>

@@ -14,16 +14,17 @@ class InputDateComponent extends React.Component<IInputTextProps> {
   }
 
   render() {
+    const {type, id, reff, className, title, required} = this.props;
     return (
-      <label className={this.props.className[0]} htmlFor={this.props.id}>
-        {this.props.title}
+      <label className={className[0]} htmlFor={id}>
+        {title}
         <input
-          type={this.props.type}
-          id={this.props.id}
-          ref={this.props.reff}
-          name={this.props.id}
-          className={this.props.className[1]}
-          required={this.props.required}
+          type={type}
+          id={id}
+          ref={reff}
+          name={id}
+          className={className[1]}
+          required={required}
           min="1900-01-01"
           max="2016-01-01"
         />

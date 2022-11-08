@@ -18,15 +18,16 @@ class InputImgComponent extends React.Component<IInputImgProps, IInputImgState> 
   }
 
   render() {
+    const {type, id, reff, className, title} = this.props;
     return (
-      <label className={this.props.className[0]} htmlFor={this.props.id}>
-        {this.props.title}
+      <label className={className[0]} htmlFor={id}>
+        {title}
         <div className="form-img__btn">add</div>
         <input
-          type={this.props.type}
-          id={this.props.id}
-          name={this.props.id}
-          className={this.props.className[1]}
+          type={type}
+          id={id}
+          name={id}
+          className={className[1]}
           onChange={(event) => {
             const el = event.target as HTMLInputElement;
             const file = (el.files as FileList)[0];
@@ -36,7 +37,7 @@ class InputImgComponent extends React.Component<IInputImgProps, IInputImgState> 
               selectedImage: (el.files as FileList)[0],
             });
           }}
-          ref={this.props.reff}
+          ref={reff}
         />
       </label>
     );
