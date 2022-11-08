@@ -1,11 +1,11 @@
-import React, { FormEvent, useState } from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import Backdrop from '@mui/material/Backdrop';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
 import Typography from '@mui/material/Typography';
-import { ICard, IData, defaultValues } from '../../global/interfaces';
+import { ICard, IData } from '../../global/interfaces';
 import templateImg from '../../assets/img/aboutUs-1.png';
 import './FormSwitches.scss';
 export interface IFormProps {
