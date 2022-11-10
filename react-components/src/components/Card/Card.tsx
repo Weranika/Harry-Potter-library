@@ -50,7 +50,6 @@ export interface ICardInfo {
 }
 export interface IProps {
   item: ICardInfo;
-  //itemFilter: ICardInfo;
 }
 
 interface IState {
@@ -103,6 +102,11 @@ class CardComponent extends React.Component<IProps, IState> {
       'Hogwarts student': this.props.item.hogwartsStudent.toString(),
       Actor: this.props.item.actor,
       Alive: this.props.item.alive.toString(),
+    };
+    const wandInfo = {
+      Wood: this.props.item.wand.wood,
+      Core: this.props.item.wand.core,
+      Length: this.props.item.wand.length,
     };
 
     return (
@@ -158,24 +162,16 @@ class CardComponent extends React.Component<IProps, IState> {
                   <Typography paragraph variant="h5" align="center">
                     Wand
                   </Typography>
-                  <Box className="card__dropp-content-row">
-                    <Typography paragraph variant="h6">
-                      Wood:
-                    </Typography>
-                    <Typography paragraph>{this.props.item.wand.wood}</Typography>
-                  </Box>
-                  <Box className="card__dropp-content-row">
-                    <Typography paragraph variant="h6">
-                      Core:
-                    </Typography>
-                    <Typography paragraph>{this.props.item.wand.core}</Typography>
-                  </Box>
-                  <Box className="card__dropp-content-row">
-                    <Typography paragraph variant="h6">
-                      Length:
-                    </Typography>
-                    <Typography paragraph>{this.props.item.wand.length}</Typography>
-                  </Box>
+                  {Object.entries(wandInfo).map(([key, value]) => {
+                    return (
+                      <Box className="card__dropp-content-row" key={key}>
+                        <Typography paragraph variant="h6">
+                          {key}:
+                        </Typography>
+                        <Typography paragraph>{value}</Typography>
+                      </Box>
+                    );
+                  })}
                 </Box>
               </CardContent>
             </Collapse>
