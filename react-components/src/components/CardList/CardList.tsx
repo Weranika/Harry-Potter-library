@@ -1,16 +1,17 @@
-import React from 'react';
+import React, { useReducer } from 'react';
 import CardComponent from '../Card/Card';
-import { IData } from '../../global/interfaces';
+import { IData, initialState } from '../../global/interfaces';
 import './cardList.scss';
-
+import { AppContext } from '../../context/contex';
 export interface IPropsFilter {
   filteredItems: Array<IData>;
 }
 
-function CardList(props: IPropsFilter) {
+function CardList() {
+  const { state, dispatch } = React.useContext(AppContext);
   return (
     <div className="card-list" role="list">
-      {props.filteredItems.map((card) => (
+      {state.items.map((card) => (
         <CardComponent item={card.attributes} key={card.id} />
       ))}
     </div>

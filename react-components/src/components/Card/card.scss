@@ -88,13 +88,3 @@ $CARD-WIDTH: 310px;
     color: $MAIN-COLOR--PRIMARY;
   }
 }
-.modal-card {
-  overflow-y: auto;
-  margin: 0 auto;
-  max-height: 20vh;
-  width: 90%;
-  .MuiTypography-paragraph {
-    width: 90%;
-    margin-bottom: 1px;
-  }
-}

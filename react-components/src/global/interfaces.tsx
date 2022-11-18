@@ -67,3 +67,18 @@ export const wizard = {
   alive: null,
   image: null,
 };
+
+export const initialState: IState = {
+  inputSearch: localStorage.getItem('inputValue') as string,
+  items: [],
+  cardInfo: defaultValues,
+};
+export interface IState {
+  inputSearch: string;
+  items: Array<IData>;
+  cardInfo: ICard;
+}
+export interface IAction {
+  type: string;
+  payload: unknown;
+}

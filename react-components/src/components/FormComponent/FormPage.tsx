@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useReducer, useState } from 'react';
 import Form from './Form';
 import CardList from '../CardList/CardList';
 import './FormPage.scss';
-import { IData } from '../../global/interfaces';
+import { IData, initialState } from '../../global/interfaces';
 
 function FormPage() {
   const [cardList, setCardList] = useState<Array<IData>>([]);
@@ -20,7 +20,7 @@ function FormPage() {
       </h3>
       <h4 className="form-page__fill-magic">Feel all the magic and become a student with us!</h4>
       <Form handlerForm={handleForm} />
-      <CardList filteredItems={cardList} />
+      <CardList />
     </section>
   );
 }
