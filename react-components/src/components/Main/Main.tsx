@@ -11,19 +11,17 @@ function Main() {
   const { state, dispatch } = React.useContext(AppContext);
   const [dataisLoaded, setDataisLoaded] = useState<boolean>(false);
 
-  const handleSearhSubmit = (value: string) => {
-    if (value.length > 2) {
-      ApiList.getCharacter(value).then((data: Array<IData>) => {
-        dispatch({ type: 'inputSearch', payload: value });
-        dispatch({ type: 'setItems', payload: data });
-      });
-    } else {
-      ApiList.getList().then((data: Array<IData>) => {
-        dispatch({ type: 'inputSearch', payload: value });
-        dispatch({ type: 'setItems', payload: data });
-      });
-    }
-  };
+  if (state.inputSearch.length > 2) {
+    ApiList.getCharacter(state.inputSearch).then((data: Array<IData>) => {
+      // dispatch({ type: 'inputSearch', payload: state.inputSearch });
+      dispatch({ type: 'setItems', payload: data });
+    });
+  } else {
+    ApiList.getList().then((data: Array<IData>) => {
+      // dispatch({ type: 'inputSearch', payload: state.inputSearch });
+      dispatch({ type: 'setItems', payload: data });
+    });
+  }
 
   useEffect(() => {
     if (state.inputSearch === null || state.inputSearch === 'null') {
@@ -50,7 +48,7 @@ function Main() {
         </div>
       ) : (
         <section className="main__container">
-          <Input handlerSearchValue={handleSearhSubmit} />
+          <Input />
           <CardList />
         </section>
       )}

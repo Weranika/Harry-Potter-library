@@ -8,7 +8,6 @@ import './CardPage.scss';
 
 function CardPage() {
   const { state } = React.useContext(AppContext);
-  console.log(state.cardInfo);
   const { alias_names, family_members, jobs, romances, name } = state.cardInfo;
   const cardInfo = {
     'Alias names': alias_names,

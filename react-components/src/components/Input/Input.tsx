@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { AppContext } from '../../context/contex';
 import './input.scss';
-interface IInputProps {
-  handlerSearchValue: (a: string) => void;
-}
-function Input(props: IInputProps) {
+
+function Input() {
+  const { state, dispatch } = React.useContext(AppContext);
   localStorage.getItem('inputValue') === 'null' ? '' : localStorage.getItem('inputValue');
   const [inputValue, setInputValue] = useState<string>(
     localStorage.getItem('inputValue') as string
@@ -25,10 +25,9 @@ function Input(props: IInputProps) {
           autoFocus
           onChange={(event) => {
             const value = event.target.value;
-            setInputValue(value);
-            props.handlerSearchValue(value);
+            dispatch({ type: 'inputSearch', payload: value });
           }}
-          value={inputValue}
+          value={state.inputSearch}
           type="text"
           className="search-input"
           autoComplete="off"
