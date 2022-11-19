@@ -3,21 +3,21 @@ import { IState, IAction, ICard } from './global/interfaces';
 export default function (state: IState, action: IAction): IState {
   switch (action.type) {
     case 'inputSearch':
+      const inputSearch = action.payload as string;
       return {
-        inputSearch: action.payload as string,
-        items: state.items,
-        cardInfo: state.cardInfo,
+        ...state,
+        inputSearch: inputSearch,
+        isLoading: true,
       };
     case 'setItems':
       return {
-        inputSearch: state.inputSearch,
+        ...state,
         items: action.payload as [],
-        cardInfo: state.cardInfo,
+        isLoading: false,
       };
     case 'setCardInfo':
       return {
-        inputSearch: state.inputSearch,
-        items: state.items,
+        ...state,
         cardInfo: action.payload as ICard,
       };
     default:

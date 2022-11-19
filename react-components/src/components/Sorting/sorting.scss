@@ -1,2 +1,28 @@
 @import '../../global/library';
 
+$SORT__BUTTON: 160px;
+$SORT-CONTAINER-WIDTH: 72vw;
+
+.sorting__container {
+  @include flex(space-evenly);
+  width: $SORT-CONTAINER-WIDTH;
+  flex-wrap: wrap;
+}
+.sorting__cathegory {
+  margin: 15px 5px 0;
+  @include font(20px, HarryPotter);
+  @include flex(center);
+  border-radius: 5px;
+  width: $SORT__BUTTON;
+  height: 30px;
+  color: $MAIN-COLOR--SECONDARY-LIGHT;
+  background-color: $MAIN-COLOR--PRIMARY-DARK;
+  box-shadow: 0px 0px 5px 2px rgba(255, 228, 193, 0.8);
+  cursor: inherit;
+  text-align: center;
+  cursor: pointer;
+    &:hover {
+      box-shadow: 0px 0px 10px 5px rgba(196, 194, 194, 0.6);
+      background-color: $MAIN-COLOR--SECONDARY-DARK;
+    }
+}

@@ -5,7 +5,7 @@ import { AppContext } from '../../context/contex';
 import './sorting.scss';
 
 function Sorting() {
-  const { state, dispatch } = React.useContext(AppContext);
+  const { dispatch } = React.useContext(AppContext);
 
   const sortingHandlerByNameAsc = () => {
     ApiList.getSortByNameAsc().then((data: Array<IData>) => {

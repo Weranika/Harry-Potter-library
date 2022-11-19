@@ -72,11 +72,13 @@ export const initialState: IState = {
   inputSearch: localStorage.getItem('inputValue') as string,
   items: [],
   cardInfo: defaultValues,
+  isLoading: false,
 };
 export interface IState {
   inputSearch: string;
   items: Array<IData>;
   cardInfo: ICard;
+  isLoading: boolean;
 }
 export interface IAction {
   type: string;
