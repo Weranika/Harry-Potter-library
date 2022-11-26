@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { NavLink } from 'react-router-dom';
-import './header.scss';
-import logo from '../../assets/icons/hogwarts-express-logo.png';
 import AudioComponent from 'components/Audio/AudioComponent';
+import './header.scss';
+
+import logo from '../../assets/icons/hogwarts-express-logo.png';
 
 const scrollToTop = () => {
   window.scrollTo({ top: 0, behavior: 'smooth' });

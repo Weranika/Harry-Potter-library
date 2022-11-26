@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
+
 import { StylesProvider } from '@material-ui/core/styles';
 import { Box } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
@@ -12,6 +13,10 @@ import Collapse from '@mui/material/Collapse';
 import IconButton, { IconButtonProps } from '@mui/material/IconButton';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Link from '@mui/material/Link';
+import { ICard } from '../../global/interfaces';
+import { AppContext } from '../../context/contex';
+import './card.scss';
+
 import Gryffindor from '../../assets/img/Gryffindor.jpg';
 import Hufflepuff from '../../assets/img/Hufflepuff.jpg';
 import Ravenclaw from '../../assets/img/Ravenclaw.jpg';
@@ -21,11 +26,6 @@ import HufflepuffIcon from '../../assets/icons/HufflepuffIcon.png';
 import RavenclawIcon from '../../assets/icons/RavenclawIcon.png';
 import SlytherinIcon from '../../assets/icons/SlytherinIcon.png';
 import Hogw from '../../assets/icons/hogw.png';
-import { ICard } from '../../global/interfaces';
-import CardPage from 'components/CardPage/CardPage';
-import './card.scss';
-import { AppContext } from '../../context/contex';
-
 interface ExpandMoreProps extends IconButtonProps {
   expand: string;
 }
@@ -44,7 +44,7 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
 }));
 
 function CardComponent(props: IProps) {
-  const { state, dispatch } = React.useContext(AppContext);
+  const { dispatch } = React.useContext(AppContext);
   const [expanded, setExpanded] = useState<boolean>(false);
   const handleExpandClick = () => setExpanded(!expanded);
   const handleOpen = () => dispatch({ type: 'setCardInfo', payload: props.item });

@@ -1,7 +1,7 @@
 import React from 'react';
+import { TablePagination } from '@mui/material';
 import ApiList from '../../Api/Api';
 import { AppContext } from '../../context/contex';
-import { TablePagination } from '@mui/material';
 import { IData } from '../../global/interfaces';
 import './pagination.scss';
 

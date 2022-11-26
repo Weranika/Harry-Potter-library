@@ -2,6 +2,7 @@
 
 .body__container {
   max-width: $BODY-CONTAINER-WIDTH;
+  min-width: $BODY-CONTAINER--MIN-WIDTH;
   width: 90vw;
   margin: 0 auto;
   min-height: 100vh;

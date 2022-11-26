@@ -24,7 +24,6 @@ class Api {
   }
 
   getRecords() {
-    console.log('getRecords');
     if (MOCKENABLED) {
       return new Promise<IMeta>((resolve) => resolve(mock.meta as IMeta));
     }

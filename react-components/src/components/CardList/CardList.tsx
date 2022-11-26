@@ -1,14 +1,14 @@
 import React from 'react';
 import CardComponent from '../Card/Card';
 import { IData } from '../../global/interfaces';
-import './cardList.scss';
 import { AppContext } from '../../context/contex';
+import './cardList.scss';
 export interface IPropsFilter {
   filteredItems: Array<IData>;
 }
 
 function CardList() {
-  const { state, dispatch } = React.useContext(AppContext);
+  const { state } = React.useContext(AppContext);
   return (
     <div className="card-list" role="list">
       {state.items.map((card) => (

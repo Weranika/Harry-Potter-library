@@ -1,24 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { AppContext } from '../../context/contex';
 import './input.scss';
 
 function Input() {
   const { state, dispatch } = React.useContext(AppContext);
-  // localStorage.getItem('inputValue') === 'null' || localStorage.getItem('inputValue') === null
-  //   ? ''
-  //   : localStorage.getItem('inputValue');
-
-  // const [inputValue, setInputValue] = useState<string>(
-  //   localStorage.getItem('inputValue') as string
-  // );
-
   const submitForm = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
   };
-
-  // useEffect(() => {
-  //   localStorage.setItem('inputValue', state.inputSearch as string);
-  // });
 
   return (
     <div className="search-container">

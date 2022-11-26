@@ -1,13 +1,11 @@
-import { IState, IAction, ICard, IPagination } from './global/interfaces';
+import { IState, IAction, ICard, IData, IPagination } from './global/interfaces';
 
 export default function (state: IState, action: IAction): IState {
   switch (action.type) {
-    case 'inputSearch':
-      const inputSearch = action.payload as string;
+    case 'addItem':
       return {
         ...state,
-        inputSearch: inputSearch,
-        isLoading: true,
+        items: [...state.items, action.payload as IData],
       };
     case 'setItems':
       return {
@@ -24,6 +22,13 @@ export default function (state: IState, action: IAction): IState {
       return {
         ...state,
         pagination: action.payload as IPagination,
+      };
+    case 'inputSearch':
+      const inputSearch = action.payload as string;
+      return {
+        ...state,
+        inputSearch: inputSearch,
+        isLoading: true,
       };
     case 'nextPage':
       const a = { ...state };

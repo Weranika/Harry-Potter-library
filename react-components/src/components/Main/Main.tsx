@@ -4,10 +4,10 @@ import CardList from '../CardList/CardList';
 import Input from '../Input/Input';
 import ApiList from '../../Api/Api';
 import { IData, IMeta } from '../../global/interfaces';
-import './main.scss';
 import { AppContext } from '../../context/contex';
 import Pagination from 'components/Pagination/Pagination';
 import Sorting from 'components/Sorting/Sorting';
+import './main.scss';
 
 function Main() {
   const { state, dispatch } = React.useContext(AppContext);
@@ -34,12 +34,6 @@ function Main() {
   useEffect(() => {
     let promiseGetData;
     let promiseGetRecords;
-    console.log(state, 'state');
-
-    // localStorage.getItem('inputValue') === 'null' || localStorage.getItem('inputValue') === null
-    //   ? dispatch({ type: 'inputSearch', payload: '' })
-    //   : dispatch({ type: 'inputSearch', payload: localStorage.getItem('inputValue') });
-    console.log('чтонибудь');
     if (state.inputSearch === null || state.inputSearch === '') {
       promiseGetData = ApiList.getList();
       promiseGetRecords = ApiList.getRecords();

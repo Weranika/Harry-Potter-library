@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { IconButton } from '@mui/material';
 import VolumeUpIcon from '@mui/icons-material/VolumeUp';
 import PauseIcon from '@mui/icons-material/Pause';
-import sounFile from '../../assets/audio/garri-potter-volshebnaya-muzyka.mp3';
 import './audio.scss';
+
+import sounFile from '../../assets/audio/garri-potter-volshebnaya-muzyka.mp3';
 
 function AudioComponent() {
   const [playing, setPlaying] = useState<boolean>(false);
@@ -14,14 +15,11 @@ function AudioComponent() {
 
   useEffect(() => {
     playing ? audio.play() : audio.pause();
-  }, [playing]);
-
-  useEffect(() => {
     audio.addEventListener('ended', () => setPlaying(false));
     return () => {
       audio.removeEventListener('ended', () => setPlaying(false));
     };
-  }, []);
+  }, [playing]);
 
   return (
     <IconButton onClick={toggle} className="audio__container">

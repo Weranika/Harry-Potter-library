@@ -1,11 +1,13 @@
 @import '../../global/library';
 
-$AUDIO-HEIGHT: 60px;
-$AUDIO-WIDTH: 60px;
+$AUDIO-MAX-HEIGHT: 60px;
+$AUDIO-HEIGHT: 10vw;
 
 .header-container .audio__container {
   height: $AUDIO-HEIGHT;
-  width: $AUDIO-WIDTH;
+  width: $AUDIO-HEIGHT;
+  max-width: $AUDIO-MAX-HEIGHT;
+  max-height: $AUDIO-MAX-HEIGHT;
   border-radius: 30px;
   color: $MAIN-COLOR--SECONDARY-LIGHT;
   background-color: $MAIN-COLOR--PRIMARY-DARK;

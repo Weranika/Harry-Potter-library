@@ -5,12 +5,12 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
 import Typography from '@mui/material/Typography';
-import { ICard, IData } from '../../global/interfaces';
-import templateImg from '../../assets/img/aboutUs-1.png';
+import { ICard } from '../../global/interfaces';
+import { AppContext } from '../../context/contex';
 import './FormSwitches.scss';
-export interface IFormProps {
-  handleChangeForm: (cardList: IData) => void;
-}
+
+import templateImg from '../../assets/img/aboutUs-1.png';
+
 const style = {
   position: 'absolute',
   top: '50%',
@@ -24,9 +24,10 @@ const style = {
   p: 4,
 };
 
-function Form(props: IFormProps) {
+function Form() {
   const [open, setOpen] = useState<boolean>(false);
   const [selectedImage, setSelectedImage] = useState<string>('');
+  const { dispatch } = React.useContext(AppContext);
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -63,10 +64,13 @@ function Form(props: IFormProps) {
       wiki: '',
     };
 
-    props.handleChangeForm({
-      attributes: card,
-      type: 'i',
-      id: data.name as string,
+    dispatch({
+      type: 'addItem',
+      payload: {
+        attributes: card,
+        type: 'i',
+        id: data.name as string,
+      },
     });
 
     handleOpen();

@@ -1,4 +1,3 @@
-/**********************form*************************/
 export const defaultValues: ICard = {
   name: '',
   species: '',
@@ -81,7 +80,11 @@ export const wizard = {
 };
 
 export const initialState: IState = {
-  //inputSearch: localStorage.getItem('inputValue') as string,
+  list: {
+    attributes: defaultValues,
+    id: '',
+    type: '',
+  },
   inputSearch:
     localStorage.getItem('inputValue') === 'null' || localStorage.getItem('inputValue') === null
       ? ''
@@ -97,6 +100,7 @@ export const initialState: IState = {
   },
 };
 export interface IState {
+  list: IData;
   inputSearch: string | null;
   items: Array<IData>;
   cardInfo: ICard;

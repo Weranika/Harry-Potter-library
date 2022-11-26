@@ -3,7 +3,7 @@ $GO-BACK__BUTTON: 200px;
 
 .card-page {
   background: linear-gradient(rgba(29, 5, 5, 0.6) 50%,rgba(48, 11, 11, 0.1) 100%), url(../../assets/img/CardPage.jpg) no-repeat;
-  background-size: 100% auto;
+  background-size: auto auto;
   color: $MAIN-COLOR--PRIMARY-LIGHT;
   display: flex;
   flex-direction: column;
