@@ -3,7 +3,7 @@ import LinearProgress from '@mui/material/LinearProgress';
 import CardList from '../CardList/CardList';
 import Input from '../Input/Input';
 import ApiList from '../../Api/Api';
-import { IData } from '../../global/interfaces';
+import { IData, IMeta } from '../../global/interfaces';
 import './main.scss';
 import { AppContext } from '../../context/contex';
 import Pagination from 'components/Pagination/Pagination';
@@ -16,47 +16,56 @@ function Main() {
   let promiseGetData;
 
   if (state.isLoading) {
-    if (state.inputSearch.length > 2) {
-      console.log('trying to search charachters with - ', state.inputSearch);
-      promiseGetData = ApiList.getCharacter(state.inputSearch);
+    if ((state.inputSearch as string).length > 2) {
+      promiseGetData = ApiList.getCharacter(state.inputSearch as string);
     } else {
-      console.log('As input search is empty or too short getting all list');
       promiseGetData = ApiList.getList();
     }
 
     promiseGetData
       .then((data: Array<IData>) => {
-        console.log('data received');
         dispatch({ type: 'setItems', payload: data });
       })
       .catch(() => {
-        console.log('some error');
         dispatch({ type: 'setItems', payload: [] });
       });
   }
 
   useEffect(() => {
     let promiseGetData;
+    let promiseGetRecords;
+    console.log(state, 'state');
 
-    if (state.inputSearch === null || state.inputSearch === 'null') {
-      console.log('getting full list in use effect');
+    // localStorage.getItem('inputValue') === 'null' || localStorage.getItem('inputValue') === null
+    //   ? dispatch({ type: 'inputSearch', payload: '' })
+    //   : dispatch({ type: 'inputSearch', payload: localStorage.getItem('inputValue') });
+    console.log('чтонибудь');
+    if (state.inputSearch === null || state.inputSearch === '') {
       promiseGetData = ApiList.getList();
+      promiseGetRecords = ApiList.getRecords();
     } else {
-      console.log('getting character in use effect');
       promiseGetData = ApiList.getCharacter(state.inputSearch);
+      promiseGetRecords = ApiList.getRecords();
     }
 
     promiseGetData
       .then((data: Array<IData>) => {
-        console.log('Received data =>>>>', data);
         dispatch({ type: 'setItems', payload: data });
         setDataisLoaded(true);
       })
       .catch((err) => {
-        console.log(err);
         setDataisLoaded(true);
         alert(err);
         dispatch({ type: 'setItems', payload: [] });
+      });
+
+    (promiseGetRecords as Promise<IMeta>)
+      .then((meta: IMeta) => {
+        dispatch({ type: 'setRecords', payload: meta.pagination });
+      })
+      .catch((err) => {
+        console.log(err);
+        alert(err);
       });
   }, []);
 

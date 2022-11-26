@@ -43,6 +43,18 @@ export interface IData {
   type: string;
 }
 
+export interface IMeta {
+  pagination: IPagination;
+  copyright: string;
+  generated_at: string;
+}
+export interface IPagination {
+  current: number;
+  next: number;
+  last: number;
+  records: number;
+}
+
 export const wizard = {
   name: null,
   alternate_names: null,
@@ -69,16 +81,27 @@ export const wizard = {
 };
 
 export const initialState: IState = {
-  inputSearch: localStorage.getItem('inputValue') as string,
+  //inputSearch: localStorage.getItem('inputValue') as string,
+  inputSearch:
+    localStorage.getItem('inputValue') === 'null' || localStorage.getItem('inputValue') === null
+      ? ''
+      : localStorage.getItem('inputValue'),
   items: [],
   cardInfo: defaultValues,
   isLoading: false,
+  pagination: {
+    current: 0,
+    next: 0,
+    last: 0,
+    records: 0,
+  },
 };
 export interface IState {
-  inputSearch: string;
+  inputSearch: string | null;
   items: Array<IData>;
   cardInfo: ICard;
   isLoading: boolean;
+  pagination: IPagination;
 }
 export interface IAction {
   type: string;

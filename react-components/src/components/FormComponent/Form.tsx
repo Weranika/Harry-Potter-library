@@ -9,7 +9,7 @@ import { ICard, IData } from '../../global/interfaces';
 import templateImg from '../../assets/img/aboutUs-1.png';
 import './FormSwitches.scss';
 export interface IFormProps {
-  handlerForm: (cardList: IData) => void;
+  handleChangeForm: (cardList: IData) => void;
 }
 const style = {
   position: 'absolute',
@@ -63,7 +63,7 @@ function Form(props: IFormProps) {
       wiki: '',
     };
 
-    props.handlerForm({
+    props.handleChangeForm({
       attributes: card,
       type: 'i',
       id: data.name as string,
@@ -82,7 +82,7 @@ function Form(props: IFormProps) {
             type="text"
             id="name"
             {...register('name')}
-            required={true}
+            required
             minLength={3}
             maxLength={20}
             pattern="^[a-zA-Zа-яА-Я_ ]*$"
@@ -91,7 +91,7 @@ function Form(props: IFormProps) {
 
         <label className="form__label" htmlFor="house">
           your house
-          <select id="house" {...register('house')} required={true}>
+          <select id="house" {...register('house')} required>
             {houses.map((el) => (
               <option key={el} value={el}>
                 {el}
@@ -106,7 +106,7 @@ function Form(props: IFormProps) {
             type="date"
             id="bday"
             {...register('born')}
-            required={true}
+            required
             min="1900-01-01"
             max="2016-01-01"
           />
@@ -128,7 +128,7 @@ function Form(props: IFormProps) {
             type="text"
             id="eye"
             {...register('eye_color')}
-            required={true}
+            required
             minLength={3}
             maxLength={20}
             pattern="^[a-zA-Zа-яА-Я_ ]*$"
@@ -141,7 +141,7 @@ function Form(props: IFormProps) {
             type="text"
             id="hair"
             {...register('hair_color')}
-            required={true}
+            required
             minLength={3}
             maxLength={20}
             pattern="^[a-zA-Zа-яА-Я_ ]*$"
@@ -154,7 +154,7 @@ function Form(props: IFormProps) {
             type="text"
             id="patronus"
             {...register('patronus')}
-            required={true}
+            required
             minLength={3}
             maxLength={20}
             pattern="^[a-zA-Zа-яА-Я_ ]*$"
@@ -202,7 +202,7 @@ function Form(props: IFormProps) {
           return (
             <label className="form__label" htmlFor="wand-core" key={key}>
               {key}:
-              <select id={key} {...register(`wands.${ind}`)} required={true}>
+              <select id={key} {...register(`wands.${ind}`)} required>
                 {value.map((el) => (
                   <option key={el} value={el}>
                     {el}

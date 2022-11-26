@@ -1,4 +1,4 @@
-import { IState, IAction, ICard } from './global/interfaces';
+import { IState, IAction, ICard, IPagination } from './global/interfaces';
 
 export default function (state: IState, action: IAction): IState {
   switch (action.type) {
@@ -20,6 +20,15 @@ export default function (state: IState, action: IAction): IState {
         ...state,
         cardInfo: action.payload as ICard,
       };
+    case 'setRecords':
+      return {
+        ...state,
+        pagination: action.payload as IPagination,
+      };
+    case 'nextPage':
+      const a = { ...state };
+      a.pagination.current = action.payload as number;
+      return a;
     default:
       return state;
   }

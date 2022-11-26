@@ -1,7 +1,8 @@
-import { IData } from 'global/interfaces';
+import { IData, IMeta } from 'global/interfaces';
 import mock from './mock.json';
 
 const PATH_TO_SERVER = 'https://api.potterdb.com/';
+const listCharacters = `${PATH_TO_SERVER}v1/characters`;
 
 const MOCKENABLED = false;
 class Api {
@@ -10,7 +11,6 @@ class Api {
       return new Promise<Array<IData>>((resolve) => resolve(mock.data as IData[]));
     }
 
-    const listCharacters = `${PATH_TO_SERVER}v1/characters`;
     return fetch(listCharacters)
       .then((res) => {
         if (res.status !== 200) {
@@ -21,6 +21,24 @@ class Api {
       .then((json) => {
         return json.data;
       }) as Promise<Array<IData>>;
+  }
+
+  getRecords() {
+    console.log('getRecords');
+    if (MOCKENABLED) {
+      return new Promise<IMeta>((resolve) => resolve(mock.meta as IMeta));
+    }
+
+    return fetch(listCharacters)
+      .then((res) => {
+        if (res.status !== 200) {
+          throw new Error('some problem with response');
+        }
+        return res.json();
+      })
+      .then((json) => {
+        return json.meta;
+      }) as Promise<IMeta>;
   }
 
   getCharacter(name: string) {
@@ -77,8 +95,8 @@ class Api {
       }) as Promise<Array<IData>>;
   }
 
-  getPage(page: number) {
-    const characters = `${PATH_TO_SERVER}/v1/characters?page[number=10]&page[size=20]`;
+  getPage(number: number, size: number) {
+    const characters = `${PATH_TO_SERVER}/v1/characters?page[number=${number}]&page[size=${size}]`;
     return fetch(characters)
       .then((res) => res.json())
       .then((json) => {

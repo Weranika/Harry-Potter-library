@@ -1,6 +1,6 @@
-import React, { useReducer } from 'react';
+import React from 'react';
 import CardComponent from '../Card/Card';
-import { IData, initialState } from '../../global/interfaces';
+import { IData } from '../../global/interfaces';
 import './cardList.scss';
 import { AppContext } from '../../context/contex';
 export interface IPropsFilter {

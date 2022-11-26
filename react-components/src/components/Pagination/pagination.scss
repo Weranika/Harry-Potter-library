@@ -1,0 +1,23 @@
+@import '../../global/library';
+
+$PAGIN-CONTAINER-WIDTH: 72vw;
+
+.pagination__container {
+  @include flex(space-evenly);
+  width: $PAGIN-CONTAINER-WIDTH;
+  flex-wrap: wrap;
+  color: $MAIN-COLOR--PRIMARY-LIGHT;
+  background-color: rgba($color: #000000, $alpha: 0.3);
+  border-radius: 5px;
+}
+div.pagination__table {
+  color: $MAIN-COLOR--PRIMARY-LIGHT;
+}
+.css-16c50h-MuiInputBase-root-MuiTablePagination-select
+.css-pqjvzy-MuiSvgIcon-root-MuiSelect-icon {
+  color: $MAIN-COLOR--PRIMARY-LIGHT;
+}
+div.css-1poimk-MuiPaper-root-MuiMenu-paper-MuiPaper-root-MuiPopover-paper {
+  top: auto;
+  bottom: 65px;
+}

@@ -1,46 +1,43 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import ApiList from '../../Api/Api';
+import { AppContext } from '../../context/contex';
+import { TablePagination } from '@mui/material';
 import { IData } from '../../global/interfaces';
-import Stack from '@mui/material/Stack';
-import TablePagination from '@mui/material/TablePagination';
-
-interface PaginationProps {
-  size: number;
-  number: number;
-}
+import './pagination.scss';
 
 export default function Pagination() {
-  const [currPage, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(20);
-
-  useEffect(() => {
-    ApiList.getPage(currPage).then((data) => {
-      console.log(data);
-    });
-  }, [currPage]);
+  const [rowsPerPage, setRowsPerPage] = React.useState(25);
+  const { state, dispatch } = React.useContext(AppContext);
+  const { records, current } = state.pagination;
 
   const handleChangePage = (event: React.MouseEvent<HTMLButtonElement> | null, newPage: number) => {
-    setPage(newPage);
+    dispatch({ type: 'nextPage', payload: newPage });
+    ApiList.getPage(current, rowsPerPage).then((data: Array<IData>) => {
+      dispatch({ type: 'setItems', payload: data });
+    });
   };
 
   const handleChangeRowsPerPage = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     setRowsPerPage(parseInt(event.target.value, 10));
-    setPage(0);
+    ApiList.getPage(current, rowsPerPage).then((data: Array<IData>) => {
+      dispatch({ type: 'setItems', payload: data });
+    });
   };
 
   return (
-    <>
-      <p>Page: {currPage}</p>
+    <div className="pagination__container">
+      <p>Page: {current}</p>
       <TablePagination
         component="div"
-        count={100}
-        page={currPage}
+        count={records}
+        page={current}
         onPageChange={handleChangePage}
         rowsPerPage={rowsPerPage}
         onRowsPerPageChange={handleChangeRowsPerPage}
+        className="pagination__table"
       />
-    </>
+    </div>
   );
 }
