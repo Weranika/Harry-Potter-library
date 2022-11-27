@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { useAppSelector, useAppDispatch } from '../../hook';
+import { setItems } from '../../reducers/itemSlise';
+
 import LinearProgress from '@mui/material/LinearProgress';
 import CardList from '../CardList/CardList';
 import Input from '../Input/Input';
@@ -11,6 +14,9 @@ import './main.scss';
 
 function Main() {
   const { state, dispatch } = React.useContext(AppContext);
+  // const items = useAppSelector(state => state.items.items);
+  // const loading = useAppSelector(state => state.items.isLoading);
+  // const dispatch = useAppDispatch();
   const [dataisLoaded, setDataisLoaded] = useState<boolean>(false);
 
   let promiseGetData;
