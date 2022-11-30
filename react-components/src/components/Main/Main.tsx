@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useAppSelector, useAppDispatch } from '../../hook';
 import { setItems } from '../../reducers/itemSlice';
+import { setRecords } from '../../reducers/paginationSlice';
 
 import LinearProgress from '@mui/material/LinearProgress';
 import CardList from '../CardList/CardList';
@@ -12,7 +13,6 @@ import Sorting from 'components/Sorting/Sorting';
 import './main.scss';
 
 function Main() {
-  const items = useAppSelector((state) => state.items.items);
   const loading = useAppSelector((state) => state.items.isLoading);
   const input = useAppSelector((state) => state.search.inputSearch);
   const dispatch = useAppDispatch();
@@ -60,7 +60,7 @@ function Main() {
 
     (promiseGetRecords as Promise<IMeta>)
       .then((meta: IMeta) => {
-        dispatch({ type: 'setRecords', payload: meta.pagination });
+        dispatch(setRecords(meta.pagination));
       })
       .catch((err) => {
         console.log(err);

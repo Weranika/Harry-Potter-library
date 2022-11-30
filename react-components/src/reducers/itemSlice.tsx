@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import type { RootState } from '../store';
-import { IData, ICard, defaultValues, IPagination } from '../global/interfaces';
+import { IData, ICard, defaultValues } from '../global/interfaces';
 
 const initialState = {
   items: [],

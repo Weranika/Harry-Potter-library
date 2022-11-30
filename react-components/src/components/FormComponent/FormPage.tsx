@@ -1,14 +1,15 @@
 import React, { useEffect } from 'react';
+import { useAppDispatch } from '../../hook';
+import { setItems } from '../../reducers/itemSlice';
 import Form from './Form';
 import CardList from '../CardList/CardList';
-import { AppContext } from '../../context/contex';
 import './FormPage.scss';
 
 function FormPage() {
-  const { dispatch } = React.useContext(AppContext);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch({ type: 'setItems', payload: [] });
+    dispatch(setItems([]));
   }, []);
 
   return (

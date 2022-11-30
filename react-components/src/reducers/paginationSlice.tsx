@@ -10,8 +10,8 @@ const initialState = {
   },
 };
 
-export const itemSlice = createSlice({
-  name: 'item',
+export const paginationSlice = createSlice({
+  name: 'pagination',
   initialState,
   reducers: {
     setRecords(
@@ -33,5 +33,5 @@ export const itemSlice = createSlice({
   },
 });
 
-export const { setRecords, nextPage } = itemSlice.actions;
-export default itemSlice.reducer;
+export const { setRecords, nextPage } = paginationSlice.actions;
+export default paginationSlice.reducer;

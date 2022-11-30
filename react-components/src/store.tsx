@@ -1,11 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 import itemsReducer from './reducers/itemSlice';
 import searchReducer from './reducers/searchSlice';
+import paginationReducer from './reducers/paginationSlice';
 
 const store = configureStore({
   reducer: {
     items: itemsReducer,
     search: searchReducer,
+    pagination: paginationReducer,
   },
 });
 

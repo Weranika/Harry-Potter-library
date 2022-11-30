@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useAppDispatch } from '../../hook';
+import { addItem } from '../../reducers/itemSlice';
+
 import Backdrop from '@mui/material/Backdrop';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
 import Typography from '@mui/material/Typography';
 import { ICard } from '../../global/interfaces';
-import { AppContext } from '../../context/contex';
 import './FormSwitches.scss';
 
 import templateImg from '../../assets/img/aboutUs-1.png';
@@ -27,7 +29,7 @@ const style = {
 function Form() {
   const [open, setOpen] = useState<boolean>(false);
   const [selectedImage, setSelectedImage] = useState<string>('');
-  const { dispatch } = React.useContext(AppContext);
+  const dispatch = useAppDispatch();
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -64,14 +66,13 @@ function Form() {
       wiki: '',
     };
 
-    dispatch({
-      type: 'addItem',
-      payload: {
+    dispatch(
+      addItem({
         attributes: card,
         type: 'i',
         id: data.name as string,
-      },
-    });
+      })
+    );
 
     handleOpen();
     reset();

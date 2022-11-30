@@ -1,5 +1,5 @@
 import React from 'react';
-import { useAppSelector, useAppDispatch } from '../../hook';
+import { useAppDispatch } from '../../hook';
 import { setItems } from '../../reducers/itemSlice';
 import ApiList from '../../Api/Api';
 import { IData } from '../../global/interfaces';

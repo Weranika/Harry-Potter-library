@@ -11,8 +11,8 @@ import './pagination.scss';
 export default function Pagination() {
   const [rowsPerPage, setRowsPerPage] = React.useState(25);
   const dispatch = useAppDispatch();
-  const pagination = useAppSelector((state) => state.items.pagination);
-  const { records, current } = pagination;
+  const pagination = useAppSelector((state) => state.pagination);
+  const { records, current } = pagination.pagination;
 
   const handleChangePage = (event: React.MouseEvent<HTMLButtonElement> | null, newPage: number) => {
     dispatch(nextPage(newPage));
