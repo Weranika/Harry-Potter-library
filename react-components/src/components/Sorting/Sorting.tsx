@@ -1,33 +1,34 @@
 import React from 'react';
+import { useAppSelector, useAppDispatch } from '../../hook';
+import { setItems } from '../../reducers/itemSlice';
 import ApiList from '../../Api/Api';
 import { IData } from '../../global/interfaces';
-import { AppContext } from '../../context/contex';
 import './sorting.scss';
 
 function Sorting() {
-  const { dispatch } = React.useContext(AppContext);
+  const dispatch = useAppDispatch();
 
   const sortingHandlerByNameAsc = () => {
     ApiList.getSortByNameAsc().then((data: Array<IData>) => {
-      dispatch({ type: 'setItems', payload: data });
+      dispatch(setItems(data));
     });
   };
 
   const sortingHandlerByNameDesc = () => {
     ApiList.getSortByNameDesc().then((data: Array<IData>) => {
-      dispatch({ type: 'setItems', payload: data });
+      dispatch(setItems(data));
     });
   };
 
   const sortingHandlerByYearAsc = () => {
     ApiList.getSortByYearAsc().then((data: Array<IData>) => {
-      dispatch({ type: 'setItems', payload: data });
+      dispatch(setItems(data));
     });
   };
 
   const sortingHandlerByYearDesc = () => {
     ApiList.getSortByYearDesc().then((data: Array<IData>) => {
-      dispatch({ type: 'setItems', payload: data });
+      dispatch(setItems(data));
     });
   };
 

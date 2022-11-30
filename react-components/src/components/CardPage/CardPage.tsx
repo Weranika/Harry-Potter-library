@@ -1,14 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { useAppSelector } from '../../hook';
+
 import { StylesProvider } from '@material-ui/core/styles';
 import { Box } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
-import { AppContext } from '../../context/contex';
+import { ICard } from '../../global/interfaces';
 import './CardPage.scss';
 
 function CardPage() {
-  const { state } = React.useContext(AppContext);
-  const { alias_names, family_members, jobs, romances, name } = state.cardInfo;
+  const cardDetailInfo = useAppSelector((state) => state.items.cardInfo) as ICard;
+  const { alias_names, family_members, jobs, romances, name } = cardDetailInfo;
   const cardInfo = {
     'Alias names': alias_names,
     Family: family_members,

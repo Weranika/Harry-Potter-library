@@ -1,62 +1,61 @@
 import React, { useState, useEffect } from 'react';
 import { useAppSelector, useAppDispatch } from '../../hook';
-import { setItems } from '../../reducers/itemSlise';
+import { setItems } from '../../reducers/itemSlice';
 
 import LinearProgress from '@mui/material/LinearProgress';
 import CardList from '../CardList/CardList';
 import Input from '../Input/Input';
 import ApiList from '../../Api/Api';
 import { IData, IMeta } from '../../global/interfaces';
-import { AppContext } from '../../context/contex';
 import Pagination from 'components/Pagination/Pagination';
 import Sorting from 'components/Sorting/Sorting';
 import './main.scss';
 
 function Main() {
-  const { state, dispatch } = React.useContext(AppContext);
-  // const items = useAppSelector(state => state.items.items);
-  // const loading = useAppSelector(state => state.items.isLoading);
-  // const dispatch = useAppDispatch();
+  const items = useAppSelector((state) => state.items.items);
+  const loading = useAppSelector((state) => state.items.isLoading);
+  const input = useAppSelector((state) => state.search.inputSearch);
+  const dispatch = useAppDispatch();
   const [dataisLoaded, setDataisLoaded] = useState<boolean>(false);
 
   let promiseGetData;
 
-  if (state.isLoading) {
-    if ((state.inputSearch as string).length > 2) {
-      promiseGetData = ApiList.getCharacter(state.inputSearch as string);
+  if (loading) {
+    if ((input as string).length > 2) {
+      promiseGetData = ApiList.getCharacter(input as string);
     } else {
       promiseGetData = ApiList.getList();
     }
 
     promiseGetData
       .then((data: Array<IData>) => {
-        dispatch({ type: 'setItems', payload: data });
+        dispatch(setItems(data));
       })
       .catch(() => {
-        dispatch({ type: 'setItems', payload: [] });
+        dispatch(setItems([]));
       });
   }
 
   useEffect(() => {
     let promiseGetData;
     let promiseGetRecords;
-    if (state.inputSearch === null || state.inputSearch === '') {
+    if (input === null || input === '') {
       promiseGetData = ApiList.getList();
       promiseGetRecords = ApiList.getRecords();
     } else {
-      promiseGetData = ApiList.getCharacter(state.inputSearch);
+      promiseGetData = ApiList.getCharacter(input);
       promiseGetRecords = ApiList.getRecords();
     }
 
     promiseGetData
       .then((data: Array<IData>) => {
-        dispatch({ type: 'setItems', payload: data });
+        dispatch(setItems(data));
         setDataisLoaded(true);
       })
       .catch((err) => {
         setDataisLoaded(true);
         alert(err);
-        dispatch({ type: 'setItems', payload: [] });
+        dispatch(setItems([]));
       });
 
     (promiseGetRecords as Promise<IMeta>)

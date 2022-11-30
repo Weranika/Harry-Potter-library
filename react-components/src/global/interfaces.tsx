@@ -78,35 +78,6 @@ export const wizard = {
   alive: null,
   image: null,
 };
-
-export const initialState: IState = {
-  list: {
-    attributes: defaultValues,
-    id: '',
-    type: '',
-  },
-  inputSearch:
-    localStorage.getItem('inputValue') === 'null' || localStorage.getItem('inputValue') === null
-      ? ''
-      : localStorage.getItem('inputValue'),
-  items: [],
-  cardInfo: defaultValues,
-  isLoading: false,
-  pagination: {
-    current: 0,
-    next: 0,
-    last: 0,
-    records: 0,
-  },
-};
-export interface IState {
-  list: IData;
-  inputSearch: string | null;
-  items: Array<IData>;
-  cardInfo: ICard;
-  isLoading: boolean;
-  pagination: IPagination;
-}
 export interface IAction {
   type: string;
   payload: unknown;

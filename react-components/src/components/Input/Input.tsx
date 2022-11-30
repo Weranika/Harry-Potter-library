@@ -1,9 +1,12 @@
 import React from 'react';
-import { AppContext } from '../../context/contex';
+import { useAppSelector, useAppDispatch } from '../../hook';
+import { inputSearch } from '../../reducers/searchSlice';
+
 import './input.scss';
 
 function Input() {
-  const { state, dispatch } = React.useContext(AppContext);
+  const input = useAppSelector((state) => state.search.inputSearch);
+  const dispatch = useAppDispatch();
   const submitForm = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
   };
@@ -16,10 +19,10 @@ function Input() {
           autoFocus
           onChange={(event) => {
             const value = event.target.value;
-            dispatch({ type: 'inputSearch', payload: value });
+            dispatch(inputSearch(value));
             localStorage.setItem('inputValue', value);
           }}
-          value={state.inputSearch as string}
+          value={input as string}
           type="text"
           className="search-input"
           autoComplete="off"

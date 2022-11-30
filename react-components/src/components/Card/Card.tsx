@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import { useAppDispatch } from '../../hook';
+import { setCardInfo } from '../../reducers/itemSlice';
 
 import { StylesProvider } from '@material-ui/core/styles';
 import { Box } from '@material-ui/core';
@@ -14,7 +16,6 @@ import IconButton, { IconButtonProps } from '@mui/material/IconButton';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Link from '@mui/material/Link';
 import { ICard } from '../../global/interfaces';
-import { AppContext } from '../../context/contex';
 import './card.scss';
 
 import Gryffindor from '../../assets/img/Gryffindor.jpg';
@@ -44,10 +45,10 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
 }));
 
 function CardComponent(props: IProps) {
-  const { dispatch } = React.useContext(AppContext);
+  const dispatch = useAppDispatch();
   const [expanded, setExpanded] = useState<boolean>(false);
   const handleExpandClick = () => setExpanded(!expanded);
-  const handleOpen = () => dispatch({ type: 'setCardInfo', payload: props.item });
+  const handleOpen = () => dispatch(setCardInfo(props.item));
 
   const {
     name,
