@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useAppSelector, useAppDispatch } from '../../hook';
-import { setItems } from '../../reducers/itemSlice';
+import { setItems, fetchCharacter, fetchList } from '../../reducers/itemSlice';
 import { setRecords } from '../../reducers/paginationSlice';
 
 import LinearProgress from '@mui/material/LinearProgress';
@@ -16,61 +16,68 @@ function Main() {
   const loading = useAppSelector((state) => state.items.isLoading);
   const input = useAppSelector((state) => state.search.inputSearch);
   const dispatch = useAppDispatch();
-  const [dataisLoaded, setDataisLoaded] = useState<boolean>(false);
+  //const [dataisLoaded, setDataisLoaded] = useState<boolean>(false);
 
-  let promiseGetData;
+  //let promiseGetData;
 
-  if (loading) {
-    if ((input as string).length > 2) {
-      promiseGetData = ApiList.getCharacter(input as string);
-    } else {
-      promiseGetData = ApiList.getList();
-    }
-
-    promiseGetData
-      .then((data: Array<IData>) => {
-        dispatch(setItems(data));
-      })
-      .catch(() => {
-        dispatch(setItems([]));
-      });
-  }
+  // if (loading) {
+  //   if ((input as string).length > 2) {
+  //     console.log('fetch input', input);
+  //     dispatch(fetchCharacter(input as string));
+  //   } else {
+  //     console.log('fetch full list');
+  //     dispatch(fetchList());
+  //   }
+  // }
 
   useEffect(() => {
-    let promiseGetData;
-    let promiseGetRecords;
-    if (input === null || input === '') {
-      promiseGetData = ApiList.getList();
-      promiseGetRecords = ApiList.getRecords();
+    //dispatch(fetchCharacter(input as string));
+    //setDataisLoaded(true);
+
+    //let promiseGetData;
+    //const promiseGetRecords = ApiList.getRecords();
+    if (input === null || input === '' || (input as string).length < 3) {
+      console.log(1111);
+      dispatch(fetchList());
+      // promiseGetData = ApiList.getList()
+      // .then((data: Array<IData>) => {
+      //   dispatch(setItems(data));
+      //   setDataisLoaded(true);
+      // })
+      // .catch((err) => {
+      //   setDataisLoaded(true);
+      //   alert(err);
+      //   dispatch(setItems([]));
+      // });
     } else {
-      promiseGetData = ApiList.getCharacter(input);
-      promiseGetRecords = ApiList.getRecords();
+      console.log(2222);
+      dispatch(fetchCharacter(input as string));
+      // promiseGetData = ApiList.getCharacter(input)
+      // .then((data: Array<IData>) => {
+      //   dispatch(setItems(data));
+      //   setDataisLoaded(true);
+      // })
+      // .catch((err) => {
+      //   setDataisLoaded(true);
+      //   alert(err);
+      //   dispatch(setItems([]));
+      // });
     }
+    //setDataisLoaded(true);
 
-    promiseGetData
-      .then((data: Array<IData>) => {
-        dispatch(setItems(data));
-        setDataisLoaded(true);
-      })
-      .catch((err) => {
-        setDataisLoaded(true);
-        alert(err);
-        dispatch(setItems([]));
-      });
-
-    (promiseGetRecords as Promise<IMeta>)
-      .then((meta: IMeta) => {
-        dispatch(setRecords(meta.pagination));
-      })
-      .catch((err) => {
-        console.log(err);
-        alert(err);
-      });
+    // (promiseGetRecords as Promise<IMeta>)
+    //   .then((meta: IMeta) => {
+    //     dispatch(setRecords(meta.pagination));
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //     alert(err);
+    //   });
   }, []);
 
   return (
     <main>
-      {!dataisLoaded ? (
+      {!loading ? (
         <div className="please-wait">
           <h1> Please wait some time...</h1>
           <LinearProgress color="inherit" />

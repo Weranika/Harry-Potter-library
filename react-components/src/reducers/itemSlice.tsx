@@ -1,16 +1,11 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
 import { IData, ICard, defaultValues } from '../global/interfaces';
+import ApiList from '../Api/Api';
 
 const initialState = {
-  items: [],
+  items: [] as Array<IData>,
   isLoading: false,
   cardInfo: defaultValues,
-  pagination: {
-    current: 0,
-    next: 0,
-    last: 0,
-    records: 0,
-  },
 };
 
 export const itemSlice = createSlice({
@@ -44,7 +39,36 @@ export const itemSlice = createSlice({
       state.items = [...state.items, payload];
     },
   },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchCharacter.fulfilled, (state, action) => {
+        state.items = action.payload;
+        state.isLoading = true;
+      })
+      .addCase(fetchCharacter.rejected, (state, action) => {
+        alert(action.payload);
+        state.items = [];
+        state.isLoading = true;
+      })
+      .addCase(fetchList.fulfilled, (state, action) => {
+        state.items = action.payload;
+        state.isLoading = true;
+      })
+      .addCase(fetchList.rejected, (state, action) => {
+        alert(action.payload);
+        state.items = [];
+        state.isLoading = true;
+      });
+  },
 });
 
 export const { setItems, setCardInfo, addItem } = itemSlice.actions;
 export default itemSlice.reducer;
+
+export const fetchCharacter = createAsyncThunk('item/setItems', async (name: string) => {
+  return await ApiList.getCharacter(name);
+});
+
+export const fetchList = createAsyncThunk('item/setList', async () => {
+  return await ApiList.getList();
+});
