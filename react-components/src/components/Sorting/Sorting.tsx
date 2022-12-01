@@ -1,52 +1,38 @@
 import React from 'react';
 import { useAppDispatch } from '../../hook';
-import { setItems } from '../../reducers/itemSlice';
-import ApiList from '../../Api/Api';
-import { IData } from '../../global/interfaces';
+import { fetchSortBy } from '../../reducers/itemSlice';
 import './sorting.scss';
 
 function Sorting() {
   const dispatch = useAppDispatch();
 
-  const sortingHandlerByNameAsc = () => {
-    ApiList.getSortByNameAsc().then((data: Array<IData>) => {
-      dispatch(setItems(data));
-    });
-  };
-
-  const sortingHandlerByNameDesc = () => {
-    ApiList.getSortByNameDesc().then((data: Array<IData>) => {
-      dispatch(setItems(data));
-    });
-  };
-
-  const sortingHandlerByYearAsc = () => {
-    ApiList.getSortByYearAsc().then((data: Array<IData>) => {
-      dispatch(setItems(data));
-    });
-  };
-
-  const sortingHandlerByYearDesc = () => {
-    ApiList.getSortByYearDesc().then((data: Array<IData>) => {
-      dispatch(setItems(data));
-    });
-  };
-
   return (
     <div className="sorting__container">
-      <div className="sorting__cathegory" onClick={sortingHandlerByNameAsc}>
+      <div
+        className="sorting__cathegory"
+        onClick={() => dispatch(fetchSortBy({ param: 'name', order: 'asc' }))}
+      >
         sort by names ▲
       </div>
 
-      <div className="sorting__cathegory" onClick={sortingHandlerByNameDesc}>
+      <div
+        className="sorting__cathegory"
+        onClick={() => dispatch(fetchSortBy({ param: 'name', order: 'dsc' }))}
+      >
         sort by names ▼
       </div>
 
-      <div className="sorting__cathegory" onClick={sortingHandlerByYearAsc}>
+      <div
+        className="sorting__cathegory"
+        onClick={() => dispatch(fetchSortBy({ param: 'born', order: 'asc' }))}
+      >
         sort by year of born ▲
       </div>
 
-      <div className="sorting__cathegory" onClick={sortingHandlerByYearDesc}>
+      <div
+        className="sorting__cathegory"
+        onClick={() => dispatch(fetchSortBy({ param: 'born', order: 'dsc' }))}
+      >
         sort by year of born ▼
       </div>
     </div>

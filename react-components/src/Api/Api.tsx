@@ -58,35 +58,11 @@ class Api {
       }) as Promise<Array<IData>>;
   }
 
-  getSortByNameAsc() {
-    const characters = `${PATH_TO_SERVER}v1/characters?sort=name`;
-    return fetch(characters)
-      .then((res) => res.json())
-      .then((json) => {
-        return json.data;
-      }) as Promise<Array<IData>>;
-  }
-
-  getSortByNameDesc() {
-    const characters = `${PATH_TO_SERVER}v1/characters?sort=-name`;
-    return fetch(characters)
-      .then((res) => res.json())
-      .then((json) => {
-        return json.data;
-      }) as Promise<Array<IData>>;
-  }
-
-  getSortByYearAsc() {
-    const characters = `${PATH_TO_SERVER}v1/characters?sort=born`;
-    return fetch(characters)
-      .then((res) => res.json())
-      .then((json) => {
-        return json.data;
-      }) as Promise<Array<IData>>;
-  }
-
-  getSortByYearDesc() {
-    const characters = `${PATH_TO_SERVER}v1/characters?sort=-born`;
+  getSortBy(param: string, order: string) {
+    let characters = '';
+    order === 'asc'
+      ? (characters = `${PATH_TO_SERVER}v1/characters?sort=${param}`)
+      : (characters = `${PATH_TO_SERVER}v1/characters?sort=-${param}`);
     return fetch(characters)
       .then((res) => res.json())
       .then((json) => {

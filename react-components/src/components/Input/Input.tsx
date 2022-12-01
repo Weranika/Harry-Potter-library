@@ -20,13 +20,10 @@ function Input() {
           autoFocus
           onChange={(event) => {
             const value = event.target.value;
-            console.log('input updated');
             dispatch(inputSearch(value));
             if ((value as string).length > 2) {
-              console.log('fetch input', value);
               dispatch(fetchCharacter(value as string));
             } else {
-              console.log('fetch full list');
               dispatch(fetchList());
             }
             localStorage.setItem('inputValue', value);

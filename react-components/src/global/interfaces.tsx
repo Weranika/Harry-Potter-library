@@ -53,7 +53,14 @@ export interface IPagination {
   last: number;
   records: number;
 }
-
+export interface IPaginationInfo {
+  current: number;
+  rowsPerPage: number;
+}
+export interface ISortParam {
+  param: string;
+  order: string;
+}
 export const wizard = {
   name: null,
   alternate_names: null,

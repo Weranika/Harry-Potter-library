@@ -1,11 +1,9 @@
 import React from 'react';
 import { useAppSelector, useAppDispatch } from '../../hook';
 import { nextPage } from '../../reducers/paginationSlice';
-import { setItems } from '../../reducers/itemSlice';
+import { fetchPage } from '../../reducers/itemSlice';
 
 import { TablePagination } from '@mui/material';
-import ApiList from '../../Api/Api';
-import { IData } from '../../global/interfaces';
 import './pagination.scss';
 
 export default function Pagination() {
@@ -16,18 +14,15 @@ export default function Pagination() {
 
   const handleChangePage = (event: React.MouseEvent<HTMLButtonElement> | null, newPage: number) => {
     dispatch(nextPage(newPage));
-    ApiList.getPage(current, rowsPerPage).then((data: Array<IData>) => {
-      dispatch(setItems(data));
-    });
+    dispatch(fetchPage({ current: current, rowsPerPage: rowsPerPage }));
   };
 
   const handleChangeRowsPerPage = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    setRowsPerPage(parseInt(event.target.value, 10));
-    ApiList.getPage(current, rowsPerPage).then((data: Array<IData>) => {
-      dispatch(setItems(data));
-    });
+    const rows: number = parseInt(event.target.value, 10);
+    setRowsPerPage(rows);
+    dispatch(fetchPage({ current: current, rowsPerPage: rows }));
   };
 
   return (
