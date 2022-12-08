@@ -42,7 +42,7 @@ export const itemSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchCharacter.fulfilled, (state, action) => {
-        state.items = action.payload;
+        state.items = action.payload as Array<IData>;
         state.isLoading = true;
       })
       .addCase(fetchCharacter.rejected, (state, action) => {
@@ -51,7 +51,7 @@ export const itemSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(fetchList.fulfilled, (state, action) => {
-        state.items = action.payload;
+        state.items = action.payload as IData[];
         state.isLoading = true;
       })
       .addCase(fetchList.rejected, (state, action) => {
@@ -60,14 +60,14 @@ export const itemSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(fetchPage.fulfilled, (state, action) => {
-        state.items = action.payload;
+        state.items = action.payload as Array<IData>;
       })
       .addCase(fetchPage.rejected, (state, action) => {
         alert(action.payload);
         state.items = [];
       })
       .addCase(fetchSortBy.fulfilled, (state, action) => {
-        state.items = action.payload;
+        state.items = action.payload as Array<IData>;
       })
       .addCase(fetchSortBy.rejected, (state, action) => {
         alert(action.payload);

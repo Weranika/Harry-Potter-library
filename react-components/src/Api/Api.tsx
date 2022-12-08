@@ -4,10 +4,10 @@ import mock from './mock.json';
 const PATH_TO_SERVER = 'https://api.potterdb.com/';
 const listCharacters = `${PATH_TO_SERVER}v1/characters`;
 
-const MOCKENABLED = false;
+const MOCK_ENABLED = false;
 class Api {
   getList() {
-    if (MOCKENABLED) {
+    if (MOCK_ENABLED) {
       return new Promise<Array<IData>>((resolve) => resolve(mock.data as IData[]));
     }
 
@@ -19,12 +19,15 @@ class Api {
         return res.json();
       })
       .then((json) => {
-        return json.data;
-      }) as Promise<Array<IData>>;
+        return json.data as Promise<Array<IData>>;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   getRecords() {
-    if (MOCKENABLED) {
+    if (MOCK_ENABLED) {
       return new Promise<IMeta>((resolve) => resolve(mock.meta as IMeta));
     }
 
@@ -36,12 +39,15 @@ class Api {
         return res.json();
       })
       .then((json) => {
-        return json.meta;
-      }) as Promise<IMeta>;
+        return json.meta as Promise<IMeta>;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   getCharacter(name: string) {
-    if (MOCKENABLED) {
+    if (MOCK_ENABLED) {
       return new Promise<Array<IData>>((resolve) => resolve(mock.data.slice(0, 5) as IData[]));
     }
 
@@ -54,8 +60,11 @@ class Api {
         return res.json();
       })
       .then((json) => {
-        return json.data;
-      }) as Promise<Array<IData>>;
+        return json.data as Promise<Array<IData>>;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   getSortBy(param: string, order: string) {
@@ -66,8 +75,11 @@ class Api {
     return fetch(characters)
       .then((res) => res.json())
       .then((json) => {
-        return json.data;
-      }) as Promise<Array<IData>>;
+        return json.data as Promise<Array<IData>>;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   getPage(number: number, size: number) {
@@ -75,8 +87,11 @@ class Api {
     return fetch(characters)
       .then((res) => res.json())
       .then((json) => {
-        return json.data;
-      }) as Promise<Array<IData>>;
+        return json.data as Promise<Array<IData>>;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 }
 

@@ -34,8 +34,7 @@ export interface IProps {
   item: ICard;
 }
 const ExpandMore = styled((props: ExpandMoreProps) => {
-  const { ...rest } = props;
-  return <IconButton {...rest} />;
+  return <IconButton {...props} />;
 })(({ theme, expand }) => ({
   transform: expand === 'false' ? 'rotate(0deg)' : 'rotate(180deg)',
   marginLeft: 'auto',
@@ -146,7 +145,7 @@ function CardComponent(props: IProps) {
                 <CardContent className="card__dropp-container">
                   {Object.entries(cardInfo).map(([key, value]) => {
                     return (
-                      <>
+                      <React.Fragment key={key}>
                         {value !== null ? (
                           <Box className="card__dropp-content-row" key={key}>
                             <Typography paragraph variant="h6">
@@ -157,7 +156,7 @@ function CardComponent(props: IProps) {
                         ) : (
                           ''
                         )}
-                      </>
+                      </React.Fragment>
                     );
                   })}
 

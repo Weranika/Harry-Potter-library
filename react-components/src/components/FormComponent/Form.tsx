@@ -47,8 +47,8 @@ function Form() {
 
   const onSubmit = (data: ICard) => {
     const card: ICard = {
+      ...data,
       name: data.name as string,
-      species: '',
       gender: (data.gender as string) ? 'female' : 'male',
       house: data.house as string,
       born: data.born as string,
@@ -58,12 +58,6 @@ function Form() {
       wands: data.wands as Array<string>,
       patronus: data.patronus as string,
       image: selectedImage,
-      alias_names: [],
-      family_members: [],
-      jobs: [],
-      romances: [],
-      boggart: '',
-      wiki: '',
     };
 
     dispatch(

@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
-import { IPagination } from '../global/interfaces';
+import { IPagination, IMeta } from '../global/interfaces';
 import ApiList from '../Api/Api';
 
 const initialState = {
@@ -35,7 +35,7 @@ export const paginationSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchRecords.fulfilled, (state, action) => {
-        state.pagination = action.payload.pagination;
+        state.pagination = (action.payload as IMeta).pagination as IPagination;
       })
       .addCase(fetchRecords.rejected, (state, action) => {
         alert(action.payload);
@@ -55,10 +55,3 @@ export default paginationSlice.reducer;
 export const fetchRecords = createAsyncThunk('pagination/setRecords', async () => {
   return await ApiList.getRecords();
 });
-
-// export const fetchPage = createAsyncThunk(
-//   'pagination/nextPage',
-//   async (pagination: IPagination) => {
-//     return await ApiList.getPage(pagination.current, pagination.records);
-//   }
-// );
