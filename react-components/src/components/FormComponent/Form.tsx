@@ -35,10 +35,36 @@ function Form() {
   const handleClose = () => setOpen(false);
 
   const { register, handleSubmit, reset } = useForm<ICard>();
-  const houses: Array<string> = ['Gryffindor', 'Slytherin', 'Ravenclaw', 'Hufflepuff'];
-  const wandWood: Array<string> = ['hawthorn', 'cherry', 'yew', 'cypress', 'walnut', 'mahogany'];
-  const wandCore: Array<string> = ['dragon heartstring', 'unicorn tail-hair', 'phoenix feather'];
-  const wandLength: Array<string> = ['10', '10 1/2', '11', '12', '12 3/4', '13', '14', '15', '16'];
+  const houses: Array<string> = [
+    'Gryffindor',
+    'Slytherin',
+    'Ravenclaw',
+    'Hufflepuff',
+  ];
+  const wandWood: Array<string> = [
+    'hawthorn',
+    'cherry',
+    'yew',
+    'cypress',
+    'walnut',
+    'mahogany',
+  ];
+  const wandCore: Array<string> = [
+    'dragon heartstring',
+    'unicorn tail-hair',
+    'phoenix feather',
+  ];
+  const wandLength: Array<string> = [
+    '10',
+    '10 1/2',
+    '11',
+    '12',
+    '12 3/4',
+    '13',
+    '14',
+    '15',
+    '16',
+  ];
   const wandInfo = {
     'wand core': wandCore,
     'wand wood': wandWood,

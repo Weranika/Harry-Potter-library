@@ -2,7 +2,8 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 const initialState = {
   inputSearch:
-    localStorage.getItem('inputValue') === 'null' || localStorage.getItem('inputValue') === null
+    localStorage.getItem('inputValue') === 'null' ||
+    localStorage.getItem('inputValue') === null
       ? ''
       : localStorage.getItem('inputValue'),
   isLoading: false,

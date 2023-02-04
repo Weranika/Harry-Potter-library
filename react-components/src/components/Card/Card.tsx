@@ -94,7 +94,9 @@ function CardComponent(props: IProps) {
       {image !== null ? (
         <StylesProvider injectFirst>
           <Card role="listitem" className="card" key={name}>
-            <CardContent style={{ backgroundImage: `url(${mapNameToBg.get(color)})` }}>
+            <CardContent
+              style={{ backgroundImage: `url(${mapNameToBg.get(color)})` }}
+            >
               <NavLink to="person">
                 <CardMedia
                   component="img"
@@ -122,7 +124,11 @@ function CardComponent(props: IProps) {
                   />
                 )}
                 <Box>
-                  <Typography variant="h6" align="center" className="card__title-name">
+                  <Typography
+                    variant="h6"
+                    align="center"
+                    className="card__title-name"
+                  >
                     {name}
                   </Typography>
                   <Typography variant="h6" align="center">

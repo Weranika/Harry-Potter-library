@@ -36,8 +36,12 @@ afterEach(() => {
 
 test('renders main page heroes list', async () => {
   render(<Main />);
-  expect(screen.getByRole('heading')).toHaveTextContent('Please wait some time...');
-  await waitFor(() => expect(screen.getByText('Abraham Potter')).toBeInTheDocument());
+  expect(screen.getByRole('heading')).toHaveTextContent(
+    'Please wait some time...'
+  );
+  await waitFor(() =>
+    expect(screen.getByText('Abraham Potter')).toBeInTheDocument()
+  );
 
   heroes
     .filter((hero) => hero.attributes.image !== null)
@@ -48,7 +52,9 @@ test('renders main page heroes list', async () => {
 
 test('render input in main', async () => {
   render(<Main />);
-  await waitFor(() => expect(screen.getByText('Abraham Potter')).toBeInTheDocument());
+  await waitFor(() =>
+    expect(screen.getByText('Abraham Potter')).toBeInTheDocument()
+  );
 
   const inputEl = screen.getByTestId('search-input');
   expect(inputEl).toBeInTheDocument();
@@ -60,10 +66,14 @@ test('render search hero in main', async () => {
   render(<Main />);
 
   const inputValue = 'Harry';
-  await waitFor(() => expect(screen.getByTestId('search-input')).toBeInTheDocument());
+  await waitFor(() =>
+    expect(screen.getByTestId('search-input')).toBeInTheDocument()
+  );
   const inputEl = screen.getByTestId('search-input');
 
   fireEvent.change(inputEl, { target: { value: inputValue } });
-  await waitFor(() => expect(screen.getByText('Harry James Potter')).toBeInTheDocument());
+  await waitFor(() =>
+    expect(screen.getByText('Harry James Potter')).toBeInTheDocument()
+  );
   expect(screen.getByText(hero[0].attributes.name)).toBeInTheDocument();
 });

@@ -10,9 +10,21 @@ function AboutUs() {
       <h1 className="page__title">About us</h1>
       <div className="about-us__conteiner">
         <div className="about-us__img-container">
-          <img className="about-us__img img-1" src={aboutImg1} alt="aboutImg1" />
-          <img className="about-us__img img-2" src={aboutImg2} alt="aboutImg2" />
-          <img className="about-us__img img-3" src={aboutImg3} alt="aboutImg3" />
+          <img
+            className="about-us__img img-1"
+            src={aboutImg1}
+            alt="aboutImg1"
+          />
+          <img
+            className="about-us__img img-2"
+            src={aboutImg2}
+            alt="aboutImg2"
+          />
+          <img
+            className="about-us__img img-3"
+            src={aboutImg3}
+            alt="aboutImg3"
+          />
         </div>
         <section className="about-us__content">
           <div className="about-gryffindor">

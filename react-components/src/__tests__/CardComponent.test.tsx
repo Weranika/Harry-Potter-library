@@ -18,7 +18,9 @@ it('renders more info in card', () => {
 
   expect(card.getByText(/male/i)).toBeInTheDocument();
   expect(
-    card.getByText(/31 July 1980, Godric's Hollow, West Country, England, Great Britain/i)
+    card.getByText(
+      /31 July 1980, Godric's Hollow, West Country, England, Great Britain/i
+    )
   ).toBeInTheDocument();
   expect(card.getByText(/Bright green/i)).toBeInTheDocument();
   expect(card.getByText(/Jet-black/i)).toBeInTheDocument();

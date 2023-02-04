@@ -12,7 +12,10 @@ export default function Pagination() {
   const { pagination } = useAppSelector((state) => state.pagination);
   const { records, current } = pagination;
 
-  const handleChangePage = (event: React.MouseEvent<HTMLButtonElement> | null, newPage: number) => {
+  const handleChangePage = (
+    event: React.MouseEvent<HTMLButtonElement> | null,
+    newPage: number
+  ) => {
     dispatch(nextPage(newPage));
     dispatch(fetchPage({ current: current, rowsPerPage: rowsPerPage }));
   };

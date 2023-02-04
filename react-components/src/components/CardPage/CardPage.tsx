@@ -9,7 +9,9 @@ import { ICard } from '../../global/interfaces';
 import './CardPage.scss';
 
 function CardPage() {
-  const cardDetailInfo = useAppSelector((state) => state.items.cardInfo) as ICard;
+  const cardDetailInfo = useAppSelector(
+    (state) => state.items.cardInfo
+  ) as ICard;
   const { alias_names, family_members, jobs, romances, name } = cardDetailInfo;
   const cardInfo = {
     'Alias names': alias_names,
@@ -25,7 +27,12 @@ function CardPage() {
           <div className="go-back__button">go to main</div>
         </NavLink>
         <Box className="card-page__container">
-          <Typography paragraph variant="h4" align="center" className="card-page__title">
+          <Typography
+            paragraph
+            variant="h4"
+            align="center"
+            className="card-page__title"
+          >
             Relation and job of {name}
           </Typography>
         </Box>
@@ -45,7 +52,11 @@ function CardPage() {
                   <Box className="modal-card">
                     {value !== null
                       ? value.map((el, id) => (
-                          <Typography paragraph key={id} className="modal-card__content">
+                          <Typography
+                            paragraph
+                            key={id}
+                            className="modal-card__content"
+                          >
                             {el}
                           </Typography>
                         ))

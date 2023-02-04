@@ -8,7 +8,9 @@ const MOCK_ENABLED = false;
 class Api {
   getList() {
     if (MOCK_ENABLED) {
-      return new Promise<Array<IData>>((resolve) => resolve(mock.data as IData[]));
+      return new Promise<Array<IData>>((resolve) =>
+        resolve(mock.data as IData[])
+      );
     }
 
     return fetch(listCharacters)
@@ -48,7 +50,9 @@ class Api {
 
   getCharacter(name: string) {
     if (MOCK_ENABLED) {
-      return new Promise<Array<IData>>((resolve) => resolve(mock.data.slice(0, 5) as IData[]));
+      return new Promise<Array<IData>>((resolve) =>
+        resolve(mock.data.slice(0, 5) as IData[])
+      );
     }
 
     const characters = `${PATH_TO_SERVER}v1/characters?filter[name_cont_any]=${name}`;

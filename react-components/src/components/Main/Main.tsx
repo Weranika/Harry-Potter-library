@@ -16,7 +16,11 @@ function Main() {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    if (searchValue === null || searchValue === '' || (searchValue as string).length < 3) {
+    if (
+      searchValue === null ||
+      searchValue === '' ||
+      (searchValue as string).length < 3
+    ) {
       dispatch(fetchList());
     } else {
       dispatch(fetchCharacter(searchValue as string));

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useAppSelector, useAppDispatch } from '../../hook';
+import { useAppSelector } from '../../hook';
 
 import CardComponent from '../Card/Card';
 import { IData } from '../../global/interfaces';

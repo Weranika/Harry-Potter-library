@@ -52,6 +52,9 @@ export const paginationSlice = createSlice({
 export const { setRecords, nextPage } = paginationSlice.actions;
 export default paginationSlice.reducer;
 
-export const fetchRecords = createAsyncThunk('pagination/setRecords', async () => {
-  return await ApiList.getRecords();
-});
+export const fetchRecords = createAsyncThunk(
+  'pagination/setRecords',
+  async () => {
+    return await ApiList.getRecords();
+  }
+);

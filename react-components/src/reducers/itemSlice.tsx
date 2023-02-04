@@ -1,5 +1,11 @@
 import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
-import { IData, ICard, defaultValues, IPaginationInfo, ISortParam } from '../global/interfaces';
+import {
+  IData,
+  ICard,
+  defaultValues,
+  IPaginationInfo,
+  ISortParam,
+} from '../global/interfaces';
 import ApiList from '../Api/Api';
 
 const initialState = {
@@ -79,9 +85,12 @@ export const itemSlice = createSlice({
 export const { setItems, setCardInfo, addItem } = itemSlice.actions;
 export default itemSlice.reducer;
 
-export const fetchCharacter = createAsyncThunk('item/setItems', async (name: string) => {
-  return await ApiList.getCharacter(name);
-});
+export const fetchCharacter = createAsyncThunk(
+  'item/setItems',
+  async (name: string) => {
+    return await ApiList.getCharacter(name);
+  }
+);
 
 export const fetchList = createAsyncThunk('item/setList', async () => {
   return await ApiList.getList();
@@ -90,10 +99,16 @@ export const fetchList = createAsyncThunk('item/setList', async () => {
 export const fetchPage = createAsyncThunk(
   'item/nextPage',
   async (paginationInfo: IPaginationInfo) => {
-    return await ApiList.getPage(paginationInfo.current, paginationInfo.rowsPerPage);
+    return await ApiList.getPage(
+      paginationInfo.current,
+      paginationInfo.rowsPerPage
+    );
   }
 );
 
-export const fetchSortBy = createAsyncThunk('item/setSortBy', async (sortParam: ISortParam) => {
-  return await ApiList.getSortBy(sortParam.param, sortParam.order);
-});
+export const fetchSortBy = createAsyncThunk(
+  'item/setSortBy',
+  async (sortParam: ISortParam) => {
+    return await ApiList.getSortBy(sortParam.param, sortParam.order);
+  }
+);
