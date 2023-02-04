@@ -1,2 +1,3 @@
 build
 .eslintrc
+node_modules
