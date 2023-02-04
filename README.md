@@ -1,6 +1,7 @@
 # Harry Potter library
 
 The fan-library about heroes in world Harry Potter.
+
 Based on Api https://potterdb.com/
 
 APP was created and rewrited (by tasks) using React features: 
@@ -15,6 +16,8 @@ APP features: searching, creating personage, sorting, pagination, popup, drop-co
 
 link to deploy: https://weranika.github.io/Harry-Potter-library/react-components/
 
+Technologies: JS, TS, REST, ESLint, SASS, Webpack, Ract/Redux, GIT, Material-UI, jest, react testing library
+
 ![image](https://user-images.githubusercontent.com/61847249/216746794-9e3ca80d-2aa4-446b-b733-173ee97dae1d.png)
 
 
@@ -23,7 +26,11 @@ link to deploy: https://weranika.github.io/Harry-Potter-library/react-components
 
 The task was in modules:
 Week 1 React. Components https://github.com/rolling-scopes-school/tasks/tree/master/react/modules/module01
+
 Week 2 React. Forms https://github.com/rolling-scopes-school/tasks/tree/master/react/modules/module02
+
 Week 3 React. Hooks https://github.com/rolling-scopes-school/tasks/tree/master/react/modules/module03
+
 Week 4 React. API https://github.com/rolling-scopes-school/tasks/tree/master/react/modules/module04
+
 Week 5 React. Redux https://github.com/rolling-scopes-school/tasks/tree/master/react/modules/module05
