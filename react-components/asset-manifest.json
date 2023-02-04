@@ -1,0 +1,40 @@
+{
+  "files": {
+    "main.css": "./static/css/main.cb5a1136.css",
+    "main.js": "./static/js/main.1b1d205a.js",
+    "static/js/787.28cb0dcd.chunk.js": "./static/js/787.28cb0dcd.chunk.js",
+    "static/media/garri-potter-volshebnaya-muzyka.mp3": "./static/media/garri-potter-volshebnaya-muzyka.d6543da00ac4d6cc1eba.mp3",
+    "static/media/aboutUs-1.png": "./static/media/aboutUs-1.7e62b5ff2d481438140a.png",
+    "static/media/aboutUs-3.png": "./static/media/aboutUs-3.c24d7ef25e41aa63b401.png",
+    "static/media/wp8187830-harry-potter-art-wallpapers.jpg": "./static/media/wp8187830-harry-potter-art-wallpapers.fbcecad9ca92dfaa2ca5.jpg",
+    "static/media/hogwarts-express-logo.png": "./static/media/hogwarts-express-logo.e8cc7bf64a78445c62c2.png",
+    "static/media/Hufflepuff.jpg": "./static/media/Hufflepuff.91e7772bb0ae9dfc08e0.jpg",
+    "static/media/aboutUs-2.png": "./static/media/aboutUs-2.fb6ef866e68013eddd53.png",
+    "static/media/CardPage.jpg": "./static/media/CardPage.a876dd04d5e0ad815f96.jpg",
+    "static/media/not-found.jpg": "./static/media/not-found.96a9bcb00fe235467b74.jpg",
+    "static/media/Gryffindor.jpg": "./static/media/Gryffindor.e5a04f9264e354ccd0e3.jpg",
+    "static/media/Ravenclaw.jpg": "./static/media/Ravenclaw.a6d147b8e59313aa4fee.jpg",
+    "static/media/Slytherin.jpg": "./static/media/Slytherin.294d3084bac8fa727caf.jpg",
+    "static/media/background.jpg": "./static/media/background.8720d2de65cb01829909.jpg",
+    "static/media/Teko-Regular.woff": "./static/media/Teko-Regular.e73c7b96fadee36a8b01.woff",
+    "static/media/wp2638543-wallpaper-hogwarts.jpg": "./static/media/wp2638543-wallpaper-hogwarts.c6008c3d059b21523e5e.jpg",
+    "static/media/open-sans.woff": "./static/media/open-sans.469db7e601bc2bc9cce3.woff",
+    "static/media/HufflepuffIcon.png": "./static/media/HufflepuffIcon.c218f8d5ef2c3a22c02c.png",
+    "static/media/GryffindorIcon.png": "./static/media/GryffindorIcon.279425add17c357e70f2.png",
+    "static/media/RavenclawIcon.png": "./static/media/RavenclawIcon.baa506093cc5bf51d45f.png",
+    "static/media/hogw.png": "./static/media/hogw.7be1451f3130c6397780.png",
+    "static/media/Harry Potter.woff": "./static/media/Harry Potter.554c952cc5f94dd69b96.woff",
+    "static/media/SlytherinIcon.png": "./static/media/SlytherinIcon.2d58c876b0ffde2828df.png",
+    "static/media/cursor1665011096.cur": "./static/media/cursor1665011096.6c5f6645b3b9a61e7b9d.cur",
+    "static/media/Lumos.woff": "./static/media/Lumos.370d293584822784b63c.woff",
+    "static/media/rs_school_img.svg": "./static/media/rs_school_img.ad178c0df28bc133be34.svg",
+    "index.html": "./index.html",
+    "main.cb5a1136.css.map": "./static/css/main.cb5a1136.css.map",
+    "main.1b1d205a.js.map": "./static/js/main.1b1d205a.js.map",
+    "787.28cb0dcd.chunk.js.map": "./static/js/787.28cb0dcd.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.cb5a1136.css",
+    "static/js/main.1b1d205a.js"
+  ]
+}
