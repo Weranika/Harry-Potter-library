@@ -4,11 +4,11 @@ The fan-library about heroes in world Harry Potter.
 
 Based on Api https://potterdb.com/
 
-APP was created and rewrited (by tasks) using React features: 
-- React Classes + states
-- Form Ref / Form hook (UseForm)
+SPA was created and rewrited (by tasks) using React features: 
+- React Classes (states + props in Class Components, react router, react audio player, react testing library)
+- Form (Ref in Class Components / UseForm in functional)
 - React Hooks (React Store + UseState)
-- Redux Hooks
+- Redux
 
 Final branch is react-redux
 
@@ -25,6 +25,7 @@ Technologies: JS, TS, REST, ESLint, SASS, Webpack, Ract/Redux, GIT, Material-UI,
 
 
 The task was in modules:
+
 Week 1 React. Components https://github.com/rolling-scopes-school/tasks/tree/master/react/modules/module01
 
 Week 2 React. Forms https://github.com/rolling-scopes-school/tasks/tree/master/react/modules/module02
